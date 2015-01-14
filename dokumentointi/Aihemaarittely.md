@@ -1,3 +1,5 @@
+##Aihemäärittely
+
 **Aihe:** Ruokareseptikortisto. Toteutetaan järjestelmä, mistä käyttäjä voi etsiä reseptejä raaka-aineiden ja kategorioiden mukaan. Esim. käyttäjä hakee reseptejä, mihin käytetään jauhelihaa tai käyttäjä hakee kategorien mukaan reseptejä, esim. pastat. Käyttäjä voi myös itse lisätä reseptejä. Jokaiseen reseptiin kuuluu nimi, raaka-aineet ja ohje, miten ruoka valmistetaan. Käyttäjä voi myös muokata ja poistaa reseptejä.
 
 **Käyttäjät:** Reseptejä hakeva henkilö
