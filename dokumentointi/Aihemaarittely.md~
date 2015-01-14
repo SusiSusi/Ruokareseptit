@@ -1,0 +1,15 @@
+**Aihe:** Ruokareseptikortisto. Toteutetaan järjestelmä, mistä käyttäjä voi etsiä reseptejä raaka-aineiden ja kategorioiden mukaan. Esim. käyttäjä hakee reseptejä, mihin käytetään jauhelihaa tai käyttäjä hakee kategorien mukaan reseptejä, esim. pastat. Käyttäjä voi myös itse lisätä reseptejä. Jokaiseen reseptiin kuuluu nimi, raaka-aineet ja ohje, miten ruoka valmistetaan. 
+
+**Käyttäjät:** Reseptejä hakeva henkilö
+
+**Käyttäjän toiminnot:**
+* avaa sovelluksen
+* saa ruudulle valikon, mistä käyttäjä voi valita haku- tai luonti -mahdollisuuden
+
+**Haku-toiminnot:**
+* hakee joko sanahaulla tai kategoriahaulla
+* 1. Sanahaulla haettaessa ohjelma tulostaa kaikki reseptit, joissa sana ilmenee. 
+* 2. Kategoriahaulla ohjelma tulostaa kaikki kategoriat ja kun käyttäjä valitsee tietyn kategorian, tulostuu kaikki kategoriassa olevat reseptit.
+
+**Luonti-toiminta:**
+* ohjelma kysyy käyttäjältä reseptin nimen, tarvittavat raaka-aineet sekä ohjeen, miten ruoka tehdään
