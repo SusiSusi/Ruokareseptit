@@ -23,10 +23,12 @@ public class Ainesosa {
     }
     
     public void setMaara(int maara) {
-        this.maara = maara;
+        if (maara >= 0) {
+            this.maara = maara;
+        }
     }
     
     public String toString() {
-        return this.nimi + "," + this.maara + " g";
+        return this.nimi + ", " + this.maara + " g";
     }
 }
