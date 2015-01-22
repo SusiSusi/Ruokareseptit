@@ -1,6 +1,4 @@
-package ruokareseptit.ruokareseptit;
-
-
+package ruokareseptit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -8,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ruokareseptit.ruokareseptit.Ainesosa;
+import ruokareseptit.Ainesosa;
 
 
 public class AinesosaTest {
@@ -17,7 +15,7 @@ public class AinesosaTest {
     
     @Before
     public void setUp() {
-        jauheliha = new Ainesosa("Jauheliha", 400);
+        jauheliha = new Ainesosa("Jauheliha", "400 g");
     }
 
     @Test
@@ -26,14 +24,14 @@ public class AinesosaTest {
     }
     
     @Test
-    public void asettaaUudeksiMaaraksiNollan() {
-        jauheliha.setMaara(0);
-        assertEquals(0, jauheliha.getMaara());
+    public void asettaaUudenMaaran() {
+        jauheliha.setMaara("500 g");
+        assertEquals("500 g", jauheliha.getMaara());
     }
     
     @Test
-    public void maaraEiMuutuKunSyotetaanNegatiivinenLuku() {
-        jauheliha.setMaara(-1);
-        assertEquals(400, jauheliha.getMaara());
+    public void asettaaUudenNimen() {
+        jauheliha.setNimi("Naudan jauheliha");
+        assertEquals("Naudan jauheliha", jauheliha.getNimi());
     }
 }
