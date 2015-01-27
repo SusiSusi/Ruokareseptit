@@ -1,4 +1,4 @@
-package ruokareseptit;
+package ruokareseptit.domain;
 
 public class Ainesosa {
 

@@ -1,6 +1,8 @@
-package ruokareseptit;
+package ruokareseptit.domain;
 
 import java.util.*;
+import ruokareseptit.StringUtils;
+import ruokareseptit.domain.Ainesosa;
 
 public class Resepti {
 
@@ -69,7 +71,8 @@ public class Resepti {
         int apu = 0;
         if (!this.ainesosat.isEmpty()) {
             for (Ainesosa osa : this.ainesosat) {
-                if (osa.getNimi().equals(ainesosa)) {
+                 if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
+//                if (osa.getNimi().equals(ainesosa)) {
                     apu++;
                 }
             }
