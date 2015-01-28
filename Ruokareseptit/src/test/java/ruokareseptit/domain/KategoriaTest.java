@@ -9,10 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class KategoriaTest {
-    
+
     Kategoria keitot;
     Resepti kalakeitto;
-    
+
     @Before
     public void setUp() {
         keitot = new Kategoria("Keitot");
@@ -21,13 +21,13 @@ public class KategoriaTest {
         kalakeitto.setOhje("Kiehauta vesi kattilassa ja keitä seitejä 10 min. Lisää "
                 + "suola ja pippuri. Anna hautua 30min miedolla lämmöllä.");
     }
-    
+
     @Test
     public void asettaaUudenReseptin() {
         keitot.lisaaReseptiKategoriaan(kalakeitto);
         assertEquals(1, keitot.reseptienMaaraKategoriassa());
     }
-    
+
     @Test
     public void tulostaaReseptienNimetOikein() {
         keitot.lisaaReseptiKategoriaan(new Resepti("Maksalaatikko"));
@@ -38,15 +38,15 @@ public class KategoriaTest {
         lista.add("Maksalaatikko");
         lista.add("Risotto");
         lista.add("Kastike");
-        lista.add("Jauheliha");        
+        lista.add("Jauheliha");
         assertEquals(lista, keitot.tulostaReseptienNimet());
     }
-    
+
     @Test
     public void tulostaaReseptienMaaranNollaTapauksessa() {
         assertEquals(0, keitot.reseptienMaaraKategoriassa());
     }
-    
+
     @Test
     public void tulostaaKaikkiReseptitOikein() {
         Resepti maksa = new Resepti("Maksalaatikko");
@@ -60,5 +60,31 @@ public class KategoriaTest {
         lista.add(kalakeitto);
         assertEquals(lista, keitot.tulostaKaikkiReseptit());
     }
-    
+
+    @Test
+    public void tulostaaHalutunReseptinJaKategorianOikein() {
+        Resepti maksa = new Resepti("Maksalaatikko");
+        Resepti risotto = new Resepti("Risotto");
+        keitot.lisaaReseptiKategoriaan(maksa);
+        keitot.lisaaReseptiKategoriaan(risotto);
+        keitot.lisaaReseptiKategoriaan(kalakeitto);
+        List<Resepti> lista = new ArrayList<Resepti>();
+        lista.add(maksa);
+        lista.add(risotto);
+        lista.add(kalakeitto);
+        assertEquals(kalakeitto, keitot.tulostaResepti("kalakeitto"));
+        assertEquals("Keitot", keitot.getKategorianNimi());
+    }
+
+    @Test
+    public void haluttuaReseptiaEiLoydyJaPalauttaaNullArvon() {
+        Resepti maksa = new Resepti("Maksalaatikko");
+        keitot.lisaaReseptiKategoriaan(maksa);
+        keitot.lisaaReseptiKategoriaan(kalakeitto);
+        List<Resepti> lista = new ArrayList<Resepti>();
+        lista.add(maksa);
+        lista.add(kalakeitto);
+        assertEquals(null, keitot.tulostaResepti("Makaronilaatikko"));
+        assertEquals(null, keitot.tulostaResepti(""));
+    }
 }

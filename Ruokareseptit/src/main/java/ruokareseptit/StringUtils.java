@@ -4,7 +4,7 @@ package ruokareseptit;
 public class StringUtils {
     
     public static boolean sisaltaa(String sana, String haettava) {
-        if (sana == null || haettava == null) {
+        if (sana.isEmpty() || haettava.isEmpty()) {
             return false;
         }
         String trimSana = sana.trim();
