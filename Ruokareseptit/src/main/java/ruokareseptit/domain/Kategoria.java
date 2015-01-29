@@ -51,4 +51,13 @@ public class Kategoria {
         }
         return resepti;
     }
+    
+    public void poistaResepti(String nimi) {
+        Iterator<Resepti> iteraattori = this.reseptit.iterator();
+        while(iteraattori.hasNext()) {
+            if (StringUtils.sisaltaa(iteraattori.next().getNimi(), nimi)) {
+                iteraattori.remove();
+            }
+        }
+    }
 }
