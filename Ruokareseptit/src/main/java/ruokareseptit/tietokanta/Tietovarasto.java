@@ -7,14 +7,14 @@ import ruokareseptit.StringUtils;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 
-public class TietoVarasto {
+public class Tietovarasto {
 
     private List<Kategoria> kategoriat;
     File tiedosto;
     File tiedostoReseptit;
     Scanner lukija;
 
-    public TietoVarasto() {
+    public Tietovarasto() {
         this.kategoriat = new ArrayList<Kategoria>();
         this.tiedosto = new File("src/main/java/ruokareseptit/tietokanta/Kategoriat.txt");
         this.tiedostoReseptit = new File("src/main/java/ruokareseptit/tietokanta/Reseptit.txt");
@@ -34,11 +34,9 @@ public class TietoVarasto {
             String rivi = lukija.nextLine();
             kategoriat.add(new Kategoria(rivi));
         }
-
     }
 
     public List haeKategoriat() {
-
         return this.kategoriat;
     }
 
@@ -59,10 +57,10 @@ public class TietoVarasto {
                         String nimi = lukija.nextLine();
                         Resepti uusiResepti = new Resepti(nimi);
                         String aineet = lukija.nextLine();
-                        while(!aineet.equals("OHJEET")) {
+                        while (!aineet.equals("OHJEET")) {
                             String[] osat = aineet.split(":");
                             String maara = osat[0];
-                            String aine = osat[1];               
+                            String aine = osat[1];
                             uusiResepti.setAinesosa(aine, maara);
                             aineet = lukija.nextLine();
                         }

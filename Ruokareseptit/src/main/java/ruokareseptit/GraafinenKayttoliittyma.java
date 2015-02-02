@@ -8,12 +8,12 @@ import ruokareseptit.domain.Resepti;
 
 public class GraafinenKayttoliittyma implements Runnable {
 
+    
     private JFrame frame;
     private Tekstikayttoliittyma teksti;
-    
 
     public GraafinenKayttoliittyma() {
-
+        this.teksti = new Tekstikayttoliittyma();
     }
 
     @Override
@@ -30,25 +30,27 @@ public class GraafinenKayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        container.add(new JLabel("Tervetuloa SusiSusin ruokaresepteihin!"), BorderLayout.NORTH);
-        container.add(new JLabel("Täältä löydät repset!"));
+//        GridLayout leiska = new GridLayout(3, 1);
+//        container.setLayout(leiska);
 
         JPanel valikko = new JPanel(new GridLayout(1, 3));
         JButton kategoria = new JButton("Hae kategoria");
         JButton resepti = new JButton("Hae repseti");
         JButton lisaa = new JButton("Lisää uusi");
+
         valikko.add(kategoria);
         valikko.add(resepti);
         valikko.add(lisaa);
-        
-        ViestiKuuntelija kuulija = new ViestiKuuntelija(teksti, kategoria, resepti, lisaa);
-        
+
+        ViestiKuuntelija kuulija = new ViestiKuuntelija(valikko, container, teksti, kategoria, resepti, lisaa);
+
         kategoria.addActionListener(kuulija);
         resepti.addActionListener(kuulija);
         lisaa.addActionListener(kuulija);
-        
-        container.add(valikko, BorderLayout.SOUTH);
 
+        container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
+        container.add(valikko, BorderLayout.SOUTH);
+        
     }
 
 //    private JPanel luoValikko() {
@@ -65,6 +67,8 @@ public class GraafinenKayttoliittyma implements Runnable {
 //        
 //        return panel;
 //    }
+    
+    
     public JFrame getFrame() {
         return frame;
     }

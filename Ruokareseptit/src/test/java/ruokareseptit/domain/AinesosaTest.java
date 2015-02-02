@@ -20,7 +20,7 @@ public class AinesosaTest {
 
     @Test
     public void tulostaaNimenJaMaaranOikein() {
-        assertEquals("Jauheliha, 400 g", jauheliha.toString());
+        assertEquals("400 g, Jauheliha", jauheliha.toString());
     }
     
     @Test

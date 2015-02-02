@@ -68,18 +68,14 @@ public class Resepti {
     }
 
     public void setAinesosa(String ainesosa, String maara) {
-        int apu = 0;
         if (!this.ainesosat.isEmpty()) {
             for (Ainesosa osa : this.ainesosat) {
-               if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
-                    apu = -1;
-                    break;
+                if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
+                    return;
                 }
             }
         }
-        if (apu == 0) {
-            this.ainesosat.add(new Ainesosa(ainesosa, maara));
-        }
+        this.ainesosat.add(new Ainesosa(ainesosa, maara));
     }
 
     public String toString() {

@@ -35,7 +35,7 @@ public class ReseptiTest {
     @Test
     public void eiTalletaSamaaAinesosaaUudestaan() {
         res.setAinesosa("Jauheliha", "100 g");
-        assertEquals("Jauheliha, 400 g\nMakaroni, 4 dl\nkahvi, 1 kuppi\n", res.getAinesosat());
+        assertEquals("400 g, Jauheliha\n4 dl, Makaroni\n1 kuppi, kahvi\n", res.getAinesosat());
     }
 
     @Test
@@ -72,9 +72,9 @@ public class ReseptiTest {
         assertEquals("Makaronilaatikko\n"
                 + "\n"
                 + "Ainesosat: \n"
-                + "Jauheliha, 400 g\n"
-                + "Makaroni, 4 dl\n"
-                + "kahvi, 1 kuppi\n"
+                + "400 g, Jauheliha\n"
+                + "4 dl, Makaroni\n"
+                + "1 kuppi, kahvi\n"
                 + "\n"
                 + "Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain \n"
                 + "ja niitä kypsytetään sipulin kanssa pannulla. Jos halua-\n"

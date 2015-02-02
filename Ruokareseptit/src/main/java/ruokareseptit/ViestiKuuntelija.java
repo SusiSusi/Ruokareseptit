@@ -8,13 +8,16 @@ import javax.swing.*;
 public class ViestiKuuntelija implements ActionListener {
 
     private Tekstikayttoliittyma kayttis;
-    private JPanel sisalto;
+    private JPanel valikko;
     private JButton kategoria;
     private JButton resepti;
     private JButton lisaa;
+    private Container container;
 
-    public ViestiKuuntelija(Tekstikayttoliittyma kayttis, JButton kategoria, JButton resepti,
+    public ViestiKuuntelija(JPanel valikko, Container container, Tekstikayttoliittyma kayttis, JButton kategoria, JButton resepti,
             JButton lisaa) {
+        this.valikko = valikko;
+        this.container = container;
         this.kayttis = kayttis;
         this.kategoria = kategoria;
         this.resepti = resepti;
@@ -24,7 +27,8 @@ public class ViestiKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == kategoria) {
-            kayttis.tulostaKaikkiReseptit();
+            kayttis.tulostaKategorianReseptienNimet("LIHA");
+            kategorianHakuValikko();
         } else if (ae.getSource() == resepti) {
 
         } else if (ae.getSource() == lisaa) {
@@ -32,4 +36,11 @@ public class ViestiKuuntelija implements ActionListener {
         }
     }
 
+    public void kategorianHakuValikko() {
+        JPanel panely = new JPanel();
+        BoxLayout layout = new BoxLayout(panely, BoxLayout.Y_AXIS);
+        panely.setLayout(layout);
+        panely.add(new JLabel("Tuotevalikko"));
+        panely.add(new JLabel("------------"));
+    }
 }

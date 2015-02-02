@@ -3,25 +3,21 @@ package ruokareseptit;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
-import ruokareseptit.tietokanta.TietoVarasto;
+import ruokareseptit.tietokanta.Tietovarasto;
 
 public class Tekstikayttoliittyma {
 
     private List<Kategoria> kategoria;
-    private TietoVarasto tiedot;
+    private Tietovarasto tiedot;
 
     public Tekstikayttoliittyma() {
-        this.kategoria = new ArrayList<Kategoria>();
-        tiedot = new TietoVarasto();
+        tiedot = new Tietovarasto();
+        this.kategoria = tiedot.haeKategoriat();
     }
 
     public void kaynnista() {
         tulostaMenu();
 
-    }
-    
-    public void lisaaKategoriat(Kategoria kategoriaa) {
-        this.kategoria.add(kategoriaa);
     }
 
     public void tulostaMenu() {
@@ -66,7 +62,7 @@ public class Tekstikayttoliittyma {
             }
         }
         if (reseptienNimet.isEmpty()) {
-            System.out.println("Kategoriaa ei löytynyt");
+            System.out.println("Kategoriassa ei ole reseptejä.");
         } else {
             for (String reseptinNimi : reseptienNimet) {
                 System.out.println(reseptinNimi);
