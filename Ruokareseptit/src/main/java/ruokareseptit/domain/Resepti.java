@@ -71,7 +71,7 @@ public class Resepti {
         int apu = 0;
         if (!this.ainesosat.isEmpty()) {
             for (Ainesosa osa : this.ainesosat) {
-                if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
+               if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
                     apu = -1;
                     break;
                 }
