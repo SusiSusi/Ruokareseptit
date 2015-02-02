@@ -27,7 +27,7 @@ public class ViestiKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == kategoria) {
-            kayttis.tulostaKategorianReseptienNimet("LIHA");
+//            kayttis.tulostaKategorianReseptienNimet("LIHA");
             kategorianHakuValikko();
         } else if (ae.getSource() == resepti) {
 
@@ -37,10 +37,7 @@ public class ViestiKuuntelija implements ActionListener {
     }
 
     public void kategorianHakuValikko() {
-        JPanel panely = new JPanel();
-        BoxLayout layout = new BoxLayout(panely, BoxLayout.Y_AXIS);
-        panely.setLayout(layout);
-        panely.add(new JLabel("Tuotevalikko"));
-        panely.add(new JLabel("------------"));
+        JTextField u = new JTextField("");
+        kayttis.tulostaKaikkiReseptit();
     }
 }
