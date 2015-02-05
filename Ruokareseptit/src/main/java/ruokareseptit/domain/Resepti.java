@@ -12,7 +12,7 @@ public class Resepti {
 
     public Resepti(String nimi) {
         this.nimi = nimi;
-        this.ainesosat = new ArrayList<Ainesosa>();
+        this.ainesosat = new ArrayList<>();
         this.ohje = "";
     }
 
@@ -28,6 +28,14 @@ public class Resepti {
             palautettavatAinesosat.add(osa);
         }
         return palautettavatAinesosat;
+    }
+
+    public String tuoAinesosat() {
+        String osat = "";
+        for (Ainesosa osa : this.ainesosat) {
+                osat = osat + osa + "\n";
+        }
+        return osat;
     }
 
     public String getOhje() {
@@ -77,6 +85,6 @@ public class Resepti {
     }
 
     public String toString() {
-        return this.nimi + "\n\nAinesosat: \n" + getAinesosat() + "\n" + getOhje();
+        return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\n" + getOhje();
     }
 }

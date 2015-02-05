@@ -14,7 +14,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     private Tekstikayttoliittyma teksti;
 
     public GraafinenKayttoliittyma() {
-        this.teksti = new Tekstikayttoliittyma();
+//        this.teksti = new Tekstikayttoliittyma();
     }
 
     @Override

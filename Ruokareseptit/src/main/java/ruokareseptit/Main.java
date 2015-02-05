@@ -13,6 +13,9 @@ import ruokareseptit.tietokanta.Tietovarasto;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        Scanner lukija = new Scanner(System.in);
+        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma(lukija);
+        kayttis.kaynnista();
         // TODO code application logic here
 //
 //        GraafinenKayttoliittyma kayttoliittyma = new GraafinenKayttoliittyma();
@@ -38,10 +41,6 @@ public class Main {
 //        }
 //
 //        }
-        Scanner lukija = new Scanner(System.in);
-        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma(lukija);
-        kayttis.kaynnista();
-        
 //        String sana = "Graavilohi-tartarleivät";
 //        String sana2 = "Graavilohi-tartarleivät";
 //        System.out.println(sisaltaa(sana, sana2));
@@ -55,7 +54,6 @@ public class Main {
 //        }
 //        System.out.println(alkup.getKategorianNimi());
 //        System.out.println(alkup.tulostaResepti("Graavilohi-tartarleivät"));
-        
 //        Kategoria n = new Kategoria("Keitto");
 //        Resepti r = new Resepti("Kalakeitto");
 //        n.lisaaReseptiKategoriaan(r);
@@ -65,7 +63,6 @@ public class Main {
 //        n.poistaResepti("Kalakeitto");
 //        n.poistaKaikkiReseptit();
 //        System.out.println(n.reseptienMaaraKategoriassa());
-        
 //        Tietovarasto j = new Tietovarasto();
 //        Resepti u = new Resepti("Kalakeitto");
 //        u.setAinesosa("lohi", "1 kpl");
@@ -79,5 +76,3 @@ public class Main {
 //        System.out.println(StringUtils.muutaAinesosatTiedostoonSopiviksi(os));
     }
 }
-
-

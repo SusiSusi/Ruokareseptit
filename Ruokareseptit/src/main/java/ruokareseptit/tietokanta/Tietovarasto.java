@@ -72,7 +72,6 @@ public class Tietovarasto {
                     }
                 }
             }
-
         }
     }
 
@@ -84,7 +83,7 @@ public class Tietovarasto {
 
     public void lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
         FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true);
-        kirjoittaja.write("KATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi() + 
+        kirjoittaja.write("\nKATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi() + 
                 "\n" + StringUtils.muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat()) + "OHJEET\n" + resepti.getOhje());   
         kirjoittaja.close();
         poistaKategorioistaReseptit();

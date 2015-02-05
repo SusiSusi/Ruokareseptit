@@ -1,5 +1,6 @@
 package ruokareseptit.logiikka;
 
+import java.io.IOException;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
@@ -7,17 +8,17 @@ import ruokareseptit.tietokanta.Tietovarasto;
 
 public class Tekstikayttoliittyma {
 
-    private List<Kategoria> kategoria;
+    private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
     private Scanner lukija;
 
     public Tekstikayttoliittyma(Scanner lukija) {
         tiedot = new Tietovarasto();
-        this.kategoria = tiedot.haeKategoriat();
+        this.kategoriat = tiedot.haeKategoriat();
         this.lukija = lukija;
     }
 
-    public void kaynnista() {
+    public void kaynnista() throws IOException {
         System.out.println("Ruokareseptit");
         System.out.println("*******************");
         while (true) {
@@ -35,7 +36,8 @@ public class Tekstikayttoliittyma {
                 System.out.println("");
                 tulostetaankoKategoriastaResepti(haettavaKategoria);
             } else if (vastaus.equals("3")) {
-                lisaaUusiResepti();
+                Lisaykset lisataan = new Lisaykset(this.lukija, this.kategoriat, this.tiedot);
+                lisataan.lisaaUusiResepti();
             } else if (vastaus.equals("4")) {
                 tulostaKaikkiReseptit();
             } else if (vastaus.equals("5")) {
@@ -63,8 +65,8 @@ public class Tekstikayttoliittyma {
     }
 
     public void tulostaKaikkiReseptit() {
-        for (Kategoria kategoriat : this.kategoria) {
-            List<Resepti> reseptit = kategoriat.tulostaKaikkiReseptit();
+        for (Kategoria kategoria : this.kategoriat) {
+            List<Resepti> reseptit = kategoria.tulostaKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 System.out.println(resepti);
                 System.out.println("***********************************");
@@ -74,16 +76,16 @@ public class Tekstikayttoliittyma {
 
     public void tulostaKaikkiKategoriat() {
         int i = 1;
-        for (Kategoria kategoriat : this.kategoria) {
-            System.out.println("  " + i + ". " + kategoriat.getKategorianNimi());
+        for (Kategoria kategoria : this.kategoriat) {
+            System.out.println("  " + i + ". " + kategoria.getKategorianNimi());
             i++;
         }
     }
 
     public void tulostaResepti(String resepti) {
         Resepti etsittavaResepti = null;
-        for (Kategoria kategoriat : this.kategoria) {
-            etsittavaResepti = kategoriat.tulostaResepti(resepti);
+        for (Kategoria kategoria : this.kategoriat) {
+            etsittavaResepti = kategoria.tulostaResepti(resepti);
             if (etsittavaResepti != null) {
                 break;
             }
@@ -97,9 +99,9 @@ public class Tekstikayttoliittyma {
 
     public void tulostaKategorianReseptienNimet(String kategorianNimi) {
         List<String> reseptienNimet = new ArrayList<String>();
-        for (Kategoria kategoriat : this.kategoria) {
-            if (StringUtils.sisaltaa(kategoriat.getKategorianNimi(), kategorianNimi)) {
-                reseptienNimet = kategoriat.tulostaReseptienNimet();
+        for (Kategoria kategoria : this.kategoriat) {
+            if (StringUtils.sisaltaa(kategoria.getKategorianNimi(), kategorianNimi)) {
+                reseptienNimet = kategoria.tulostaReseptienNimet();
             }
         }
         if (reseptienNimet.isEmpty()) {
@@ -119,7 +121,7 @@ public class Tekstikayttoliittyma {
                 System.out.print("Mikä resepti? ");
                 String haluttuResepti = this.lukija.nextLine();
                 Resepti re = null;
-                for (Kategoria goria : this.kategoria) {
+                for (Kategoria goria : this.kategoriat) {
                     if (StringUtils.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
                         re = goria.tulostaResepti(haluttuResepti);
                         break;
