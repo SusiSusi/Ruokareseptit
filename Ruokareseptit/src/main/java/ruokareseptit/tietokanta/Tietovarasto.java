@@ -15,11 +15,11 @@ public class Tietovarasto {
     Scanner lukija;
 
     public Tietovarasto() {
-        this.kategoriat = new ArrayList<Kategoria>();
+        this.kategoriat = new ArrayList<>();
         this.tiedosto = new File("src/main/java/ruokareseptit/tietokanta/Kategoriat.txt");
         this.tiedostoReseptit = new File("src/main/java/ruokareseptit/tietokanta/Reseptit.txt");
         lisaaKategoriat();
-        lisaaKategoriaanResepti();
+        lisaaKategoriaanReseptit();
     }
 
     private void lisaaKategoriat() {
@@ -40,7 +40,7 @@ public class Tietovarasto {
         return this.kategoriat;
     }
 
-    public void lisaaKategoriaanResepti() {
+    private void lisaaKategoriaanReseptit() {
         this.lukija = null;
         try {
             lukija = new Scanner(this.tiedostoReseptit);

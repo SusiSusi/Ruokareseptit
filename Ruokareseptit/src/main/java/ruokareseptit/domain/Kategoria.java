@@ -27,7 +27,7 @@ public class Kategoria {
     }
 
     public List tulostaKaikkiReseptit() {
-        List<Resepti> palautettavaLista = new ArrayList<Resepti>();
+        List<Resepti> palautettavaLista = new ArrayList<>();
         for (Resepti resepti : this.reseptit) {
             palautettavaLista.add(resepti);
         }
@@ -35,7 +35,7 @@ public class Kategoria {
     }
 
     public List tulostaReseptienNimet() {
-        List<String> palautettavaLista = new ArrayList<String>();
+        List<String> palautettavaLista = new ArrayList<>();
         for (Resepti resepti : this.reseptit) {
             palautettavaLista.add(resepti.getNimi());
         }
@@ -43,13 +43,15 @@ public class Kategoria {
     }
 
     public Resepti tulostaResepti(String nimi) {
-        Resepti resepti = null;
+        Resepti loytynytResepti = null;
         for (Resepti resep : this.reseptit) {
+            System.out.println("TÄMÄ LOOPPI " + resep.getNimi());
             if (StringUtils.sisaltaa(resep.getNimi(), nimi)) {
-                resepti = resep;
+                System.out.println("PÄÄSTÄÄNKÖ KOSKAAN TÄNNE");
+                loytynytResepti = resep;
             }
         }
-        return resepti;
+        return loytynytResepti;
     }
     
     public void poistaResepti(String nimi) {
