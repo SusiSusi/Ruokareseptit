@@ -2,7 +2,7 @@ package ruokareseptit.domain;
 
 import ruokareseptit.domain.Resepti;
 import java.util.*;
-import ruokareseptit.StringUtils;
+import ruokareseptit.logiikka.StringUtils;
 
 public class Kategoria {
 
@@ -62,5 +62,9 @@ public class Kategoria {
                 iteraattori.remove();
             }
         }
+    }
+    
+    public void poistaKaikkiReseptit() {
+        this.reseptit.clear();
     }
 }

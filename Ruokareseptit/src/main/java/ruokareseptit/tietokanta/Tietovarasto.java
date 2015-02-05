@@ -2,8 +2,10 @@ package ruokareseptit.tietokanta;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
-import ruokareseptit.StringUtils;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 
@@ -19,7 +21,7 @@ public class Tietovarasto {
         this.tiedosto = new File("src/main/java/ruokareseptit/tietokanta/Kategoriat.txt");
         this.tiedostoReseptit = new File("src/main/java/ruokareseptit/tietokanta/Reseptit.txt");
         lisaaKategoriat();
-        lisaaKategoriaanReseptit();
+        lisaaKategorioihinReseptit();
     }
 
     private void lisaaKategoriat() {
@@ -40,7 +42,7 @@ public class Tietovarasto {
         return this.kategoriat;
     }
 
-    private void lisaaKategoriaanReseptit() {
+    public void lisaaKategorioihinReseptit() {
         this.lukija = null;
         try {
             lukija = new Scanner(this.tiedostoReseptit, "UTF-8");
@@ -74,4 +76,18 @@ public class Tietovarasto {
         }
     }
 
+    public void poistaKategorioistaReseptit() {
+        for (Kategoria kategoria : this.kategoriat) {
+            kategoria.poistaKaikkiReseptit();
+        }
+    }
+
+    public void lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
+        FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true);
+        kirjoittaja.write("KATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi() + 
+                "\n" + StringUtils.muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat()) + "OHJEET\n" + resepti.getOhje());   
+        kirjoittaja.close();
+        poistaKategorioistaReseptit();
+        lisaaKategorioihinReseptit();
+    }
 }

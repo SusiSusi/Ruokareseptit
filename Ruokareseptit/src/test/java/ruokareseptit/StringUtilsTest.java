@@ -1,5 +1,6 @@
 package ruokareseptit;
 
+import ruokareseptit.logiikka.StringUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

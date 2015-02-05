@@ -1,15 +1,18 @@
 package ruokareseptit;
 
+import ruokareseptit.logiikka.Tekstikayttoliittyma;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.SwingUtilities;
-import static ruokareseptit.StringUtils.sisaltaa;
+import static ruokareseptit.logiikka.StringUtils.sisaltaa;
+import ruokareseptit.domain.Ainesosa;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
 //
 //        GraafinenKayttoliittyma kayttoliittyma = new GraafinenKayttoliittyma();
@@ -53,6 +56,27 @@ public class Main {
 //        System.out.println(alkup.getKategorianNimi());
 //        System.out.println(alkup.tulostaResepti("Graavilohi-tartarleivät"));
         
+//        Kategoria n = new Kategoria("Keitto");
+//        Resepti r = new Resepti("Kalakeitto");
+//        n.lisaaReseptiKategoriaan(r);
+//        Resepti k = new Resepti("Susikeitto");
+//        n.lisaaReseptiKategoriaan(k);
+//        System.out.println(n.reseptienMaaraKategoriassa());
+//        n.poistaResepti("Kalakeitto");
+//        n.poistaKaikkiReseptit();
+//        System.out.println(n.reseptienMaaraKategoriassa());
+        
+//        Tietovarasto j = new Tietovarasto();
+//        Resepti u = new Resepti("Kalakeitto");
+//        u.setAinesosa("lohi", "1 kpl");
+//        u.setOhje("Fileeraa lohi ja laita uuniin");
+//        j.lisaaReseptiTiedostoon("keitto", u);
+//        List<Ainesosa> os = u.getAinesosat();
+//        for (Ainesosa o : os) {
+//            System.out.println(o);
+//        }
+//        System.out.println("********");
+//        System.out.println(StringUtils.muutaAinesosatTiedostoonSopiviksi(os));
     }
 }
 

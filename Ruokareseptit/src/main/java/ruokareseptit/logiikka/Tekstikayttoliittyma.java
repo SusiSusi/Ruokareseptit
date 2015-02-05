@@ -1,4 +1,4 @@
-package ruokareseptit;
+package ruokareseptit.logiikka;
 
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
@@ -35,7 +35,7 @@ public class Tekstikayttoliittyma {
                 System.out.println("");
                 tulostetaankoKategoriastaResepti(haettavaKategoria);
             } else if (vastaus.equals("3")) {
-                System.out.println("Ei toimintoa vielä >:) ");
+                lisaaUusiResepti();
             } else if (vastaus.equals("4")) {
                 tulostaKaikkiReseptit();
             } else if (vastaus.equals("5")) {
@@ -73,8 +73,10 @@ public class Tekstikayttoliittyma {
     }
 
     public void tulostaKaikkiKategoriat() {
+        int i = 1;
         for (Kategoria kategoriat : this.kategoria) {
-            System.out.println(kategoriat.getKategorianNimi() + "\n");
+            System.out.println("  " + i + ". " + kategoriat.getKategorianNimi());
+            i++;
         }
     }
 
@@ -135,6 +137,14 @@ public class Tekstikayttoliittyma {
                 System.out.println("Syöte on virheellinen. Kirjoita k = kyllä tai e = ei");
             }
         }
-
+    }
+    
+    public void lisaaUusiResepti() {
+        System.out.println("Mihin kategoriaan uusi resepti kuuluu? Valitse alla olevista vaihtoehdoista.");
+        System.out.println("*******************");
+        tulostaKaikkiKategoriat();
+        System.out.println("*******************");
+        String mikaKategoria = this.lukija.nextLine();
+        
     }
 }

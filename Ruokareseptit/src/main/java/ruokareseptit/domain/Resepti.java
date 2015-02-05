@@ -1,7 +1,7 @@
 package ruokareseptit.domain;
 
 import java.util.*;
-import ruokareseptit.StringUtils;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.domain.Ainesosa;
 
 public class Resepti {
@@ -20,16 +20,14 @@ public class Resepti {
         return this.nimi;
     }
 
-    public String getAinesosat() {
-        String osat = "";
-        if (this.ainesosat.isEmpty()) {
-            return "Ainesosia ei ole vielä talletettu.";
-        } else {
-            for (Ainesosa osa : this.ainesosat) {
-                osat = osat + osa + "\n";
-            }
+    public List getAinesosat() {
+        List<Ainesosa> palautettavatAinesosat = new ArrayList<>();
+//        String osat = "";
+        for (Ainesosa osa : this.ainesosat) {
+//                osat = osat + osa + "\n";
+            palautettavatAinesosat.add(osa);
         }
-        return osat;
+        return palautettavatAinesosat;
     }
 
     public String getOhje() {

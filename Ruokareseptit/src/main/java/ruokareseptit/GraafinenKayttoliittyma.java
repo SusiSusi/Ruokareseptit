@@ -1,5 +1,6 @@
 package ruokareseptit;
 
+import ruokareseptit.logiikka.Tekstikayttoliittyma;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
