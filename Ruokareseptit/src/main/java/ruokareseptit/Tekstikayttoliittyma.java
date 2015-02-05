@@ -44,7 +44,7 @@ public class Tekstikayttoliittyma {
                 System.out.println("Kiitos ja näkemiin");
                 break;
             } else {
-                System.out.println("\n TÄMÄ SYÖTE ON KAYNNISTYS() Syöte on virheellinen.");
+                System.out.println("\nSyöte on virheellinen.");
             }
         }
 
@@ -115,11 +115,11 @@ public class Tekstikayttoliittyma {
             String haluaako = this.lukija.nextLine();
             if (StringUtils.sisaltaa("k", haluaako)) {
                 System.out.print("Mikä resepti? ");
-                String resepti = this.lukija.nextLine();
+                String haluttuResepti = this.lukija.nextLine();
                 Resepti re = null;
                 for (Kategoria goria : this.kategoria) {
                     if (StringUtils.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
-                        re = goria.tulostaResepti(resepti);
+                        re = goria.tulostaResepti(haluttuResepti);
                         break;
                     }
                 }

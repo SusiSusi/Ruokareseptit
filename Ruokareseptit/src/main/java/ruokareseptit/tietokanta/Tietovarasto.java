@@ -25,7 +25,7 @@ public class Tietovarasto {
     private void lisaaKategoriat() {
         this.lukija = null;
         try {
-            lukija = new Scanner(this.tiedosto);
+            lukija = new Scanner(this.tiedosto, "UTF-8");
         } catch (Exception e) {
             System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
             return; // poistutaan metodista
@@ -43,7 +43,7 @@ public class Tietovarasto {
     private void lisaaKategoriaanReseptit() {
         this.lukija = null;
         try {
-            lukija = new Scanner(this.tiedostoReseptit);
+            lukija = new Scanner(this.tiedostoReseptit, "UTF-8");
         } catch (Exception e) {
             System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
             return; // poistutaan metodista

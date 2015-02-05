@@ -45,9 +45,10 @@ public class Kategoria {
     public Resepti tulostaResepti(String nimi) {
         Resepti loytynytResepti = null;
         for (Resepti resep : this.reseptit) {
-            System.out.println("TÄMÄ LOOPPI " + resep.getNimi());
+//            System.out.println("TÄMÄ LOOPPI " + resep.getNimi());
+//            System.out.println(resep.getNimi() + "haettava " + nimi +" tulos  " +StringUtils.sisaltaa(resep.getNimi(), nimi));
             if (StringUtils.sisaltaa(resep.getNimi(), nimi)) {
-                System.out.println("PÄÄSTÄÄNKÖ KOSKAAN TÄNNE");
+//                System.out.println("PÄÄSTÄÄNKÖ KOSKAAN TÄNNE");
                 loytynytResepti = resep;
             }
         }
