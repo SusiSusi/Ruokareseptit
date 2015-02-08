@@ -13,7 +13,7 @@ import ruokareseptit.tietokanta.Tietovarasto;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner lukija = new Scanner(System.in);
+        Scanner lukija = new Scanner(System.in, "UTF-8");
         Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma(lukija);
         kayttis.kaynnista();
         // TODO code application logic here

@@ -51,6 +51,6 @@ Viipaloi herkkusienet ja sipuli. Paista pannulla Oivariini rasvassa. Mausta. Lev
 KATEGORIA
 KEITTO
 Kalakeitto
-1 kpl:lohi
+1 kpl:Lohi
 OHJEET
 Fileeraa lohi ja laita uuniin

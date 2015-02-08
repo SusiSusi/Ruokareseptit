@@ -35,8 +35,9 @@ public class Lisaykset {
                 + "ainesosat, kirjoita LOPETA");
         lisataanKaikkiAinesosat(uusiResepti);
         System.out.println("Miten resepti valmistetaa? Kirjoita ohje 'pötköön', koska"
-                + "enterin painallus lopettaa ohjeen kirjoittamisen.");
+                + " enterin painallus lopettaa ohjeen kirjoittamisen.");
         String ohje = this.lukija.nextLine();
+        uusiResepti.setOhje(ohje);
         tiedot.lisaaReseptiTiedostoon(kategoria, uusiResepti);
     }
 
@@ -74,9 +75,12 @@ public class Lisaykset {
         while (true) {
             System.out.print("Ainesosa: ");
             String ainesosa = this.lukija.nextLine();
+            if (StringUtils.sisaltaa("LOPETA", ainesosa)) {
+                return;
+            }
             System.out.print("Määrä: ");
             String maara = this.lukija.nextLine();
-            if (StringUtils.sisaltaa("LOPETA", ainesosa) || StringUtils.sisaltaa("LOPETA", maara)) {
+            if (StringUtils.sisaltaa("LOPETA", maara)) {
                 return;
             }
             resepti.setAinesosa(ainesosa, maara);
