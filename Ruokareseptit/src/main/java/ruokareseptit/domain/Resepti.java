@@ -2,18 +2,27 @@ package ruokareseptit.domain;
 
 import java.util.*;
 import ruokareseptit.logiikka.StringUtils;
-import ruokareseptit.domain.Ainesosa;
+
+/**
+ * Luokka luo reseptejä
+ * @author susisusi
+ */
 
 public class Resepti {
 
     private String nimi;
     private List<Ainesosa> ainesosat;
     private String ohje;
-
+    
+    /**
+     * Konstruktori asettaa reseptille nimen ja alustaa reseptiin kuuluvien 
+     * ainesosien listan sekä alustaa ohjeen ensin tyhjänä
+     * @param nimi 
+     */
     public Resepti(String nimi) {
         this.nimi = nimi;
         this.ainesosat = new ArrayList<>();
-        this.ohje = "";
+        this.ohje = "Ohjetta ei ole talletettu.";
     }
 
     public String getNimi() {
@@ -22,9 +31,7 @@ public class Resepti {
 
     public List getAinesosat() {
         List<Ainesosa> palautettavatAinesosat = new ArrayList<>();
-//        String osat = "";
         for (Ainesosa osa : this.ainesosat) {
-//                osat = osat + osa + "\n";
             palautettavatAinesosat.add(osa);
         }
         return palautettavatAinesosat;
@@ -40,8 +47,8 @@ public class Resepti {
 
     public String getOhje() {
         String muokattuOhje = "";
-        if (ohje.isEmpty()) {
-            return "Ohjetta ei ole talletettu.";
+        if (ohje.equals("Ohjetta ei ole talletettu.")) {
+            return this.ohje;
         } else {
             int pituus = ohje.length();
             int rivinPituus = 55;
@@ -84,6 +91,7 @@ public class Resepti {
         this.ainesosat.add(new Ainesosa(ainesosa, maara));
     }
 
+    @Override
     public String toString() {
         return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\n" + getOhje();
     }

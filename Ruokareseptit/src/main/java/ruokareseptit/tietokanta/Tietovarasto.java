@@ -1,7 +1,6 @@
 package ruokareseptit.tietokanta;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -12,9 +11,9 @@ import ruokareseptit.domain.Resepti;
 public class Tietovarasto {
 
     private List<Kategoria> kategoriat;
-    File tiedosto;
-    File tiedostoReseptit;
-    Scanner lukija;
+    private File tiedosto;
+    private File tiedostoReseptit;
+    private Scanner lukija;
 
     public Tietovarasto() {
         this.kategoriat = new ArrayList<>();
@@ -42,7 +41,7 @@ public class Tietovarasto {
         return this.kategoriat;
     }
 
-    public void lisaaKategorioihinReseptit() {
+    private void lisaaKategorioihinReseptit() {
         this.lukija = null;
         try {
             lukija = new Scanner(this.tiedostoReseptit, "UTF-8");
@@ -75,7 +74,7 @@ public class Tietovarasto {
         }
     }
 
-    public void poistaKategorioistaReseptit() {
+    private void poistaKategorioistaReseptit() {
         for (Kategoria kategoria : this.kategoriat) {
             kategoria.poistaKaikkiReseptit();
         }

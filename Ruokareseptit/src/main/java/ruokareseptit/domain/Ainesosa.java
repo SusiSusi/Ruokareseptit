@@ -1,10 +1,22 @@
 package ruokareseptit.domain;
 
+/**
+ * Luokka luo ainesosia
+ * 
+ * @author susisusi
+ */
+
 public class Ainesosa {
 
     private String nimi;
     private String maara;
 
+    /**
+     * Konstruktori asettaa ainesosalle nimen ja määrän
+     * @param nimi
+     * @param maara 
+     */
+    
     public Ainesosa(String nimi, String maara) {
         this.nimi = nimi;
         this.maara = maara;
@@ -26,6 +38,7 @@ public class Ainesosa {
         this.maara = maara;
     }
 
+    @Override
     public String toString() {
         return this.maara + ", " + this.nimi;
     }

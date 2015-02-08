@@ -3,7 +3,6 @@ package ruokareseptit.logiikka;
 import java.io.IOException;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
-import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
 
 public class Tekstikayttoliittyma {

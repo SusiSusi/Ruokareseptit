@@ -14,11 +14,7 @@ public class StringUtils {
 
         trimSana = trimSana.toUpperCase();
         trimHaettava = trimHaettava.toUpperCase(); // muutetaan kaikki kirjaimet isoiksi
-
-        if (trimSana.equals(trimHaettava)) {
-            return true;
-        }
-        return false;
+        return trimSana.equals(trimHaettava);
     }
 
     public static String muutaAinesosatTiedostoonSopiviksi(List<Ainesosa> ainesosat) {

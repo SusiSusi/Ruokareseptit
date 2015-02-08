@@ -39,7 +39,7 @@ public class KategoriaTest {
         lista.add("Risotto");
         lista.add("Kastike");
         lista.add("Jauheliha");
-        assertEquals(lista, keitot.tulostaReseptienNimet());
+        assertEquals(lista, keitot.getReseptienNimet());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class KategoriaTest {
         lista.add(maksa);
         lista.add(risotto);
         lista.add(kalakeitto);
-        assertEquals(lista, keitot.tulostaKaikkiReseptit());
+        assertEquals(lista, keitot.getKaikkiReseptit());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class KategoriaTest {
         lista.add(maksa);
         lista.add(risotto);
         lista.add(kalakeitto);
-        assertEquals(kalakeitto, keitot.tulostaResepti("kalakeitto"));
+        assertEquals(kalakeitto, keitot.getResepti("kalakeitto"));
         assertEquals("Keitot", keitot.getKategorianNimi());
     }
 
@@ -84,8 +84,8 @@ public class KategoriaTest {
         List<Resepti> lista = new ArrayList<Resepti>();
         lista.add(maksa);
         lista.add(kalakeitto);
-        assertEquals(null, keitot.tulostaResepti("Makaronilaatikko"));
-        assertEquals(null, keitot.tulostaResepti(""));
+        assertEquals(null, keitot.getResepti("Makaronilaatikko"));
+        assertEquals(null, keitot.getResepti(""));
     }
 
     @Test

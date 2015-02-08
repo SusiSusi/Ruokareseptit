@@ -16,7 +16,7 @@ public class Tulostus {
 
     public void tulostaKaikkiReseptit() {
         for (Kategoria kategoria : this.kategoriat) {
-            List<Resepti> reseptit = kategoria.tulostaKaikkiReseptit();
+            List<Resepti> reseptit = kategoria.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 System.out.println(resepti);
                 System.out.println("***********************************");
@@ -35,7 +35,7 @@ public class Tulostus {
     public void tulostaResepti(String resepti) {
         Resepti etsittavaResepti = null;
         for (Kategoria kategoria : this.kategoriat) {
-            etsittavaResepti = kategoria.tulostaResepti(resepti);
+            etsittavaResepti = kategoria.getResepti(resepti);
             if (etsittavaResepti != null) {
                 break;
             }
@@ -51,7 +51,7 @@ public class Tulostus {
         List<String> reseptienNimet = new ArrayList<>();
         for (Kategoria kategoria : this.kategoriat) {
             if (StringUtils.sisaltaa(kategoria.getKategorianNimi(), kategorianNimi)) {
-                reseptienNimet = kategoria.tulostaReseptienNimet();
+                reseptienNimet = kategoria.getReseptienNimet();
             }
         }
         if (reseptienNimet.isEmpty()) {
@@ -73,7 +73,7 @@ public class Tulostus {
                 Resepti re = null;
                 for (Kategoria goria : this.kategoriat) {
                     if (StringUtils.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
-                        re = goria.tulostaResepti(haluttuResepti);
+                        re = goria.getResepti(haluttuResepti);
                         break;
                     }
                 }
