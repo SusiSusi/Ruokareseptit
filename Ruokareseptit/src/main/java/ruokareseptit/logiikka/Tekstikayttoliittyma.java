@@ -5,18 +5,32 @@ import java.util.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.tietokanta.Tietovarasto;
 
+/**
+ * Luokassa tapahtuu tekstikäyttöliittymän toiminta
+ * @author susisusi
+ */
+
 public class Tekstikayttoliittyma {
 
     private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
     private Scanner lukija;
 
+    /**
+     * Konstuktori alustaa uuden tietovaraston, kategoriat sekä lukijan
+     * @param lukija 
+     */
     public Tekstikayttoliittyma(Scanner lukija) {
         tiedot = new Tietovarasto();
         this.kategoriat = tiedot.haeKategoriat();
         this.lukija = lukija;
     }
 
+    /**
+     * Metodi käynnistää sovelluksen ja käyttäjän syötteen mukaan ohjaa oikeisiin 
+     * metodeihin
+     * @throws IOException 
+     */
     public void kaynnista() throws IOException {
         Lisaykset lisataan = new Lisaykset(this.lukija, this.kategoriat, this.tiedot);
         Tulostus tulostaja = new Tulostus(this.kategoriat, this.lukija);
@@ -54,6 +68,9 @@ public class Tekstikayttoliittyma {
 
     }
 
+    /**
+     * Metodi tulostaa toiminnot, mitä sovelluksessa voidaan tehdä
+     */
     public void tulostaToiminnot() {
         System.out.println("\nToiminnot: ");
         System.out.println("********************************");

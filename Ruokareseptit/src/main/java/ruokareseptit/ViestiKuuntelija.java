@@ -39,6 +39,6 @@ public class ViestiKuuntelija implements ActionListener {
 
     public void kategorianHakuValikko() {
         JTextField u = new JTextField("");
-        kayttis.tulostaKaikkiReseptit();
+//        kayttis.tulostaKaikkiReseptit();
     }
 }

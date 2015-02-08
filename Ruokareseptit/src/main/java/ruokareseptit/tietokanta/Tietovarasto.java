@@ -8,6 +8,12 @@ import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 
+/**
+ * Luokka toimii tietovarastona - kaikki reseptit ja kategoriat ylläpidetään 
+ * tämän luokan kautta .txt-tiedostoihin
+ * @author susisusi
+ */
+
 public class Tietovarasto {
 
     private List<Kategoria> kategoriat;
@@ -15,6 +21,10 @@ public class Tietovarasto {
     private File tiedostoReseptit;
     private Scanner lukija;
 
+    /**
+     * Konstruktori alustaa kategoriat-listan sekä hakee tiedostot Kategoriat.txt 
+     * ja Reseptit.txt.
+     */
     public Tietovarasto() {
         this.kategoriat = new ArrayList<>();
         this.tiedosto = new File("src/main/java/ruokareseptit/tietokanta/Kategoriat.txt");
@@ -23,6 +33,10 @@ public class Tietovarasto {
         lisaaKategorioihinReseptit();
     }
 
+    /**
+     * Luetaan tiedosto Kategoriat.txt ja lisätään kaikki tiedostosta löytyvät 
+     * kategoriat listaan.
+     */
     private void lisaaKategoriat() {
         this.lukija = null;
         try {
@@ -41,6 +55,11 @@ public class Tietovarasto {
         return this.kategoriat;
     }
 
+    /**
+     * Luetaan tiedosto Reseptit.txt ja lisätään lisätään reseptit niille 
+     * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti 
+     * kuuluu.
+     */
     private void lisaaKategorioihinReseptit() {
         this.lukija = null;
         try {
@@ -74,12 +93,21 @@ public class Tietovarasto {
         }
     }
 
+    /**
+     * Metodi poistaa kategorioista kaikki reseptit
+     */
     private void poistaKategorioistaReseptit() {
         for (Kategoria kategoria : this.kategoriat) {
             kategoria.poistaKaikkiReseptit();
         }
     }
-
+    
+    /**
+     * Lisätään resepti tiedoston Reseptit.txt loppuun.
+     * @param kategoria
+     * @param resepti
+     * @throws IOException 
+     */
     public void lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
         FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true);
         kirjoittaja.write("\nKATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi() + 

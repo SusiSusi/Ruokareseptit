@@ -12,9 +12,9 @@ import ruokareseptit.tietokanta.Tietovarasto;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        Scanner lukija = new Scanner(System.in, "UTF-8");
-//        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma(lukija);
-//        kayttis.kaynnista();
+        Scanner lukija = new Scanner(System.in, "UTF-8");
+        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma(lukija);
+        kayttis.kaynnista();
         // TODO code application logic here
 //
 //        GraafinenKayttoliittyma kayttoliittyma = new GraafinenKayttoliittyma();
@@ -53,14 +53,14 @@ public class Main {
 //        }
 //        System.out.println(alkup.getKategorianNimi());
 //        System.out.println(alkup.tulostaResepti("Graavilohi-tartarleivät"));
-        Kategoria n = new Kategoria("Keitto");
-        Resepti r = new Resepti("Kalakeitto");
-        n.lisaaReseptiKategoriaan(r);
-        Resepti k = new Resepti("Susikeitto");
-        System.out.println(r.getOhje());
-        
-        r.setOhje("päägldlfkldfkdlk lkdfl kdlkf dfkdl kld dlfkdl kdl dlfk ldkfl ");
-        System.out.println(r.getOhje());
+//        Kategoria n = new Kategoria("Keitto");
+//        Resepti r = new Resepti("Kalakeitto");
+//        n.lisaaReseptiKategoriaan(r);
+//        Resepti k = new Resepti("Susikeitto");
+//        System.out.println(r.getOhje());
+//        
+//        r.setOhje("päägldlfkldfkdlk lkdfl kdlkf dfkdl kld dlfkdl kdl dlfk ldkfl ");
+//        System.out.println(r.getOhje());
 ////        n.lisaaReseptiKategoriaan(k);
 //        System.out.println(n.reseptienMaaraKategoriassa());
 //        n.poistaResepti("Kalakeitto");

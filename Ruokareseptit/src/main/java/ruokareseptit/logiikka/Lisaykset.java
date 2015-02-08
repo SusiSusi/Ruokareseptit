@@ -6,12 +6,23 @@ import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
 
+/**
+ * Luokka kuuntelee uuden reseptin tiedot käyttäjältä ja välittää ne eteenpäin
+ * @author susisusi
+ */
+
 public class Lisaykset {
 
     private Scanner lukija;
     private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
 
+    /**
+     * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut tiedot
+     * @param lukija
+     * @param kategoriat
+     * @param tiedot 
+     */
     public Lisaykset(Scanner lukija, List<Kategoria> kategoriat, Tietovarasto tiedot) {
         this.lukija = lukija;
         this.kategoriat = kategoriat;

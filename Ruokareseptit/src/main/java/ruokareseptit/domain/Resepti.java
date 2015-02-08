@@ -37,6 +37,11 @@ public class Resepti {
         return palautettavatAinesosat;
     }
 
+    /** 
+     * Tulostaa kaikki reseptiin kuuluvat ainesosat - metodia tarvitaan 
+     * vai toString()-metodissa
+     * @return 
+     */
     public String tuoAinesosat() {
         String osat = "";
         for (Ainesosa osa : this.ainesosat) {
@@ -44,7 +49,12 @@ public class Resepti {
         }
         return osat;
     }
-
+    
+    /**
+     * Palauttaa reseptin ohjeen. Metodi katkaisee rivin 55-merkin jälkeen 
+     * ja laittaa tavuviivan mikäli sana on kesken.
+     * @return 
+     */
     public String getOhje() {
         String muokattuOhje = "";
         if (ohje.equals("Ohjetta ei ole talletettu.")) {
@@ -79,7 +89,13 @@ public class Resepti {
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
-
+    
+    /**
+     * Asettaa reseptille ainesosan. Metodi pitää huolen, että samaa ainesosaa 
+     * ainesosaa ei voi lisätä reseptille kahteen kertaan.
+     * @param ainesosa
+     * @param maara 
+     */
     public void setAinesosa(String ainesosa, String maara) {
         if (!this.ainesosat.isEmpty()) {
             for (Ainesosa osa : this.ainesosat) {
