@@ -30,9 +30,9 @@ public class Tulostus {
      * Konstruktori testejä varten.
      * @param kategoriat 
      */
-    public Tulostus(List<Kategoria> kategoriat) {
-        this.kategoriat = kategoriat;
-    }
+//    public Tulostus(List<Kategoria> kategoriat) {
+//        this.kategoriat = kategoriat;
+//    }
 
     /**
      * Metodi tulostaa kaikki sovelluksessa olevat reseptit
@@ -58,7 +58,7 @@ public class Tulostus {
         }
     }
 
-    /**
+    /** 
      * Metodi tulostaa parametriksi saadun reseptin tiedot
      *
      * @param resepti
