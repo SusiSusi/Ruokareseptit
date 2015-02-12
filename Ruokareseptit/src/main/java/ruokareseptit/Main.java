@@ -1,9 +1,8 @@
 package ruokareseptit;
 
-import ruokareseptit.logiikka.Tekstikayttoliittyma;
+import ruokareseptit.gui.Tekstikayttoliittyma;
 import java.io.IOException;
 import java.util.*;
-import static ruokareseptit.logiikka.StringUtils.sisaltaa;
 import ruokareseptit.domain.Ainesosa;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;

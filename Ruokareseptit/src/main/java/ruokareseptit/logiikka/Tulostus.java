@@ -6,22 +6,32 @@ import ruokareseptit.domain.Resepti;
 
 /**
  * Luokassa tapahtuu tulostus-toiminta
+ *
  * @author susisusi
  */
-
 public class Tulostus {
 
     private List<Kategoria> kategoriat;
     private Scanner lukija;
-    
+
     /**
-     * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut tiedot
+     * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut
+     * tiedot
+     *
      * @param kategoriat
-     * @param lukija 
+     * @param lukija
      */
     public Tulostus(List<Kategoria> kategoriat, Scanner lukija) {
         this.kategoriat = kategoriat;
         this.lukija = lukija;
+    }
+
+    /**
+     * Konstruktori testejä varten.
+     * @param kategoriat 
+     */
+    public Tulostus(List<Kategoria> kategoriat) {
+        this.kategoriat = kategoriat;
     }
 
     /**
@@ -50,7 +60,8 @@ public class Tulostus {
 
     /**
      * Metodi tulostaa parametriksi saadun reseptin tiedot
-     * @param resepti 
+     *
+     * @param resepti
      */
     public void tulostaResepti(String resepti) {
         Resepti etsittavaResepti = null;
@@ -69,12 +80,13 @@ public class Tulostus {
 
     /**
      * Metodi tulostaa parametriksi saadun kategorian kaikki reseptien nimet
-     * @param kategorianNimi 
+     *
+     * @param kategorianNimi
      */
     public void tulostaKategorianReseptienNimet(String kategorianNimi) {
         List<String> reseptienNimet = new ArrayList<>();
         for (Kategoria kategoria : this.kategoriat) {
-            if (StringUtils.sisaltaa(kategoria.getKategorianNimi(), kategorianNimi)) {
+            if (new StringUtils().sisaltaa(kategoria.getKategorianNimi(), kategorianNimi)) {
                 reseptienNimet = kategoria.getReseptienNimet();
             }
         }
@@ -88,21 +100,23 @@ public class Tulostus {
     }
 
     /**
-     * Metodi kysyy käyttäjältä haluaako hän tulostaa jonkun reseptin hakemastaan 
-     * kategoriasta. Tätä metodia ennen on aina kutsuttu metodia 
+     * Metodi kysyy käyttäjältä haluaako hän tulostaa jonkun reseptin
+     * hakemastaan kategoriasta. Tätä metodia ennen on aina kutsuttu metodia
      * void tulostaKategorianReseptienNimet(String kategorianNimi)
-     * @param haettavaKategoria 
+     *
+     * @param haettavaKategoria
      */
     public void tulostetaankoKategoriastaResepti(String haettavaKategoria) {
+        StringUtils muuttaja = new StringUtils();
         System.out.print("Haluatko tulostaa reseptin kategoriasta " + haettavaKategoria + "? Kirjoita K = kyllä tai E = ei ");
         while (true) {
             String haluaako = this.lukija.nextLine();
-            if (StringUtils.sisaltaa("k", haluaako)) {
+            if (muuttaja.sisaltaa("k", haluaako)) {
                 System.out.print("Mikä resepti? ");
                 String haluttuResepti = this.lukija.nextLine();
                 Resepti re = null;
                 for (Kategoria goria : this.kategoriat) {
-                    if (StringUtils.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
+                    if (muuttaja.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
                         re = goria.getResepti(haluttuResepti);
                         break;
                     }
@@ -113,7 +127,7 @@ public class Tulostus {
                     System.out.println(re + "\n");
                 }
                 break;
-            } else if (StringUtils.sisaltaa("e", haluaako)) {
+            } else if (muuttaja.sisaltaa("e", haluaako)) {
                 break;
             } else {
                 System.out.println("Syöte on virheellinen. Kirjoita k = kyllä tai e = ei");

@@ -19,7 +19,7 @@ public class StringUtils {
      * @param haettava
      * @return 
      */
-    public static boolean sisaltaa(String sana, String haettava) {
+    public boolean sisaltaa(String sana, String haettava) {
         if (sana.isEmpty() || haettava.isEmpty()) {
             return false;
         }
@@ -38,7 +38,7 @@ public class StringUtils {
      * @param ainesosat
      * @return 
      */
-    public static String muutaAinesosatTiedostoonSopiviksi(List<Ainesosa> ainesosat) {
+    public String muutaAinesosatTiedostoonSopiviksi(List<Ainesosa> ainesosat) {
         String muutettu = "";
         for (Ainesosa ainesosa : ainesosat) {
               String maara = ainesosa.getMaara();

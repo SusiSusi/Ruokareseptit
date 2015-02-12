@@ -34,7 +34,7 @@ public class KategoriaTest {
         keitot.lisaaReseptiKategoriaan(new Resepti("Risotto"));
         keitot.lisaaReseptiKategoriaan(new Resepti("Kastike"));
         keitot.lisaaReseptiKategoriaan(new Resepti("Jauheliha"));
-        List<String> lista = new ArrayList<String>();
+        List<String> lista = new ArrayList<>();
         lista.add("Maksalaatikko");
         lista.add("Risotto");
         lista.add("Kastike");
@@ -54,7 +54,7 @@ public class KategoriaTest {
         keitot.lisaaReseptiKategoriaan(maksa);
         keitot.lisaaReseptiKategoriaan(risotto);
         keitot.lisaaReseptiKategoriaan(kalakeitto);
-        List<Resepti> lista = new ArrayList<Resepti>();
+        List<Resepti> lista = new ArrayList<>();
         lista.add(maksa);
         lista.add(risotto);
         lista.add(kalakeitto);
@@ -68,10 +68,6 @@ public class KategoriaTest {
         keitot.lisaaReseptiKategoriaan(maksa);
         keitot.lisaaReseptiKategoriaan(risotto);
         keitot.lisaaReseptiKategoriaan(kalakeitto);
-        List<Resepti> lista = new ArrayList<Resepti>();
-        lista.add(maksa);
-        lista.add(risotto);
-        lista.add(kalakeitto);
         assertEquals(kalakeitto, keitot.getResepti("kalakeitto"));
         assertEquals("Keitot", keitot.getKategorianNimi());
     }
@@ -81,9 +77,6 @@ public class KategoriaTest {
         Resepti maksa = new Resepti("Maksalaatikko");
         keitot.lisaaReseptiKategoriaan(maksa);
         keitot.lisaaReseptiKategoriaan(kalakeitto);
-        List<Resepti> lista = new ArrayList<Resepti>();
-        lista.add(maksa);
-        lista.add(kalakeitto);
         assertEquals(null, keitot.getResepti("Makaronilaatikko"));
         assertEquals(null, keitot.getResepti(""));
     }
@@ -98,5 +91,11 @@ public class KategoriaTest {
         assertEquals(1, keitot.reseptienMaaraKategoriassa());
         keitot.poistaResepti("Kalakeitto");
         assertEquals(0, keitot.reseptienMaaraKategoriassa());
+    }
+    
+    @Test
+    public void reseptienPoistonJalkeenKategoriaListaOnTyhja() {
+        keitot.poistaKaikkiReseptit();
+        assertEquals(0, keitot.getKaikkiReseptit().size());
     }
 }

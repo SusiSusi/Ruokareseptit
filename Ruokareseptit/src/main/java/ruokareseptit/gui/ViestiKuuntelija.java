@@ -1,6 +1,5 @@
-package ruokareseptit;
+package ruokareseptit.gui;
 
-import ruokareseptit.logiikka.Tekstikayttoliittyma;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

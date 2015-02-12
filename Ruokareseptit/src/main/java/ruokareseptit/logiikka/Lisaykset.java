@@ -16,6 +16,7 @@ public class Lisaykset {
     private Scanner lukija;
     private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
+    private StringUtils muuttaja;
 
     /**
      * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut tiedot
@@ -27,6 +28,7 @@ public class Lisaykset {
         this.lukija = lukija;
         this.kategoriat = kategoriat;
         this.tiedot = tiedot;
+        this.muuttaja = new StringUtils();
     }
 
     public void lisaaUusiResepti() throws IOException {
@@ -65,11 +67,11 @@ public class Lisaykset {
         boolean ok = true;
         while (ok) {
             String mikaKategoria = this.lukija.nextLine();
-            if (StringUtils.sisaltaa("LOPETA", mikaKategoria)) {
+            if (muuttaja.sisaltaa("LOPETA", mikaKategoria)) {
                 palautettavaSana = "LOPETA";
             }
             for (Kategoria kategoria : this.kategoriat) {
-                if (StringUtils.sisaltaa(kategoria.getKategorianNimi(), mikaKategoria)) {
+                if (muuttaja.sisaltaa(kategoria.getKategorianNimi(), mikaKategoria)) {
                     palautettavaSana = kategoria.getKategorianNimi();
                     ok = false;
                 }
@@ -86,12 +88,12 @@ public class Lisaykset {
         while (true) {
             System.out.print("Ainesosa: ");
             String ainesosa = this.lukija.nextLine();
-            if (StringUtils.sisaltaa("LOPETA", ainesosa)) {
+            if (muuttaja.sisaltaa("LOPETA", ainesosa)) {
                 return;
             }
             System.out.print("Määrä: ");
             String maara = this.lukija.nextLine();
-            if (StringUtils.sisaltaa("LOPETA", maara)) {
+            if (muuttaja.sisaltaa("LOPETA", maara)) {
                 return;
             }
             resepti.setAinesosa(ainesosa, maara);

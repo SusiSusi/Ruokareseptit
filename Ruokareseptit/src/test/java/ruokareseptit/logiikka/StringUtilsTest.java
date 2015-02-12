@@ -1,12 +1,14 @@
-package ruokareseptit;
+package ruokareseptit.logiikka;
 
-import ruokareseptit.logiikka.StringUtils;
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import ruokareseptit.domain.Ainesosa;
+import ruokareseptit.logiikka.StringUtils;
 
 public class StringUtilsTest {
 
@@ -25,9 +27,21 @@ public class StringUtilsTest {
         assertEquals(false, etsija.sisaltaa("", ""));
     }
 
+    @Test
     public void palauttaaTrueArvon() {
         assertEquals(true, etsija.sisaltaa("MakaRoNi    ", "makaroni"));
         assertEquals(true, etsija.sisaltaa("Kakku", "   kaKKu  "));
         assertEquals(true, etsija.sisaltaa("Jäätelö", "JÄÄTELÖ"));
     }
+    
+    @Test
+    public void muuttaaAinesosaListaTiedostoonSopivaksi() {
+        List<Ainesosa> osat = new ArrayList<>();
+        osat.add(new Ainesosa("tomaatti", "2 kpl"));
+        osat.add(new Ainesosa("kurkku", "0.5 kpl"));
+        osat.add(new Ainesosa("salaatti", "5 lehteä"));
+        String muutettu = etsija.muutaAinesosatTiedostoonSopiviksi(osat);
+        assertEquals("2 kpl:tomaatti\n0.5 kpl:kurkku\n5 lehteä:salaatti\n", muutettu);
+    }
+    
 }

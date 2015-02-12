@@ -1,8 +1,10 @@
-package ruokareseptit.logiikka;
+package ruokareseptit.gui;
 
 import java.io.IOException;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
+import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
 /**

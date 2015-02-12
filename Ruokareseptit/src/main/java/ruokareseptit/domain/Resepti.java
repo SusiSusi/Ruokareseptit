@@ -99,7 +99,7 @@ public class Resepti {
     public void setAinesosa(String ainesosa, String maara) {
         if (!this.ainesosat.isEmpty()) {
             for (Ainesosa osa : this.ainesosat) {
-                if (StringUtils.sisaltaa(osa.getNimi(), ainesosa)) {
+                if (new StringUtils().sisaltaa(osa.getNimi(), ainesosa)) {
                     return;
                 }
             }

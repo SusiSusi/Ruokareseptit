@@ -9,11 +9,11 @@ import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 
 /**
- * Luokka toimii tietovarastona - kaikki reseptit ja kategoriat ylläpidetään 
+ * Luokka toimii tietovarastona - kaikki reseptit ja kategoriat ylläpidetään
  * tämän luokan kautta .txt-tiedostoihin
+ *
  * @author susisusi
  */
-
 public class Tietovarasto {
 
     private List<Kategoria> kategoriat;
@@ -22,8 +22,8 @@ public class Tietovarasto {
     private Scanner lukija;
 
     /**
-     * Konstruktori alustaa kategoriat-listan sekä hakee tiedostot Kategoriat.txt 
-     * ja Reseptit.txt.
+     * Konstruktori alustaa kategoriat-listan sekä hakee tiedostot
+     * Kategoriat.txt ja Reseptit.txt.
      */
     public Tietovarasto() {
         this.kategoriat = new ArrayList<>();
@@ -34,10 +34,22 @@ public class Tietovarasto {
     }
 
     /**
-     * Luetaan tiedosto Kategoriat.txt ja lisätään kaikki tiedostosta löytyvät 
+     * Konstruktoriin voi antaa muun tiedoston, joka luetaan.
+     * Tällä hetkellä tätä käytetään testaukseen.
+     * @param tiedosto
+     * @param tiedosto2 
+     */
+    public Tietovarasto(String tiedosto, String tiedosto2) {
+        this.kategoriat = new ArrayList<>();
+        this.tiedosto = new File(tiedosto);
+        this.tiedostoReseptit = new File(tiedosto2);
+    }
+
+    /**
+     * Luetaan tiedosto Kategoriat.txt ja lisätään kaikki tiedostosta löytyvät
      * kategoriat listaan.
      */
-    private void lisaaKategoriat() {
+    public void lisaaKategoriat() {
         this.lukija = null;
         try {
             lukija = new Scanner(this.tiedosto, "UTF-8");
@@ -56,11 +68,11 @@ public class Tietovarasto {
     }
 
     /**
-     * Luetaan tiedosto Reseptit.txt ja lisätään lisätään reseptit niille 
-     * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti 
+     * Luetaan tiedosto Reseptit.txt ja lisätään lisätään reseptit niille
+     * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti
      * kuuluu.
      */
-    private void lisaaKategorioihinReseptit() {
+    public void lisaaKategorioihinReseptit() {
         this.lukija = null;
         try {
             lukija = new Scanner(this.tiedostoReseptit, "UTF-8");
@@ -73,7 +85,7 @@ public class Tietovarasto {
             if (rivi.equals("KATEGORIA")) {
                 String goria = lukija.nextLine();
                 for (Kategoria kategori : this.kategoriat) {
-                    if (StringUtils.sisaltaa(kategori.getKategorianNimi(), goria)) {
+                    if (new StringUtils().sisaltaa(kategori.getKategorianNimi(), goria)) {
                         String nimi = lukija.nextLine();
                         Resepti uusiResepti = new Resepti(nimi);
                         String aineet = lukija.nextLine();
@@ -96,22 +108,23 @@ public class Tietovarasto {
     /**
      * Metodi poistaa kategorioista kaikki reseptit
      */
-    private void poistaKategorioistaReseptit() {
+    public void poistaKategorioistaReseptit() {
         for (Kategoria kategoria : this.kategoriat) {
             kategoria.poistaKaikkiReseptit();
         }
     }
-    
+
     /**
      * Lisätään resepti tiedoston Reseptit.txt loppuun.
+     *
      * @param kategoria
      * @param resepti
-     * @throws IOException 
+     * @throws IOException
      */
     public void lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
         FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true);
-        kirjoittaja.write("\nKATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi() + 
-                "\n" + StringUtils.muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat()) + "OHJEET\n" + resepti.getOhje());   
+        kirjoittaja.write("\nKATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi()
+                + "\n" + new StringUtils().muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat()) + "OHJEET\n" + resepti.getOhje());
         kirjoittaja.close();
         poistaKategorioistaReseptit();
         lisaaKategorioihinReseptit();

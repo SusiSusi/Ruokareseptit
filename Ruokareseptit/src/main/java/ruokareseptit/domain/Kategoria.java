@@ -62,7 +62,7 @@ public class Kategoria {
     public Resepti getResepti(String nimi) {
         Resepti loytynytResepti = null;
         for (Resepti resep : this.reseptit) {
-            if (StringUtils.sisaltaa(resep.getNimi(), nimi)) {
+            if (new StringUtils().sisaltaa(resep.getNimi(), nimi)) {
                 loytynytResepti = resep;
             }
         }
@@ -73,7 +73,7 @@ public class Kategoria {
     public void poistaResepti(String nimi) {
         Iterator<Resepti> iteraattori = this.reseptit.iterator();
         while (iteraattori.hasNext()) {
-            if (StringUtils.sisaltaa(iteraattori.next().getNimi(), nimi)) {
+            if (new StringUtils().sisaltaa(iteraattori.next().getNimi(), nimi)) {
                 iteraattori.remove();
             }
         }
