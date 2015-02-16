@@ -50,36 +50,8 @@ public class Resepti {
         return osat;
     }
     
-    /**
-     * Palauttaa reseptin ohjeen. Metodi katkaisee rivin 55-merkin jälkeen 
-     * ja laittaa tavuviivan mikäli sana on kesken.
-     * @return 
-     */
     public String getOhje() {
-        String muokattuOhje = "";
-        if (ohje.equals("Ohjetta ei ole talletettu.")) {
-            return this.ohje;
-        } else {
-            int pituus = ohje.length();
-            int rivinPituus = 55;
-            int apu = 0;
-            String rivi = "";
-            for (int i = 0; i < pituus; i++) {
-                rivi = rivi + ohje.charAt(i);
-                apu++;
-                if (apu == rivinPituus) {
-                    if (ohje.charAt(i) == ' ') {
-                        muokattuOhje = muokattuOhje + rivi + "\n";
-                    } else {
-                        muokattuOhje = muokattuOhje + rivi + "-\n";
-                    }
-                    rivi = "";
-                    apu = 0;
-                }
-            }
-            muokattuOhje = muokattuOhje + rivi;
-        }
-        return muokattuOhje;
+        return this.ohje;
     }
 
     public void setOhje(String ohje) {
@@ -109,6 +81,8 @@ public class Resepti {
 
     @Override
     public String toString() {
-        return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\n" + getOhje();
+        String tavutettuOhje = new StringUtils().tavutaReseptinOhje(this.ohje);
+        return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\n" 
+                + tavutettuOhje;
     }
 }

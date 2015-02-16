@@ -31,7 +31,7 @@ public class ReseptiTest {
         List<Ainesosa> osat = new ArrayList<>();
         Resepti kakku = new Resepti("Kakku");
         assertEquals(osat, kakku.getAinesosat());
-        assertEquals("Ohjetta ei ole talletettu.", kakku.getOhje());
+        assertEquals("Ohjetta ei ole talletettu.", kakku.getOhjeTavutettuna());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ReseptiTest {
         assertEquals("Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain \n"
                 + "ja niitä kypsytetään sipulin kanssa pannulla. Jos halua-\n"
                 + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruok-\n"
-                + "a on valmis.", res.getOhje());
+                + "a on valmis.", res.getOhjeTavutettuna());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ReseptiTest {
                 + "että rivityskin menisi kivasti ja mahdolliset viivat yms..");
         assertEquals("Laita uuni päälle ja tee tarvittavat temput. Katsotaan \n"
                 + "myös että rivityskin menisi kivasti ja mahdolliset viiv-\n"
-                + "at yms..", res.getOhje());
+                + "at yms..", res.getOhjeTavutettuna());
     }
 
     @Test

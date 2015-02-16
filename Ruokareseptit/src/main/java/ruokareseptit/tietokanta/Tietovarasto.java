@@ -34,10 +34,11 @@ public class Tietovarasto {
     }
 
     /**
-     * Konstruktoriin voi antaa muun tiedoston, joka luetaan.
-     * Tällä hetkellä tätä käytetään testaukseen.
+     * Konstruktoriin voi antaa muun tiedoston, joka luetaan. Tällä hetkellä
+     * tätä käytetään testaukseen.
+     *
      * @param tiedosto
-     * @param tiedosto2 
+     * @param tiedosto2
      */
     public Tietovarasto(String tiedosto, String tiedosto2) {
         this.kategoriat = new ArrayList<>();
@@ -50,16 +51,14 @@ public class Tietovarasto {
      * kategoriat listaan.
      */
     public void lisaaKategoriat() {
-        this.lukija = null;
-        try {
-            lukija = new Scanner(this.tiedosto, "UTF-8");
-        } catch (Exception e) {
-            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
-            return; // poistutaan metodista
-        }
-        while (lukija.hasNextLine()) {
-            String rivi = lukija.nextLine();
-            kategoriat.add(new Kategoria(rivi));
+        boolean onnistuuko = lataaTiedosto(this.tiedosto);
+        if (onnistuuko == false) {
+            System.out.println("Virhe kategorioiden lisäämisessä.");
+        } else {
+            while (lukija.hasNextLine()) {
+                String rivi = lukija.nextLine();
+                kategoriat.add(new Kategoria(rivi));
+            }
         }
     }
 
@@ -68,32 +67,62 @@ public class Tietovarasto {
     }
 
     /**
+     * Ladataan .txt-tiedosto Scanner lukijaan. Jos lataus ei onnistu,
+     * tulostetaan virheen syy.
+     *
+     * @param tiedosto
+     * @return
+     */
+    public boolean lataaTiedosto(File tiedosto) {
+        this.lukija = null;
+        try {
+            lukija = new Scanner(tiedosto, "UTF-8");
+        } catch (Exception e) {
+            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
+            return false; // poistutaan metodista
+        }
+        return true;
+    }
+
+    public Kategoria mihinKategoriaanReseptiLisataan(String kategoria) {
+        Kategoria palautettavaKategoria = null;
+        for (Kategoria kategori : this.kategoriat) {
+            if (new StringUtils().sisaltaa(kategori.getKategorianNimi(), kategoria)) {
+                palautettavaKategoria = kategori;
+                return palautettavaKategoria;
+            }
+        }
+        return palautettavaKategoria; // palauttaa null-arvon
+    }
+
+    public void aineidenLisaysReseptiin(Resepti resepti, String aineet) {
+        String[] osat = aineet.split(":");
+        String maara = osat[0];
+        String aine = osat[1];
+        resepti.setAinesosa(aine, maara);
+    }
+
+    /**
      * Luetaan tiedosto Reseptit.txt ja lisätään lisätään reseptit niille
      * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti
      * kuuluu.
      */
     public void lisaaKategorioihinReseptit() {
-        this.lukija = null;
-        try {
-            lukija = new Scanner(this.tiedostoReseptit, "UTF-8");
-        } catch (Exception e) {
-            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
-            return; // poistutaan metodista
-        }
-        while (lukija.hasNextLine()) {
-            String rivi = lukija.nextLine();
-            if (rivi.equals("KATEGORIA")) {
-                String goria = lukija.nextLine();
-                for (Kategoria kategori : this.kategoriat) {
-                    if (new StringUtils().sisaltaa(kategori.getKategorianNimi(), goria)) {
-                        String nimi = lukija.nextLine();
-                        Resepti uusiResepti = new Resepti(nimi);
+        boolean onnistuuko = lataaTiedosto(this.tiedostoReseptit);
+        if (onnistuuko) {
+            while (lukija.hasNextLine()) {
+                String rivi = lukija.nextLine();
+                if (rivi.equals("KATEGORIA")) {
+                    String goria = lukija.nextLine();
+                    Kategoria kategori = mihinKategoriaanReseptiLisataan(goria);
+                    if (kategori == null) {
+                        continue;
+                    } else {
+                        String reseptinNimi = lukija.nextLine();
+                        Resepti uusiResepti = new Resepti(reseptinNimi);
                         String aineet = lukija.nextLine();
                         while (!aineet.equals("OHJEET")) {
-                            String[] osat = aineet.split(":");
-                            String maara = osat[0];
-                            String aine = osat[1];
-                            uusiResepti.setAinesosa(aine, maara);
+                            aineidenLisaysReseptiin(uusiResepti, aineet);
                             aineet = lukija.nextLine();
                         }
                         String ohjeet = lukija.nextLine();
@@ -119,14 +148,60 @@ public class Tietovarasto {
      *
      * @param kategoria
      * @param resepti
+     * @return
      * @throws IOException
      */
-    public void lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
-        FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true);
-        kirjoittaja.write("\nKATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi()
-                + "\n" + new StringUtils().muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat()) + "OHJEET\n" + resepti.getOhje());
-        kirjoittaja.close();
+    public boolean lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
+        try (FileWriter kirjoittaja = new FileWriter(this.tiedostoReseptit, true)) {
+            if (this.tiedostoReseptit.length() != 0) {
+                kirjoittaja.write("\n");
+            }
+            kirjoittaja.write("KATEGORIA\n" + kategoria.toUpperCase() + "\n" + resepti.getNimi()
+                    + "\n" + new StringUtils().muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat())
+                    + "OHJEET\n" + resepti.getOhje());
+        } catch (Exception e) {
+//            System.out.println("Reseptin lisääminen epäonnistui: " + e.getMessage());
+            return false; // poistutaan metodista
+        }
+//        poistaKategorioistaReseptit();
+//        lisaaKategorioihinReseptit();
+        return true;
+    }
+
+    public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
+        File kopio = this.tiedostoReseptit;
+        boolean onnistuuko = lataaTiedosto(kopio);
+        if (onnistuuko == false) {
+            return false;
+        }
+        this.tiedostoReseptit.delete();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            if (rivi.equals("KATEGORIA")) {
+                String katego = lukija.nextLine();
+                String reseptinNimi = lukija.nextLine();
+                if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
+                    String seuraava = lukija.nextLine();
+                    while(!seuraava.equals("OHJEET")){
+                        seuraava = lukija.nextLine();
+                    }
+                    seuraava = lukija.nextLine();
+                    // mitä tehdään kun poisto
+                } else {
+                    Resepti uusiResepti = new Resepti(reseptinNimi);
+                    String aineet = lukija.nextLine();
+                    while (!aineet.equals("OHJEET")) {
+                        aineidenLisaysReseptiin(uusiResepti, aineet);
+                        aineet = lukija.nextLine();
+                    }
+                    String ohjeet = lukija.nextLine();
+                    uusiResepti.setOhje(ohjeet);
+                    lisaaReseptiTiedostoon(katego, uusiResepti);
+                }
+            }
+        }
         poistaKategorioistaReseptit();
         lisaaKategorioihinReseptit();
+        return true;
     }
 }

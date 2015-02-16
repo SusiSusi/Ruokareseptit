@@ -3,7 +3,9 @@ package ruokareseptit.gui;
 import java.io.IOException;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
+import ruokareseptit.domain.Resepti;
 import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
@@ -54,13 +56,19 @@ public class Tekstikayttoliittyma {
                 System.out.println("");
                 tulostaja.tulostetaankoKategoriastaResepti(haettavaKategoria);
             } else if (vastaus.equals("3")) {
-
                 lisataan.lisaaUusiResepti();
             } else if (vastaus.equals("4")) {
                 tulostaja.tulostaKaikkiReseptit();
             } else if (vastaus.equals("5")) {
                 tulostaja.tulostaKaikkiKategoriat();
             } else if (vastaus.equals("6")) {
+                boolean poistuuko = poistaResepti();
+                if (poistuuko == false) {
+                    System.out.println("Reseptin poisto epäonnistui.");
+                } else {
+                    System.out.println("Reseptin poisto onnistui.");
+                }
+            } else if (vastaus.equals("7")) {
                 System.out.println("Kiitos ja näkemiin");
                 break;
             } else {
@@ -81,7 +89,23 @@ public class Tekstikayttoliittyma {
         System.out.println("  3. Lisää resepti");
         System.out.println("  4. Tulosta kaikki reseptit");
         System.out.println("  5. Tulosta kaikki kategoriat");
-        System.out.println("  6. Lopeta ohjelma");
+        System.out.println("  6. Poista resepti");
+        System.out.println("  7. Lopeta ohjelma");
         System.out.println("********************************");
+    }
+    
+    public boolean poistaResepti() throws IOException {
+        System.out.print("Minkä reseptin haluat poistaa? ");
+        String poistettava = this.lukija.nextLine();
+        for (Kategoria kateg : this.kategoriat) {
+            List<Resepti> reseptit = kateg.getKaikkiReseptit();
+            for (Resepti resepti : reseptit) {
+                if (new StringUtils().sisaltaa(resepti.getNimi(), poistettava)) {
+                   return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
+                   
+                }
+            }
+        }
+        return false;
     }
 }

@@ -31,6 +31,11 @@ public class Lisaykset {
         this.muuttaja = new StringUtils();
     }
 
+    /**
+     * Metodi kysyy käyttäjältä tiedot uutta reseptiä varten ja välittää reseptin 
+     * tiedot eteenpäin, missä se lisätään tiedostoon.
+     * @throws IOException 
+     */
     public void lisaaUusiResepti() throws IOException {
         System.out.println("Mihin kategoriaan uusi resepti kuuluu? Valitse alla olevista vaihtoehdoista \n"
                 + "ja kirjoita kategorian nimi.");
@@ -51,9 +56,18 @@ public class Lisaykset {
                 + " enterin painallus lopettaa ohjeen kirjoittamisen.");
         String ohje = this.lukija.nextLine();
         uusiResepti.setOhje(ohje);
-        tiedot.lisaaReseptiTiedostoon(kategoria, uusiResepti);
+        boolean onnistuuko = tiedot.lisaaReseptiTiedostoon(kategoria, uusiResepti);
+        if (onnistuuko == false) {
+            System.out.println("Reseptin lisäys epäonnistui.");
+            return;
+        }
+        this.tiedot.poistaKategorioistaReseptit();
+        this.tiedot.lisaaKategorioihinReseptit();
     }
-
+    
+    /**
+     * Tulostetaan kategorioiden nimet numerojärjestyksessä.
+     */
     public void tulostaKaikkiKategoriat() {
         int i = 1;
         for (Kategoria kategoria : this.kategoriat) {
@@ -62,6 +76,14 @@ public class Lisaykset {
         }
     }
 
+    /**
+     * Metodi varmistaa, että käyttäjä on syöttänyt kategorian nimen oikein, mihin 
+     * resepti tullaan lisäämään. Jos käyttäjä ei ole kirjoittanu kategorian nimeä 
+     * oikein, jatkaa metodi kategorian nimen kysymystä niin kauan, kunnes käyttäjä kirjoittaa 
+     * kategorian nimen oikein tai kirjoittaa LOPETA. Tämän jälkeen palataan
+     * takaisin metodiin lisaaUusiResepti().
+     * @return 
+     */
     private String kirjoitetaankoKategoriaOikein() {
         String palautettavaSana = "";
         boolean ok = true;
@@ -84,6 +106,12 @@ public class Lisaykset {
         return palautettavaSana;
     }
 
+    /**
+     * Metodi kysyy loopissa käyttäjältä, mitä ainesosia reseptiin tarvitaan ja 
+     * lisää ainesosan ja määrän reseptiin. Kun käyttäjä kirjoittaa LOPETA, 
+     * metodi päättyy ja palaa takaisin metodiin lisaaUusiResepti()
+     * @param resepti 
+     */
     private void lisataanKaikkiAinesosat(Resepti resepti) {
         while (true) {
             System.out.print("Ainesosa: ");
