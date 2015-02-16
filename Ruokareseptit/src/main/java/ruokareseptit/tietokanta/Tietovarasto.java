@@ -52,9 +52,7 @@ public class Tietovarasto {
      */
     public void lisaaKategoriat() {
         boolean onnistuuko = lataaTiedosto(this.tiedosto);
-        if (onnistuuko == false) {
-            System.out.println("Virhe kategorioiden lisäämisessä.");
-        } else {
+        if (onnistuuko) {
             while (lukija.hasNextLine()) {
                 String rivi = lukija.nextLine();
                 kategoriat.add(new Kategoria(rivi));
@@ -78,12 +76,18 @@ public class Tietovarasto {
         try {
             lukija = new Scanner(tiedosto, "UTF-8");
         } catch (Exception e) {
-            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
+//            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
             return false; // poistutaan metodista
         }
         return true;
     }
 
+    /**
+     * Metodi palauttaa oikein Kategoria-olion viitteen mihin resepti tullaan 
+     * tallentamaan.
+     * @param kategoria
+     * @return 
+     */
     public Kategoria mihinKategoriaanReseptiLisataan(String kategoria) {
         Kategoria palautettavaKategoria = null;
         for (Kategoria kategori : this.kategoriat) {
@@ -95,6 +99,13 @@ public class Tietovarasto {
         return palautettavaKategoria; // palauttaa null-arvon
     }
 
+    /**
+     * Metodi pilkkoo reseptiin kuuluvan aineen oikeaan muotoon Resepti-olioon 
+     * tallentamista varten. Tiedostossa ainesosan nimi ja määrä on muotoa:
+     * "1 kpl:salaatti"
+     * @param resepti
+     * @param aineet 
+     */
     public void aineidenLisaysReseptiin(Resepti resepti, String aineet) {
         String[] osat = aineet.split(":");
         String maara = osat[0];
@@ -144,7 +155,7 @@ public class Tietovarasto {
     }
 
     /**
-     * Lisätään resepti tiedoston Reseptit.txt loppuun.
+     * Lisää uuden reseptin tiedoston Reseptit.txt loppuun.
      *
      * @param kategoria
      * @param resepti
@@ -163,11 +174,21 @@ public class Tietovarasto {
 //            System.out.println("Reseptin lisääminen epäonnistui: " + e.getMessage());
             return false; // poistutaan metodista
         }
-//        poistaKategorioistaReseptit();
-//        lisaaKategorioihinReseptit();
         return true;
     }
 
+    /**
+     * Metodi ottaa kopion Reseptit.txt-tiedostosta ja lataa sen lukijaan. 
+     * Reseptit.txt-tiedosto tyhjennetään ja kirjoitetaa uudestaan niin, että 
+     * tiedostoo ei kirjoiteta sitä reseptiä mikä halutaan poistaa. Kun poistettava 
+     * resepti tulee kopio-tiedostossa vastaan, lukee lukija poistettavan reseptin 
+     * tiedot mutta ei talleta niitä mihinkään. Lopussa poistetaan kaikista 
+     * kategorioista reseptit ja ladataan ne uudelleen.
+     * @param kategoria
+     * @param resepti
+     * @return
+     * @throws IOException 
+     */
     public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
         File kopio = this.tiedostoReseptit;
         boolean onnistuuko = lataaTiedosto(kopio);
@@ -186,7 +207,6 @@ public class Tietovarasto {
                         seuraava = lukija.nextLine();
                     }
                     seuraava = lukija.nextLine();
-                    // mitä tehdään kun poisto
                 } else {
                     Resepti uusiResepti = new Resepti(reseptinNimi);
                     String aineet = lukija.nextLine();

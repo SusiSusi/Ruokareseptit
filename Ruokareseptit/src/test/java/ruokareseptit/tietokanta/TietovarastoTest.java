@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ruokareseptit.domain.Ainesosa;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 
@@ -34,19 +35,25 @@ public class TietovarastoTest {
     }
 
     @Test
-    public void reseptinLisaysOnnistuu() throws IOException {
+    public void reseptinLisaysJaPoistoOnnistuu() throws IOException {
         Resepti resep = new Resepti("Makaronilaatikko");
         long kokoEnnen = reseptiTiedosto.length();
         varasto.lisaaReseptiTiedostoon("Liha", resep);
         long kokoJalkeen = reseptiTiedosto.length();
         assertEquals(true, kokoEnnen < kokoJalkeen);
+        kokoEnnen = reseptiTiedosto.length();
+        varasto.poistaReseptiTiedostosta("Liha", resep);
+        kokoJalkeen = reseptiTiedosto.length();
+        assertEquals(true, kokoEnnen > kokoJalkeen);
     }
 
     @Test
     public void tiedostonLukuEpaonnistuuJaKategoriaListaOnTyhja() {
         Tietovarasto toinen = new Tietovarasto("testi.txt", "tps.txt");
         toinen.lisaaKategoriat();
+        File tiedosto = new File("testi.txt");
         assertEquals(0, toinen.haeKategoriat().size());
+        assertEquals(false, toinen.lataaTiedosto(tiedosto));
     }
 
     @Test
@@ -62,13 +69,24 @@ public class TietovarastoTest {
 
     @Test
     public void reseptienPoistoKategorioistaOnnistuu() {
-        varasto.lisaaKategorioihinReseptit();
-        varasto.poistaKategorioistaReseptit();
         List<Kategoria> kategoriat = varasto.haeKategoriat();
         int montaReseptia = 0;
         for (Kategoria kat : kategoriat) {
             montaReseptia = montaReseptia + kat.reseptienMaaraKategoriassa();
         }
         assertEquals(0, montaReseptia);
+        varasto.lisaaKategorioihinReseptit();
+        varasto.poistaKategorioistaReseptit();
+        montaReseptia = 0;
+        for (Kategoria kat : kategoriat) {
+            montaReseptia = montaReseptia + kat.reseptienMaaraKategoriassa();
+        }
+        assertEquals(0, montaReseptia);
     }
+
+    @Test
+    public void lisataanKategoriaanJotaEiOleOlemassa() {
+        assertEquals(null, varasto.mihinKategoriaanReseptiLisataan("EiTokkinsa"));
+    }
+
 }

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ruokareseptit.domain.Resepti;
+import ruokareseptit.logiikka.StringUtils;
 
 public class ReseptiTest {
 
@@ -31,7 +32,7 @@ public class ReseptiTest {
         List<Ainesosa> osat = new ArrayList<>();
         Resepti kakku = new Resepti("Kakku");
         assertEquals(osat, kakku.getAinesosat());
-        assertEquals("Ohjetta ei ole talletettu.", kakku.getOhjeTavutettuna());
+        assertEquals("Ohjetta ei ole talletettu.", kakku.getOhje());
     }
 
     @Test
@@ -47,7 +48,7 @@ public class ReseptiTest {
         assertEquals("Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain \n"
                 + "ja niitä kypsytetään sipulin kanssa pannulla. Jos halua-\n"
                 + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruok-\n"
-                + "a on valmis.", res.getOhjeTavutettuna());
+                + "a on valmis.", new StringUtils().tavutaReseptinOhje(res.getOhje()));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class ReseptiTest {
                 + "että rivityskin menisi kivasti ja mahdolliset viivat yms..");
         assertEquals("Laita uuni päälle ja tee tarvittavat temput. Katsotaan \n"
                 + "myös että rivityskin menisi kivasti ja mahdolliset viiv-\n"
-                + "at yms..", res.getOhjeTavutettuna());
+                + "at yms..", new StringUtils().tavutaReseptinOhje(res.getOhje()));
     }
 
     @Test
