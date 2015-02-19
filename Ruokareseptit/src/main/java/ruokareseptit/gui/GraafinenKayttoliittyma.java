@@ -5,15 +5,19 @@ import java.util.*;
 import javax.swing.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
+import ruokareseptit.logiikka.Tulostus;
+import ruokareseptit.tietokanta.Tietovarasto;
 
 public class GraafinenKayttoliittyma implements Runnable {
 
     
     private JFrame frame;
-    private Tekstikayttoliittyma teksti;
+    private Tulostus tulostus;
+    private Tietovarasto tietovarasto;
 
     public GraafinenKayttoliittyma() {
-//        this.teksti = new Tekstikayttoliittyma();
+        this.tietovarasto = new Tietovarasto();
+        this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());
     }
 
     @Override
@@ -33,20 +37,27 @@ public class GraafinenKayttoliittyma implements Runnable {
 //        GridLayout leiska = new GridLayout(3, 1);
 //        container.setLayout(leiska);
 
-        JPanel valikko = new JPanel(new GridLayout(1, 3));
-        JButton kategoria = new JButton("Hae kategoria");
-        JButton resepti = new JButton("Hae repseti");
+        JPanel valikko = new JPanel(new GridLayout(1, 5));
+        JButton haeResepti = new JButton("Hae resepti");
+        JButton haeKategoria = new JButton("Hae kategoria");
         JButton lisaa = new JButton("Lisää uusi");
-
-        valikko.add(kategoria);
-        valikko.add(resepti);
+        JButton kaikkiReseptit = new JButton("Kaikki reseptit");
+        JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");
+      
+        valikko.add(haeResepti);
+        valikko.add(haeKategoria);
         valikko.add(lisaa);
+        valikko.add(kaikkiReseptit);
+        valikko.add(kaikkiKategoriat);
 
-        ViestiKuuntelija kuulija = new ViestiKuuntelija(valikko, container, teksti, kategoria, resepti, lisaa);
+        ViestiKuuntelija kuulija = new ViestiKuuntelija(valikko, container, haeKategoria, haeResepti, lisaa,
+        kaikkiReseptit, kaikkiKategoriat, tulostus);
 
-        kategoria.addActionListener(kuulija);
-        resepti.addActionListener(kuulija);
+        haeResepti.addActionListener(kuulija);
+        haeKategoria.addActionListener(kuulija);
         lisaa.addActionListener(kuulija);
+        kaikkiReseptit.addActionListener(kuulija);
+        kaikkiKategoriat.addActionListener(kuulija);
 
         container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
         container.add(valikko, BorderLayout.SOUTH);

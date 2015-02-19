@@ -11,33 +11,38 @@ import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
  * Luokassa tapahtuu tekstikäyttöliittymän toiminta
+ *
  * @author susisusi
  */
-
 public class Tekstikayttoliittyma {
 
     private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
     private Scanner lukija;
+    private Tulostus tulostaja;
+    private Lisaykset lisataan;
 
     /**
      * Konstuktori alustaa uuden tietovaraston, kategoriat sekä lukijan
-     * @param lukija 
+     *
+     * @param lukija
      */
     public Tekstikayttoliittyma(Scanner lukija) {
         tiedot = new Tietovarasto();
         this.kategoriat = tiedot.haeKategoriat();
         this.lukija = lukija;
+        this.tulostaja = new Tulostus(this.kategoriat);
+        lisataan = new Lisaykset(this.kategoriat, this.tiedot);
     }
 
     /**
-     * Metodi käynnistää sovelluksen ja käyttäjän syötteen mukaan ohjaa oikeisiin 
-     * metodeihin
-     * @throws IOException 
+     * Metodi käynnistää sovelluksen ja käyttäjän syötteen mukaan ohjaa
+     * oikeisiin metodeihin
+     *
+     * @throws IOException
      */
     public void kaynnista() throws IOException {
-        Lisaykset lisataan = new Lisaykset(this.lukija, this.kategoriat, this.tiedot);
-        Tulostus tulostaja = new Tulostus(this.kategoriat, this.lukija);
+
         System.out.println("Ruokareseptit");
         System.out.println("*******************");
         while (true) {
@@ -46,17 +51,18 @@ public class Tekstikayttoliittyma {
             if (vastaus.equals("1")) {
                 System.out.print("Minkä reseptin haluat hakea? ");
                 String resepti = this.lukija.nextLine();
-//                System.out.println(resepti);
-                tulostaja.tulostaResepti(resepti);
+                System.out.println(tulostaja.tulostaResepti(resepti));
             } else if (vastaus.equals("2")) {
                 System.out.print("Minkä kategorian haluat hakea? ");
                 String haettavaKategoria = this.lukija.nextLine();
                 System.out.println("");
-                tulostaja.tulostaKategorianReseptienNimet(haettavaKategoria);
-                System.out.println("");
-                tulostaja.tulostetaankoKategoriastaResepti(haettavaKategoria);
+                String tulos = tulostaja.tulostaKategorianReseptienNimet(haettavaKategoria);
+                System.out.println(tulos);
+                if (!tulos.equals("Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä")) {
+                    tulostetaankoKategoriastaResepti(haettavaKategoria);
+                }
             } else if (vastaus.equals("3")) {
-                lisataan.lisaaUusiResepti();
+                lisaaUusiResepti();
             } else if (vastaus.equals("4")) {
                 System.out.println(tulostaja.tulostaKaikkiReseptit());
             } else if (vastaus.equals("5")) {
@@ -93,7 +99,7 @@ public class Tekstikayttoliittyma {
         System.out.println("  7. Lopeta ohjelma");
         System.out.println("********************************");
     }
-    
+
     public boolean poistaResepti() throws IOException {
         System.out.print("Minkä reseptin haluat poistaa? ");
         String poistettava = this.lukija.nextLine();
@@ -101,11 +107,96 @@ public class Tekstikayttoliittyma {
             List<Resepti> reseptit = kateg.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 if (new StringUtils().sisaltaa(resepti.getNimi(), poistettava)) {
-                   return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
-                   
+                    return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
+
                 }
             }
         }
         return false;
+    }
+
+    public void tulostetaankoKategoriastaResepti(String haettavaKategoria) {
+        StringUtils muuttaja = new StringUtils();
+        System.out.print("Haluatko tulostaa reseptin kategoriasta " + haettavaKategoria + "? Kirjoita K = kyllä tai E = ei ");
+        while (true) {
+            String haluaako = this.lukija.nextLine();
+            if (muuttaja.sisaltaa("k", haluaako)) {
+                System.out.print("Mikä resepti? ");
+                String haluttuResepti = this.lukija.nextLine();
+                System.out.println(tulostaja.tulostaReseptiTietystaKategoriasta(haettavaKategoria, haluttuResepti));
+                break;
+            } else if (muuttaja.sisaltaa("e", haluaako)) {
+                break;
+            } else {
+                System.out.println("Syöte on virheellinen. Kirjoita k = kyllä tai e = ei");
+            }
+        }
+    }
+
+    /**
+     * Metodi kysyy käyttäjältä tiedot uutta reseptiä varten ja välittää
+     * reseptin tiedot eteenpäin, missä se lisätään tiedostoon.
+     *
+     * @throws IOException
+     */
+    public void lisaaUusiResepti() throws IOException {
+        System.out.println("Mihin kategoriaan uusi resepti kuuluu? Valitse alla olevista vaihtoehdoista \n"
+                + "ja kirjoita kategorian nimi.");
+        System.out.println("*******************");
+        System.out.println(tulostaja.tulostaKaikkiKategoriat());
+        System.out.println("*******************");
+        String mikaKategoria = "";
+        while (true) {
+            mikaKategoria = this.lukija.nextLine();
+            if (new StringUtils().sisaltaa("LOPETA", mikaKategoria)) {
+                return;
+            }
+            if (lisataan.kirjoitetaankoKategoriaOikein(mikaKategoria)) {
+                break;
+            } else {
+                System.out.println("Syöte on virheellinen. Kirjoita kategoria uudestaan \n tai "
+                        + "lopeta uuden reseptin luominen kirjoittamalla: LOPETA");
+            }
+        }
+        System.out.print("Kirjoita reseptin nimi ");
+        String reseptinNimi = this.lukija.nextLine();
+        Resepti uusiResepti = new Resepti(reseptinNimi);
+        System.out.println("Mitä ainesosia reseptiin kuuluu? Kun olet syöttänyt kaikki"
+                + " ainesosat, kirjoita LOPETA");
+        lisataanKaikkiAinesosat(uusiResepti);
+        System.out.println("Miten resepti valmistetaa? Kirjoita ohje 'pötköön', koska"
+                + " enterin painallus lopettaa ohjeen kirjoittamisen.");
+        String ohje = this.lukija.nextLine();
+        uusiResepti.setOhje(ohje);
+        boolean onnistuuko = lisataan.lisaaUusiResepti(mikaKategoria, uusiResepti);
+        if (onnistuuko == false) {
+            System.out.println("\nReseptin lisäys epäonnistui.");
+        } else {
+            System.out.println("\nReseptin lisäys onnistui!");
+        }
+    }
+
+
+    /**
+     * Metodi kysyy loopissa käyttäjältä, mitä ainesosia reseptiin tarvitaan ja
+     * lisää ainesosan ja määrän reseptiin. Kun käyttäjä kirjoittaa LOPETA,
+     * metodi päättyy ja palaa takaisin metodiin lisaaUusiResepti()
+     *
+     * @param resepti
+     */
+    private void lisataanKaikkiAinesosat(Resepti resepti) {
+        while (true) {
+            System.out.print("Ainesosa: ");
+            String ainesosa = this.lukija.nextLine();
+            if (new StringUtils().sisaltaa("LOPETA", ainesosa)) {
+                return;
+            }
+            System.out.print("Määrä: ");
+            String maara = this.lukija.nextLine();
+            if (new StringUtils().sisaltaa("LOPETA", maara)) {
+                return;
+            }
+            resepti.setAinesosa(ainesosa, maara);
+        }
     }
 }

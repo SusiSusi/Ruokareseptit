@@ -12,7 +12,6 @@ import ruokareseptit.domain.Resepti;
 public class Tulostus {
 
     private List<Kategoria> kategoriat;
-    private Scanner lukija;
 
     /**
      * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut
@@ -21,22 +20,22 @@ public class Tulostus {
      * @param kategoriat
      * @param lukija
      */
-    public Tulostus(List<Kategoria> kategoriat, Scanner lukija) {
+    public Tulostus(List<Kategoria> kategoriat) {
         this.kategoriat = kategoriat;
-        this.lukija = lukija;
     }
 
     /**
      * Konstruktori testejä varten.
-     * @param kategoriat 
+     *
+     * @param kategoriat
      */
 //    public Tulostus(List<Kategoria> kategoriat) {
 //        this.kategoriat = kategoriat;
 ////    }
-
     /**
      * Metodi tulostaa kaikki sovelluksessa olevat reseptit
-     * @return 
+     *
+     * @return
      */
     public String tulostaKaikkiReseptit() {
         String kaikkiReseptit = "";
@@ -52,24 +51,26 @@ public class Tulostus {
 
     /**
      * Metodi tulostaa kaikki sovelluksessa olevat kategoriat
+     *
+     * @return
      */
     public String tulostaKaikkiKategoriat() {
         int i = 1;
         String kaikkiKategoriat = "";
         for (Kategoria kategoria : this.kategoriat) {
             kaikkiKategoriat = kaikkiKategoriat + "  " + i + ". " + kategoria.getKategorianNimi() + "\n";
-//            System.out.println("  " + i + ". " + kategoria.getKategorianNimi());
             i++;
         }
         return kaikkiKategoriat;
     }
 
-    /** 
+    /**
      * Metodi tulostaa parametriksi saadun reseptin tiedot
      *
      * @param resepti
+     * @return
      */
-    public void tulostaResepti(String resepti) {
+    public String tulostaResepti(String resepti) {
         Resepti etsittavaResepti = null;
         for (Kategoria kategoria : this.kategoriat) {
             etsittavaResepti = kategoria.getResepti(resepti);
@@ -78,31 +79,33 @@ public class Tulostus {
             }
         }
         if (etsittavaResepti == null) {
-            System.out.println("Reseptiä ei löytynyt");
-        } else {
-            System.out.println(etsittavaResepti + "\n");
+            return "Reseptiä ei löytynyt.";
         }
+        return etsittavaResepti.toString();
     }
 
     /**
      * Metodi tulostaa parametriksi saadun kategorian kaikki reseptien nimet
      *
      * @param kategorianNimi
+     * @return
      */
-    public void tulostaKategorianReseptienNimet(String kategorianNimi) {
+    public String tulostaKategorianReseptienNimet(String kategorianNimi) {
         List<String> reseptienNimet = new ArrayList<>();
+        String nimet = "";
         for (Kategoria kategoria : this.kategoriat) {
             if (new StringUtils().sisaltaa(kategoria.getKategorianNimi(), kategorianNimi)) {
                 reseptienNimet = kategoria.getReseptienNimet();
             }
         }
         if (reseptienNimet.isEmpty()) {
-            System.out.println("Kategoriassa ei ole reseptejä. \n");
+            return "Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä";
         } else {
             for (String reseptinNimi : reseptienNimet) {
-                System.out.println("  " + reseptinNimi);
+                nimet = nimet + "  " + reseptinNimi + "\n";
             }
         }
+        return nimet;
     }
 
     /**
@@ -111,33 +114,20 @@ public class Tulostus {
      * void tulostaKategorianReseptienNimet(String kategorianNimi)
      *
      * @param haettavaKategoria
+     * @param resepti
+     * @return 
      */
-    public void tulostetaankoKategoriastaResepti(String haettavaKategoria) {
-        StringUtils muuttaja = new StringUtils();
-        System.out.print("Haluatko tulostaa reseptin kategoriasta " + haettavaKategoria + "? Kirjoita K = kyllä tai E = ei ");
-        while (true) {
-            String haluaako = this.lukija.nextLine();
-            if (muuttaja.sisaltaa("k", haluaako)) {
-                System.out.print("Mikä resepti? ");
-                String haluttuResepti = this.lukija.nextLine();
-                Resepti re = null;
-                for (Kategoria goria : this.kategoriat) {
-                    if (muuttaja.sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
-                        re = goria.getResepti(haluttuResepti);
-                        break;
-                    }
-                }
-                if (re == null) {
-                    System.out.println("Reseptiä ei löytynyt \n");
-                } else {
-                    System.out.println(re + "\n");
-                }
+    public String tulostaReseptiTietystaKategoriasta(String haettavaKategoria, String resepti) {
+        Resepti loydetty = null;
+        for (Kategoria goria : this.kategoriat) {
+            if (new StringUtils().sisaltaa(goria.getKategorianNimi(), haettavaKategoria)) {
+                loydetty = goria.getResepti(resepti);
                 break;
-            } else if (muuttaja.sisaltaa("e", haluaako)) {
-                break;
-            } else {
-                System.out.println("Syöte on virheellinen. Kirjoita k = kyllä tai e = ei");
             }
         }
+        if (loydetty == null) {
+            return "Reseptiä ei löytynyt";
+        }
+        return loydetty.toString();
     }
 }
