@@ -1,46 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package ruokareseptit.logiikka;
 
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import ruokareseptit.domain.Kategoria;
+import ruokareseptit.tietokanta.Tietovarasto;
 
-/**
- *
- * @author susisusi
- */
 public class TulostusTest {
-    
-    public TulostusTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    Tietovarasto varasto;
+    List<Kategoria> kategoriat;
+    Scanner lukija;
+    Tulostus tulostaja;
     
     @Before
     public void setUp() {
+        varasto = new Tietovarasto();
+        kategoriat = varasto.haeKategoriat();
+        lukija = new Scanner(System.in);
+        tulostaja = new Tulostus(kategoriat, lukija);
     }
     
-    @After
-    public void tearDown() {
+    @Test
+    public void k() {
+       
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

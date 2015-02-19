@@ -50,6 +50,8 @@ public class GraafinenKayttoliittyma implements Runnable {
 
         container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
         container.add(valikko, BorderLayout.SOUTH);
+//        JTextButton b = new JText("k");
+//        JTextField kl = new JTextField(teksti.tulostaToiminnot());
         
     }
 

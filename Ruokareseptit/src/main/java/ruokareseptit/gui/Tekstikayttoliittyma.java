@@ -58,9 +58,9 @@ public class Tekstikayttoliittyma {
             } else if (vastaus.equals("3")) {
                 lisataan.lisaaUusiResepti();
             } else if (vastaus.equals("4")) {
-                tulostaja.tulostaKaikkiReseptit();
+                System.out.println(tulostaja.tulostaKaikkiReseptit());
             } else if (vastaus.equals("5")) {
-                tulostaja.tulostaKaikkiKategoriat();
+                System.out.println(tulostaja.tulostaKaikkiKategoriat());
             } else if (vastaus.equals("6")) {
                 boolean poistuuko = poistaResepti();
                 if (poistuuko == false) {

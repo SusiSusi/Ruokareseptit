@@ -32,30 +32,36 @@ public class Tulostus {
      */
 //    public Tulostus(List<Kategoria> kategoriat) {
 //        this.kategoriat = kategoriat;
-//    }
+////    }
 
     /**
      * Metodi tulostaa kaikki sovelluksessa olevat reseptit
+     * @return 
      */
-    public void tulostaKaikkiReseptit() {
+    public String tulostaKaikkiReseptit() {
+        String kaikkiReseptit = "";
         for (Kategoria kategoria : this.kategoriat) {
             List<Resepti> reseptit = kategoria.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
-                System.out.println(resepti);
-                System.out.println("***********************************");
+                kaikkiReseptit = kaikkiReseptit + resepti;
+                kaikkiReseptit = kaikkiReseptit + "\n****************************************\n";
             }
         }
+        return kaikkiReseptit;
     }
 
     /**
      * Metodi tulostaa kaikki sovelluksessa olevat kategoriat
      */
-    public void tulostaKaikkiKategoriat() {
+    public String tulostaKaikkiKategoriat() {
         int i = 1;
+        String kaikkiKategoriat = "";
         for (Kategoria kategoria : this.kategoriat) {
-            System.out.println("  " + i + ". " + kategoria.getKategorianNimi());
+            kaikkiKategoriat = kaikkiKategoriat + "  " + i + ". " + kategoria.getKategorianNimi() + "\n";
+//            System.out.println("  " + i + ". " + kategoria.getKategorianNimi());
             i++;
         }
+        return kaikkiKategoriat;
     }
 
     /** 
