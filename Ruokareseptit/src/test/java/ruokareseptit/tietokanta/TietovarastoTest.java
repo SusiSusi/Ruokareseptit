@@ -71,6 +71,7 @@ public class TietovarastoTest {
     public void reseptienPoistoKategorioistaOnnistuu() {
         List<Kategoria> kategoriat = varasto.haeKategoriat();
         int montaReseptia = 0;
+        
         for (Kategoria kat : kategoriat) {
             montaReseptia = montaReseptia + kat.reseptienMaaraKategoriassa();
         }
