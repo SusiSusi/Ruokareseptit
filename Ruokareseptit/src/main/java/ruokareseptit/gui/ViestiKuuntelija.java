@@ -16,9 +16,12 @@ public class ViestiKuuntelija implements ActionListener {
     private JButton kaikkiKategoriat;
     private Container container;
     private Tulostus tulostus;
-    private JLabel tulostusKentta;
+//    private JLabel tulostusKentta;
+    private JButton etsi;
+    private String re;
+//    private JScrollPane scrollPerustiedotKentat;
 
-    public ViestiKuuntelija(JLabel tulostusKentta, JPanel valikko, Container container, JButton kategoria, JButton resepti,
+    public ViestiKuuntelija(JPanel valikko, Container container, JButton kategoria, JButton resepti,
             JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus) {
         this.valikko = valikko;
         this.container = container;
@@ -27,38 +30,91 @@ public class ViestiKuuntelija implements ActionListener {
         this.lisaa = lisaa;
         this.kaikkiReseptit = kaikkiReseptit;
         this.kaikkiKategoriat = kaikkiKategoriat;
-        this.tulostusKentta = tulostusKentta;
+//        this.tulostusKentta = tulostusKentta;
         this.tulostus = tulostus;
+//        this.scrollPerustiedotKentat = scrollPerustiedotKentat;
+    }
+
+    public ViestiKuuntelija(JButton etsi, String reseptinNimi) {
+        this.etsi = etsi;
+        this.re = reseptinNimi;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == kaikkiKategoriat) {
-            kategorianHakuValikko();
+            container.remove(2);
+            kaikkiKategoriat();
+            container.validate();
         } else if (ae.getSource() == haeResepti) {
+            container.remove(2);
+
             tulostaResepti();
+//            container.remo;
+            container.validate();
 
         } else if (ae.getSource() == lisaa) {
         } else if (ae.getSource() == kaikkiReseptit) {
+            container.remove(2);
             kaikkiReseptit();
+            container.validate();
+        }
+        else if (ae.getSource() == haeKategoria) {
+             container.remove(2);
+           tulostaKategoria();
+            container.validate();
         }
     }
 
-    public void kategorianHakuValikko() {
-        this.tulostusKentta.setText("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
+    public void kaikkiKategoriat() {
+        this.valikko = new JPanel(new BorderLayout());
+        JLabel text = new JLabel("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
+        valikko.add(text);
+        container.add(valikko);
     }
 
     public void kaikkiReseptit() {
-        this.tulostusKentta.setText("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
+        this.valikko = new JPanel(new BorderLayout());
+        JLabel text = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
+        JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
+        valikko.add(scrollPerustiedotKentat);
+//        valikko.add(text);
+//        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
+        container.add(valikko);
     }
 
     public void tulostaResepti() {
-        
-       this.valikko = new JPanel(new GridLayout(10,1));
-       this.valikko.add(new JLabel("lfdlf"));
-       JTextField nimi = new JTextField();
-       this.container.add(valikko, BorderLayout.EAST);
-       
-        
+        this.valikko = new JPanel(new GridLayout(10, 1));
+        this.valikko.add(new JLabel("Reseptin haku"));
+
+        this.valikko.add(new JLabel("Haettavan reseptin nimi "));
+        JTextField nimi = new JTextField();
+        this.valikko.add(nimi);
+        JButton etsi = new JButton("Etsi");
+        this.valikko.add(etsi);
+        this.container.add(valikko);
+        etsi.addActionListener(new ReseptinHakuKuuntelija(etsi, nimi, this.valikko,
+                this.container, this.tulostus));
+//        container.validate();
+
     }
+
+    public void tulostaKategoria() {
+        this.valikko = new JPanel(new GridLayout(10, 1));
+        this.valikko.add(new JLabel("Kategorian haku"));
+
+        this.valikko.add(new JLabel("Haettavan kategorian nimi "));
+        JTextField nimi = new JTextField();
+        this.valikko.add(nimi);
+        JButton etsi = new JButton("Etsi");
+        this.valikko.add(etsi);
+        this.container.add(valikko);
+        etsi.addActionListener(new KategorianHakuKuuntelija(etsi, nimi, this.valikko,
+                this.container, this.tulostus));
+    }
+
+//    public void resepti(String nimi) {
+//        this.container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
+//        tulostusKentta.setText(this.tulostus.tulostaResepti(nimi));
+//    }
 }
