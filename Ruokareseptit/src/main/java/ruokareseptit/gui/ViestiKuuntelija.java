@@ -16,8 +16,9 @@ public class ViestiKuuntelija implements ActionListener {
     private JButton kaikkiKategoriat;
     private Container container;
     private Tulostus tulostus;
+    private JLabel tulostusKentta;
 
-    public ViestiKuuntelija(JPanel valikko, Container container, JButton kategoria, JButton resepti,
+    public ViestiKuuntelija(JLabel tulostusKentta, JPanel valikko, Container container, JButton kategoria, JButton resepti,
             JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus) {
         this.valikko = valikko;
         this.container = container;
@@ -26,6 +27,8 @@ public class ViestiKuuntelija implements ActionListener {
         this.lisaa = lisaa;
         this.kaikkiReseptit = kaikkiReseptit;
         this.kaikkiKategoriat = kaikkiKategoriat;
+        this.tulostusKentta = tulostusKentta;
+        this.tulostus = tulostus;
     }
 
     @Override
@@ -34,15 +37,29 @@ public class ViestiKuuntelija implements ActionListener {
 //            kayttis.tulostaKategorianReseptienNimet("LIHA");
             kategorianHakuValikko();
         } else if (ae.getSource() == haeResepti) {
+            tulostaResepti();
 
         } else if (ae.getSource() == lisaa) {
 
+        } else if (ae.getSource() == kaikkiReseptit) {
+            kaikkiReseptit();
         }
     }
 
     public void kategorianHakuValikko() {
-        JLabel kategoriat = new JLabel(tulostus.tulostaKaikkiKategoriat());
-        System.out.println(tulostus.tulostaKaikkiKategoriat());
-//        kayttis.tulostaKaikkiReseptit();
+        this.tulostusKentta.setText("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
+
+    }
+
+    public void kaikkiReseptit() {
+        this.tulostusKentta.setText("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
+    }
+
+    public void tulostaResepti() {
+       JPanel v = new JPanel(new GridLayout(3,3));
+       v.add(new JLabel("nimi: "));
+       container.add(v);
+       
+        
     }
 }

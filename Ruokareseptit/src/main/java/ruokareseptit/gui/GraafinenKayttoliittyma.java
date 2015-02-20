@@ -14,9 +14,11 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JFrame frame;
     private Tulostus tulostus;
     private Tietovarasto tietovarasto;
-
+    private JLabel sisalto;
+    
     public GraafinenKayttoliittyma() {
         this.tietovarasto = new Tietovarasto();
+        
         this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());
     }
 
@@ -43,6 +45,12 @@ public class GraafinenKayttoliittyma implements Runnable {
         JButton lisaa = new JButton("Lisää uusi");
         JButton kaikkiReseptit = new JButton("Kaikki reseptit");
         JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");
+        
+        this.sisalto = new JLabel();
+//        tulostusKentta.setEnabled(false);
+        JScrollPane scrollPerustiedotKentat = new JScrollPane(this.sisalto);
+//        this.sisalto.add(scrollPerustiedotKentat);
+//        scrollPerustiedotKentat.setViewportView(this.sisalto);
       
         valikko.add(haeResepti);
         valikko.add(haeKategoria);
@@ -50,8 +58,8 @@ public class GraafinenKayttoliittyma implements Runnable {
         valikko.add(kaikkiReseptit);
         valikko.add(kaikkiKategoriat);
 
-        ViestiKuuntelija kuulija = new ViestiKuuntelija(valikko, container, haeKategoria, haeResepti, lisaa,
-        kaikkiReseptit, kaikkiKategoriat, tulostus);
+        ViestiKuuntelija kuulija = new ViestiKuuntelija(this.sisalto, valikko, container, haeKategoria, haeResepti, lisaa,
+        kaikkiReseptit, kaikkiKategoriat, this.tulostus);
 
         haeResepti.addActionListener(kuulija);
         haeKategoria.addActionListener(kuulija);
@@ -60,7 +68,9 @@ public class GraafinenKayttoliittyma implements Runnable {
         kaikkiKategoriat.addActionListener(kuulija);
 
         container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
+        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
         container.add(valikko, BorderLayout.SOUTH);
+        
 //        JTextButton b = new JText("k");
 //        JTextField kl = new JTextField(teksti.tulostaToiminnot());
         
