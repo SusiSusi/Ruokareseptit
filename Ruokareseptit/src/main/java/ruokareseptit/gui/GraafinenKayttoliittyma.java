@@ -10,15 +10,15 @@ import ruokareseptit.tietokanta.Tietovarasto;
 
 public class GraafinenKayttoliittyma implements Runnable {
 
-    
     private JFrame frame;
     private Tulostus tulostus;
     private Tietovarasto tietovarasto;
     private JLabel sisalto;
-    
+    private JPanel toinen;
+
     public GraafinenKayttoliittyma() {
         this.tietovarasto = new Tietovarasto();
-        
+
         this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());
     }
 
@@ -45,53 +45,62 @@ public class GraafinenKayttoliittyma implements Runnable {
         JButton lisaa = new JButton("Lisää uusi");
         JButton kaikkiReseptit = new JButton("Kaikki reseptit");
         JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");
-        
+
         this.sisalto = new JLabel();
+        this.toinen = new JPanel();
 //        tulostusKentta.setEnabled(false);
         JScrollPane scrollPerustiedotKentat = new JScrollPane(this.sisalto);
 //        this.sisalto.add(scrollPerustiedotKentat);
 //        scrollPerustiedotKentat.setViewportView(this.sisalto);
-      
-        valikko.add(haeResepti);
-        valikko.add(haeKategoria);
-        valikko.add(lisaa);
-        valikko.add(kaikkiReseptit);
-        valikko.add(kaikkiKategoriat);
 
-        ViestiKuuntelija kuulija = new ViestiKuuntelija(this.sisalto, valikko, container, haeKategoria, haeResepti, lisaa,
-        kaikkiReseptit, kaikkiKategoriat, this.tulostus);
+//        valikko.add(haeResepti);
+//        valikko.add(haeKategoria);
+//        valikko.add(lisaa);
+//        valikko.add(kaikkiReseptit);
+//        valikko.add(kaikkiKategoriat);
+//
+//        ViestiKuuntelija kuulija = new ViestiKuuntelija(this.sisalto, this.toinen, container, haeKategoria, haeResepti, lisaa,
+//                kaikkiReseptit, kaikkiKategoriat, this.tulostus);
+//
+//        haeResepti.addActionListener(kuulija);
+//        haeKategoria.addActionListener(kuulija);
+//        lisaa.addActionListener(kuulija);
+//        kaikkiReseptit.addActionListener(kuulija);
+//        kaikkiKategoriat.addActionListener(kuulija);
+        container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
+        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
+        container.add(luoValikko(container), BorderLayout.SOUTH);
 
-        haeResepti.addActionListener(kuulija);
+//        JTextButton b = new JText("k");
+//        JTextField kl = new JTextField(teksti.tulostaToiminnot());
+    }
+
+    private JPanel luoValikko(Container container) {
+        JPanel panel = new JPanel(new GridLayout(1, 5));
+        JButton haeKategoria = new JButton("Hae kategoria");
+        JButton haeResepti = new JButton("Hae repseti");
+        JButton lisaa = new JButton("Lisää uusi");
+        JButton kaikkiReseptit = new JButton("Kaikki reseptit");
+        JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");
+
+        panel.add(haeResepti);
+        panel.add(haeKategoria);      
+        panel.add(lisaa);
+        panel.add(kaikkiReseptit);
+        panel.add(kaikkiKategoriat);
+        
+        ViestiKuuntelija kuulija = new ViestiKuuntelija(this.sisalto, this.toinen, container, haeKategoria, haeResepti, lisaa,
+                kaikkiReseptit, kaikkiKategoriat, this.tulostus);
+
         haeKategoria.addActionListener(kuulija);
+        haeResepti.addActionListener(kuulija);
         lisaa.addActionListener(kuulija);
         kaikkiReseptit.addActionListener(kuulija);
         kaikkiKategoriat.addActionListener(kuulija);
 
-        container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
-        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
-        container.add(valikko, BorderLayout.SOUTH);
-        
-//        JTextButton b = new JText("k");
-//        JTextField kl = new JTextField(teksti.tulostaToiminnot());
-        
+        return panel;
     }
 
-//    private JPanel luoValikko() {
-//        JPanel panel = new JPanel(new GridLayout(1, 3));
-//        JButton kategoria = new JButton("Hae kategoria");
-//        JButton resepti = new JButton("Hae repseti");
-//        JButton lisaa = new JButton("Lisää uusi");
-//        panel.add(kategoria);
-//        panel.add(resepti);
-//        panel.add(lisaa);
-//        kategoria.addActionListener(new ViestiKuuntelija());
-//        resepti.addActionListener(new ViestiKuuntelija());
-//        lisaa.addActionListener(new ViestiKuuntelija());
-//        
-//        return panel;
-//    }
-    
-    
     public JFrame getFrame() {
         return frame;
     }

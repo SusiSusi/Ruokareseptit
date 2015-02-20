@@ -33,14 +33,12 @@ public class ViestiKuuntelija implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == haeKategoria) {
-//            kayttis.tulostaKategorianReseptienNimet("LIHA");
+        if (ae.getSource() == kaikkiKategoriat) {
             kategorianHakuValikko();
         } else if (ae.getSource() == haeResepti) {
             tulostaResepti();
 
         } else if (ae.getSource() == lisaa) {
-
         } else if (ae.getSource() == kaikkiReseptit) {
             kaikkiReseptit();
         }
@@ -48,7 +46,6 @@ public class ViestiKuuntelija implements ActionListener {
 
     public void kategorianHakuValikko() {
         this.tulostusKentta.setText("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
-
     }
 
     public void kaikkiReseptit() {
@@ -56,9 +53,11 @@ public class ViestiKuuntelija implements ActionListener {
     }
 
     public void tulostaResepti() {
-       JPanel v = new JPanel(new GridLayout(3,3));
-       v.add(new JLabel("nimi: "));
-       container.add(v);
+        
+       this.valikko = new JPanel(new GridLayout(10,1));
+       this.valikko.add(new JLabel("lfdlf"));
+       JTextField nimi = new JTextField();
+       this.container.add(valikko, BorderLayout.EAST);
        
         
     }
