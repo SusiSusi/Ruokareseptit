@@ -104,25 +104,6 @@ public class GraafinenKayttoliittyma implements Runnable {
         return panel;
     }
 
-    public void luoLisaysLomake(Container container) {
-        this.toinen = new JPanel(new GridLayout(10, 1));
-        this.toinen.add(new JLabel("Uuden tuotteen lisäys"));
-
-        this.toinen.add(new JLabel("Nimi: "));
-        JTextField nimi = new JTextField();
-        this.toinen.add(nimi);
-
-        this.toinen.add(new JLabel("Kuvaus: "));
-        JTextField kuvaus = new JTextField();
-        this.toinen.add(kuvaus);
-
-        JButton lisaa = new JButton("Lisaa tuote!");
-//        LisaysLomakeKasittelija kasittelija = new LisaysLomakeKasittelija(nimi,kuvaus);
-//        lisaa.addActionListener(kasittelija);
-        this.sisalto.add(lisaa);
-
-        container.add(this.sisalto, BorderLayout.CENTER);
-    }
 
     public JFrame getFrame() {
         return frame;
