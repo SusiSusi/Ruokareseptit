@@ -92,7 +92,7 @@ public class GraafinenKayttoliittyma implements Runnable {
         panel.add(kaikkiReseptit);
         panel.add(kaikkiKategoriat);
 
-        ViestiKuuntelija kuulija = new ViestiKuuntelija(this.toinen, container, haeKategoria, haeResepti, lisaa,
+        ValikkoNappaintenKuuntelija kuulija = new ValikkoNappaintenKuuntelija(this.toinen, container, haeKategoria, haeResepti, lisaa,
                 kaikkiReseptit, kaikkiKategoriat, this.tulostus);
 
         haeKategoria.addActionListener(kuulija);

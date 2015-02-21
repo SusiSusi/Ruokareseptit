@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import ruokareseptit.logiikka.Tulostus;
 
-public class ViestiKuuntelija implements ActionListener {
+public class ValikkoNappaintenKuuntelija implements ActionListener {
 
     private JPanel valikko;
     private JButton haeKategoria;
@@ -21,7 +21,7 @@ public class ViestiKuuntelija implements ActionListener {
     private String re;
 //    private JScrollPane scrollPerustiedotKentat;
 
-    public ViestiKuuntelija(JPanel valikko, Container container, JButton kategoria, JButton resepti,
+    public ValikkoNappaintenKuuntelija(JPanel valikko, Container container, JButton kategoria, JButton resepti,
             JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus) {
         this.valikko = valikko;
         this.container = container;
@@ -35,7 +35,7 @@ public class ViestiKuuntelija implements ActionListener {
 //        this.scrollPerustiedotKentat = scrollPerustiedotKentat;
     }
 
-    public ViestiKuuntelija(JButton etsi, String reseptinNimi) {
+    public ValikkoNappaintenKuuntelija(JButton etsi, String reseptinNimi) {
         this.etsi = etsi;
         this.re = reseptinNimi;
     }
