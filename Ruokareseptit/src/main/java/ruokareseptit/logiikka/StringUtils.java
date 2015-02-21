@@ -63,18 +63,14 @@ public class StringUtils {
             return ohje;
         } else {
             int pituus = ohje.length();
-            int rivinPituus = 55;
+            int rivinPituus = 80;
             int apu = 0;
             String rivi = "";
             for (int i = 0; i < pituus; i++) {
                 rivi = rivi + ohje.charAt(i);
                 apu++;
-                if (apu == rivinPituus) {
-                    if (ohje.charAt(i) == ' ') {
+                if (apu >= rivinPituus && ohje.charAt(i) == ' ') {
                         muokattuOhje = muokattuOhje + rivi + "\n";
-                    } else {
-                        muokattuOhje = muokattuOhje + rivi + "-\n";
-                    }
                     rivi = "";
                     apu = 0;
                 }

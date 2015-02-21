@@ -82,7 +82,7 @@ public class Resepti {
     @Override
     public String toString() {
         String tavutettuOhje = new StringUtils().tavutaReseptinOhje(this.ohje);
-        return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\n" 
+        return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\nValmistusohje: \n" 
                 + tavutettuOhje;
     }
 }

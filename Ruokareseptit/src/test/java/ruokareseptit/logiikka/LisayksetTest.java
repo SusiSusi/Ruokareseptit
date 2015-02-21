@@ -19,7 +19,10 @@ public class LisayksetTest {
 
     @Before
     public void setUp() {
-        this.varasto = new Tietovarasto();
+        varasto = new Tietovarasto("src/test/java/ruokareseptit/tietokanta/KategoriatTest.txt",
+                "src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
+        varasto.lisaaKategoriat();
+        varasto.lisaaKategorioihinReseptit();
         this.lisaykset = new Lisaykset(varasto.haeKategoriat(), varasto);
     }
 
@@ -31,25 +34,25 @@ public class LisayksetTest {
             montaReseptia = montaReseptia + ka.getKaikkiReseptit().size();
         }
         Resepti jauhelihakastike = new Resepti("Jauhelihakastike");
-        assertEquals(true, lisaykset.lisaaUusiResepti("alkupala", jauhelihakastike));
+        assertEquals(true, lisaykset.lisaaUusiResepti("Alkupala", jauhelihakastike));
         int montaReseptiaLisayksenJalkeen = 0;
         for (Kategoria ka : ko) {
             montaReseptiaLisayksenJalkeen = montaReseptiaLisayksenJalkeen + ka.getKaikkiReseptit().size();
         }
         assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptia);
-        varasto.poistaReseptiTiedostosta("alkupala", jauhelihakastike);
+        varasto.poistaReseptiTiedostosta("Alkupala", jauhelihakastike);
     }
 
     @Test
     public void reseptinLisaaminenEiOnnistu() throws IOException {
         Resepti jauhelihakastike = new Resepti("Jauhelihakastike");
         assertEquals(false, lisaykset.lisaaUusiResepti("", jauhelihakastike));
-        assertEquals(false, lisaykset.lisaaUusiResepti("alkupala", new Resepti("")));
+        assertEquals(false, lisaykset.lisaaUusiResepti("Alkupala", new Resepti("")));
     }
 
     @Test
     public void kategoriaKirjoitetaanOikein() {
-        assertEquals(true, lisaykset.kirjoitetaankoKategoriaOikein("alkupala"));
+        assertEquals(true, lisaykset.kirjoitetaankoKategoriaOikein("Alkupala"));
     }
 
     @Test

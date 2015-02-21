@@ -39,11 +39,15 @@ public class Tulostus {
      */
     public String tulostaKaikkiReseptit() {
         String kaikkiReseptit = "";
+        String tahtia = "";
+        for (int i = 0; i < 105; i++) {
+            tahtia = tahtia + "*";
+        }
         for (Kategoria kategoria : this.kategoriat) {
             List<Resepti> reseptit = kategoria.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 kaikkiReseptit = kaikkiReseptit + resepti;
-                kaikkiReseptit = kaikkiReseptit + "\n****************************************\n";
+                kaikkiReseptit = kaikkiReseptit + "\n" + tahtia + "\n";
             }
         }
         return kaikkiReseptit;
