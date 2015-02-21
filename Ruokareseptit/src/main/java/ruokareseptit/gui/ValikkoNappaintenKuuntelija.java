@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import static javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION;
 import ruokareseptit.logiikka.Lisaykset;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
@@ -138,10 +139,19 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         JTextField raakaAine = new JTextField("");
         JLabel maarat = new JLabel("Määrä");
         JTextField maara = new JTextField("");
-//        DefaultListModel lista = new DefaultListModel();
+        
+        
+        DefaultListModel lista = new DefaultListModel();
 //        lista.set(0, new JTextField(""));
-//        JList raakaAineLista = new JList(lista);
-//        JScrollPane vierittaja = new JScrollPane(raakaAineLista);
+        JList raakaAineLista = new JList(lista);
+        raakaAineLista.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        raakaAineLista.setSelectedIndex(0);
+        JScrollPane vierittaja = new JScrollPane(raakaAineLista);
+        JButton lisaa = new JButton("Lisää");
+        
+        
+        
+        valikko.add(raakaAineLista);
         JLabel ohjeenLisays = new JLabel("Valmistusohje");
         JTextArea ohje = new JTextArea();
         JScrollPane rullaus = new JScrollPane(ohje);
@@ -155,9 +165,9 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         this.valikko.add(rullaus);
 //        this.valikko.add(raakaAineLista);
 //        this.valikko.add(vierittaja);
-        for (int i = 0; i < 4; i++) {
-        valikko.add(new JLabel(""));
-    }
+//        for (int i = 0; i < 4; i++) {
+//        valikko.add(new JLabel(""));
+//    }
 
         this.valikko.add(lisaaNappi);
 //        this.valikko.add(poistaNappi, BorderLayout.EAST);
