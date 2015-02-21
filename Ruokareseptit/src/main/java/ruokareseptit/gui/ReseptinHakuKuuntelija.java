@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import ruokareseptit.logiikka.Lisaykset;
 import ruokareseptit.logiikka.Tulostus;
+import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
  *
@@ -24,14 +26,16 @@ public class ReseptinHakuKuuntelija implements ActionListener{
     private JPanel valikko;
     private Container container;
     private Tulostus tulostus;
+    private Lisaykset lisayksetJaPoistot;
     
     public ReseptinHakuKuuntelija(JButton etsi, JTextField haettava, JPanel valikko, Container container,
-            Tulostus tulostus) {
+            Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
         this.etsi = etsi;
         this.haettava = haettava;
         this.valikko = valikko; 
         this.container = container;
         this.tulostus = tulostus;
+        this.lisayksetJaPoistot = lisayksetJaPoistot;
     }
 
     @Override
@@ -47,11 +51,18 @@ public class ReseptinHakuKuuntelija implements ActionListener{
     
     public void etsiResepti() {
         this.valikko = new JPanel(new BorderLayout());
-        System.out.println( this.tulostus.tulostaResepti(haettava.getText()));
-        System.out.println("ja sana on  " + haettava.getText());
+//        System.out.println( this.tulostus.tulostaResepti(haettava.getText()));
+//        System.out.println("ja sana on  " + haettava.getText());
         JLabel text = new JLabel("<html>" + this.tulostus.tulostaResepti(haettava.getText()).replace("\n", "<br>") + "</html>");
         JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
         valikko.add(scrollPerustiedotKentat);
+        
+        JButton poisto = new JButton("Poista resepti");
+        valikko.add(poisto, BorderLayout.PAGE_END);
+        
+        poisto.addActionListener(new ReseptinPoistonKuuntelija(poisto, haettava, this.valikko,
+                this.container, this.tulostus, this.lisayksetJaPoistot));
+        
         container.add(valikko);
     }
     

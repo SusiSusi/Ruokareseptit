@@ -5,6 +5,7 @@ import java.util.*;
 import javax.swing.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
+import ruokareseptit.logiikka.Lisaykset;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
@@ -13,6 +14,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JFrame frame;
     private Tulostus tulostus;
     private Tietovarasto tietovarasto;
+    private Lisaykset lisayksetJaPoistot;
 //    private JLabel sisalto;
     private JPanel toinen;
 //    private JScrollPane scrollPerustiedotKentat;
@@ -21,6 +23,7 @@ public class GraafinenKayttoliittyma implements Runnable {
         this.tietovarasto = new Tietovarasto();
 
         this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());
+        this.lisayksetJaPoistot = new Lisaykset(this.tietovarasto.haeKategoriat(), tietovarasto);
     }
 
     @Override
@@ -93,7 +96,7 @@ public class GraafinenKayttoliittyma implements Runnable {
         panel.add(kaikkiKategoriat);
 
         ValikkoNappaintenKuuntelija kuulija = new ValikkoNappaintenKuuntelija(this.toinen, container, haeKategoria, haeResepti, lisaa,
-                kaikkiReseptit, kaikkiKategoriat, this.tulostus);
+                kaikkiReseptit, kaikkiKategoriat, this.tulostus, this.lisayksetJaPoistot);
 
         haeKategoria.addActionListener(kuulija);
         haeResepti.addActionListener(kuulija);

@@ -66,4 +66,18 @@ public class Lisaykset {
         }
         return false;
     }
+    
+    
+        public boolean poistaResepti(String reseptinNimi) throws IOException {
+        for (Kategoria kateg : this.kategoriat) {
+            List<Resepti> reseptit = kateg.getKaikkiReseptit();
+            for (Resepti resepti : reseptit) {
+                if (new StringUtils().sisaltaa(resepti.getNimi(), reseptinNimi)) {
+//                    return this.tiedot.poistaReseptiTiedostosta(resepti);
+                    return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
+                }
+            }
+        }
+        return false;
+    }
 }

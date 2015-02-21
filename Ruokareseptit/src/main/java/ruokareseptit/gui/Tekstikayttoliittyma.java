@@ -103,16 +103,16 @@ public class Tekstikayttoliittyma {
     public boolean poistaResepti() throws IOException {
         System.out.print("Minkä reseptin haluat poistaa? ");
         String poistettava = this.lukija.nextLine();
-        for (Kategoria kateg : this.kategoriat) {
-            List<Resepti> reseptit = kateg.getKaikkiReseptit();
-            for (Resepti resepti : reseptit) {
-                if (new StringUtils().sisaltaa(resepti.getNimi(), poistettava)) {
-                    return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
-
-                }
-            }
-        }
-        return false;
+//        for (Kategoria kateg : this.kategoriat) {
+//            List<Resepti> reseptit = kateg.getKaikkiReseptit();
+//            for (Resepti resepti : reseptit) {
+//                if (new StringUtils().sisaltaa(resepti.getNimi(), poistettava)) {
+//                    return this.tiedot.poistaReseptiTiedostosta(resepti);
+////eturn this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
+//                }
+//            }
+//        }
+        return lisataan.poistaResepti(poistettava);
     }
 
     public void tulostetaankoKategoriastaResepti(String haettavaKategoria) {

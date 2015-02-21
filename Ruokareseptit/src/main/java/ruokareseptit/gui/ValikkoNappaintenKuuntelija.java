@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import ruokareseptit.logiikka.Lisaykset;
 import ruokareseptit.logiikka.Tulostus;
+import ruokareseptit.tietokanta.Tietovarasto;
 
 public class ValikkoNappaintenKuuntelija implements ActionListener {
 
@@ -16,13 +18,15 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     private JButton kaikkiKategoriat;
     private Container container;
     private Tulostus tulostus;
+    private Lisaykset lisayksetJaPoistot;
 //    private JLabel tulostusKentta;
-    private JButton etsi;
-    private String re;
+//    private JButton etsi;
+//    private String re;
 //    private JScrollPane scrollPerustiedotKentat;
 
     public ValikkoNappaintenKuuntelija(JPanel valikko, Container container, JButton kategoria, JButton resepti,
-            JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus) {
+            JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus,
+            Lisaykset lisayksetJaPoistot) {
         this.valikko = valikko;
         this.container = container;
         this.haeKategoria = kategoria;
@@ -32,13 +36,14 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         this.kaikkiKategoriat = kaikkiKategoriat;
 //        this.tulostusKentta = tulostusKentta;
         this.tulostus = tulostus;
+        this.lisayksetJaPoistot = lisayksetJaPoistot;
 //        this.scrollPerustiedotKentat = scrollPerustiedotKentat;
     }
 
-    public ValikkoNappaintenKuuntelija(JButton etsi, String reseptinNimi) {
-        this.etsi = etsi;
-        this.re = reseptinNimi;
-    }
+//    public ValikkoNappaintenKuuntelija(JButton etsi, String reseptinNimi) {
+//        this.etsi = etsi;
+//        this.re = reseptinNimi;
+//    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -94,7 +99,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         this.valikko.add(etsi);
         this.container.add(valikko);
         etsi.addActionListener(new ReseptinHakuKuuntelija(etsi, nimi, this.valikko,
-                this.container, this.tulostus));
+                this.container, this.tulostus, this.lisayksetJaPoistot));
 //        container.validate();
 
     }
@@ -110,7 +115,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         this.valikko.add(etsi);
         this.container.add(valikko);
         etsi.addActionListener(new KategorianHakuKuuntelija(etsi, nimi, this.valikko,
-                this.container, this.tulostus));
+                this.container, this.tulostus, this.lisayksetJaPoistot));
     }
 
 //    public void resepti(String nimi) {

@@ -189,7 +189,8 @@ public class Tietovarasto {
      * @return
      * @throws IOException 
      */
-    public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
+//    public boolean poistaReseptiTiedostosta(Resepti resepti) throws IOException {
+        public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
         File kopio = this.tiedostoReseptit;
         boolean onnistuuko = lataaTiedosto(kopio);
         if (onnistuuko == false) {
@@ -201,7 +202,8 @@ public class Tietovarasto {
             if (rivi.equals("KATEGORIA")) {
                 String katego = lukija.nextLine();
                 String reseptinNimi = lukija.nextLine();
-                if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
+//                if (reseptinNimi.equals(resepti.getNimi())) {
+                    if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
                     String seuraava = lukija.nextLine();
                     while(!seuraava.equals("OHJEET")){
                         seuraava = lukija.nextLine();

@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import ruokareseptit.logiikka.Lisaykset;
 import ruokareseptit.logiikka.Tulostus;
+import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
  *
@@ -25,14 +27,16 @@ public class KategorianHakuKuuntelija implements ActionListener {
     private JPanel valikko;
     private Container container;
     private Tulostus tulostus;
+    private Lisaykset lisayksetJaPoistot;
 
     public KategorianHakuKuuntelija(JButton etsi, JTextField haettava, JPanel valikko, Container container,
-            Tulostus tulostus) {
+            Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
         this.etsi = etsi;
         this.haettava = haettava;
         this.valikko = valikko;
         this.container = container;
         this.tulostus = tulostus;
+        this.lisayksetJaPoistot = lisayksetJaPoistot;
     }
 
     @Override
@@ -62,7 +66,7 @@ public class KategorianHakuKuuntelija implements ActionListener {
         JButton hae = new JButton("Hae");
         this.valikko.add(hae);
         hae.addActionListener(new ReseptinHakuKuuntelija(hae, nimi, this.valikko,
-                this.container, this.tulostus));
+                this.container, this.tulostus, this.lisayksetJaPoistot));
 
         container.add(valikko);
     }
