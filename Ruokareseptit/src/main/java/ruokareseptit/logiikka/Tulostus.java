@@ -67,6 +67,16 @@ public class Tulostus {
         }
         return kaikkiKategoriat;
     }
+    
+    public String[] tulostaKaikkiKategoriatValikkoonSopiviksi() {
+        String[] kategoriaValikko = new String[this.kategoriat.size()];
+        int i = 0;
+        for (Kategoria kategoria : this.kategoriat) {
+            kategoriaValikko[i] = kategoria.getKategorianNimi();
+            i++;
+        }
+        return kategoriaValikko;
+    }
 
     /**
      * Metodi tulostaa parametriksi saadun reseptin tiedot

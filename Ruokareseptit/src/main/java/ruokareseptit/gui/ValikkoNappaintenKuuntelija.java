@@ -44,7 +44,6 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
 //        this.etsi = etsi;
 //        this.re = reseptinNimi;
 //    }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == kaikkiKategoriat) {
@@ -53,20 +52,21 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
             container.validate();
         } else if (ae.getSource() == haeResepti) {
             container.remove(2);
-
             tulostaResepti();
-//            container.remo;
             container.validate();
 
         } else if (ae.getSource() == lisaa) {
+            container.remove(2);
+            lisaaResepti();
+            container.validate();
+
         } else if (ae.getSource() == kaikkiReseptit) {
             container.remove(2);
             kaikkiReseptit();
             container.validate();
-        }
-        else if (ae.getSource() == haeKategoria) {
-             container.remove(2);
-           tulostaKategoria();
+        } else if (ae.getSource() == haeKategoria) {
+            container.remove(2);
+            tulostaKategoria();
             container.validate();
         }
     }
@@ -118,8 +118,50 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
                 this.container, this.tulostus, this.lisayksetJaPoistot));
     }
 
-//    public void resepti(String nimi) {
-//        this.container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
-//        tulostusKentta.setText(this.tulostus.tulostaResepti(nimi));
-//    }
+    public void lisaaResepti() {
+        this.valikko = new JPanel(new GridLayout(16, 1));
+        this.valikko.add(new JLabel("Uuden reseptin lisäys"));
+//        valikko.add(new JLabel(""));
+        
+        this.valikko.add(new JLabel("Nimi: "));
+        JTextField nimi = new JTextField();
+//        nimi.setSize(20, 40);
+        this.valikko.add(nimi);
+
+        this.valikko.add(new JLabel("Kategoria: "));
+        String[] kategoriat = this.tulostus.tulostaKaikkiKategoriatValikkoonSopiviksi();
+        JComboBox kategoriaValikko = new JComboBox(kategoriat);
+//        kategoriaValikko.setSelectedIndex(kategoriat.length);
+        this.valikko.add(kategoriaValikko);
+
+        JLabel raakaAineet = new JLabel("Raaka-aine");
+        JTextField raakaAine = new JTextField("");
+        JLabel maarat = new JLabel("Määrä");
+        JTextField maara = new JTextField("");
+//        DefaultListModel lista = new DefaultListModel();
+//        lista.set(0, new JTextField(""));
+//        JList raakaAineLista = new JList(lista);
+//        JScrollPane vierittaja = new JScrollPane(raakaAineLista);
+        JLabel ohjeenLisays = new JLabel("Valmistusohje");
+        JTextArea ohje = new JTextArea();
+        JScrollPane rullaus = new JScrollPane(ohje);
+        JButton lisaaNappi = new JButton("Lisää resepti");
+
+        this.valikko.add(raakaAineet);
+        this.valikko.add(raakaAine);
+        this.valikko.add(maarat);
+        this.valikko.add(maara);
+        this.valikko.add(ohjeenLisays);
+        this.valikko.add(rullaus);
+//        this.valikko.add(raakaAineLista);
+//        this.valikko.add(vierittaja);
+        for (int i = 0; i < 4; i++) {
+        valikko.add(new JLabel(""));
+    }
+
+        this.valikko.add(lisaaNappi);
+//        this.valikko.add(poistaNappi, BorderLayout.EAST);
+        this.container.add(valikko);
+    }
+
 }
