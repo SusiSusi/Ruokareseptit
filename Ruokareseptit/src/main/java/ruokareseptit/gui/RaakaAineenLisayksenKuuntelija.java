@@ -22,6 +22,7 @@ public class RaakaAineenLisayksenKuuntelija implements ActionListener {
     private Container container;
     private Tulostus tulostus;
     private Lisaykset lisayksetJaPoistot;
+    private String[] raakaAineet;
 
     public RaakaAineenLisayksenKuuntelija(JButton lisaa, JTextField reseptinNimi, JTextField raakaAine, 
             JComboBox kategoria, JTextField maara, JPanel valikko, Container container,
@@ -35,6 +36,10 @@ public class RaakaAineenLisayksenKuuntelija implements ActionListener {
         this.container = container;
         this.tulostus = tulostus;
         this.lisayksetJaPoistot = lisayksetJaPoistot;
+    }
+    
+    public RaakaAineenLisayksenKuuntelija(String[] raakaAineet) {
+        this.raakaAineet = raakaAineet;
     }
 
     @Override

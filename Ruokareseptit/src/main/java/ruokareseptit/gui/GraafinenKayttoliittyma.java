@@ -71,7 +71,7 @@ public class GraafinenKayttoliittyma implements Runnable {
 //        lisaa.addActionListener(kuulija);
 //        kaikkiReseptit.addActionListener(kuulija);
 //        kaikkiKategoriat.addActionListener(kuulija);
-        container.add(new JLabel("TERVETULOA"), BorderLayout.NORTH);
+        container.add(new JLabel("SuSin ruokareseptit"), BorderLayout.NORTH);
 //        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
         container.add(luoValikko(container), BorderLayout.SOUTH);
 //        container.add(this.toinen, BorderLayout.CENTER);
