@@ -172,34 +172,9 @@ public class AinesosienLisays implements ListSelectionListener {
         }
     }
 
-//    class MyListDataListener implements ListDataListener {
-//
-//        public void contentsChanged(ListDataEvent e) {
-//            log.append("contentsChanged: " + e.getIndex0()
-//                    + ", " + e.getIndex1() + newline);
-//            log.setCaretPosition(log.getDocument().getLength());
-//        }
-//
-//        public void intervalAdded(ListDataEvent e) {
-//            log.append("intervalAdded: " + e.getIndex0()
-//                    + ", " + e.getIndex1() + newline);
-//            log.setCaretPosition(log.getDocument().getLength());
-//        }
-//
-//        public void intervalRemoved(ListDataEvent e) {
-//            log.append("intervalRemoved: " + e.getIndex0()
-//                    + ", " + e.getIndex1() + newline);
-//            log.setCaretPosition(log.getDocument().getLength());
-//        }
-//    }
     class DeleteButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            /* 
-             * This method can be called only if
-             * there's a valid selection,
-             * so go ahead and remove whatever's selected.
-             */
 
             ListSelectionModel lsm = list.getSelectionModel();
             int firstSelected = lsm.getMinSelectionIndex();
@@ -228,46 +203,51 @@ public class AinesosienLisays implements ListSelectionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String[] ainesosat = new String[listModel.size()];
-            listModel.copyInto(ainesosat);
-            for (int i = 0; i < ainesosat.length; i++) {
-                System.out.println(ainesosat[i]);
+            if (reseptinNimi.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Reseptin nimi on pakollinen tieto!");
+            } else {
+
+                String[] ainesosat = new String[listModel.size()];
+                listModel.copyInto(ainesosat);
+                for (int i = 0; i < ainesosat.length; i++) {
+                    System.out.println(ainesosat[i]);
+                }
+
+                Resepti uusiResepti = new Resepti(reseptinNimi.getText());
+
+                for (int i = 0; i < ainesosat.length; i++) {
+                    String[] osat = ainesosat[i].split(",");
+                    String maara = osat[0];
+                    String aine = osat[1];
+                    uusiResepti.setAinesosa(aine, maara);
+                }
+
+                uusiResepti.setOhje(log.getText());
+                try {
+                    lisayksetJaPoistot.lisaaUusiResepti(kategoriaValikko, uusiResepti);
+                } catch (IOException ex) {
+                    Logger.getLogger(AinesosienLisays.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                container.remove(2);
+                valikko = new JPanel(new BorderLayout());
+                valikko.add(new JLabel("Resepti lisätty onnistuneesti!"));
+                container.add(valikko);
+                container.validate();
             }
 
-            Resepti uusiResepti = new Resepti(reseptinNimi.getText());
+        }
+    }
 
-            for (int i = 0; i < ainesosat.length; i++) {
-                String[] osat = ainesosat[i].split(",");
-                String maara = osat[0];
-                String aine = osat[1];
-                uusiResepti.setAinesosa(aine, maara);
-            }
-            
-            uusiResepti.setOhje(log.getText());
-            try {
-                lisayksetJaPoistot.lisaaUusiResepti(kategoriaValikko, uusiResepti);
-            } catch (IOException ex) {
-                Logger.getLogger(AinesosienLisays.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            container.remove(2);
-            valikko = new JPanel(new BorderLayout());
-            valikko.add(new JLabel("Resepti lisätty onnistuneesti!"));
-            container.add(valikko);
-            container.validate();
+    public class ValikonKuuntelija implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox) e.getSource();
+            kategoriaValikko = (String) cb.getSelectedItem();
+
         }
 
     }
-    
-    public class ValikonKuuntelija implements ActionListener {
-   
-    public void actionPerformed(ActionEvent e) {
-        JComboBox cb = (JComboBox)e.getSource();
-        kategoriaValikko = (String)cb.getSelectedItem();
-        
-    }
-   
-}
 
     class AddButtonListener implements ActionListener {
 
@@ -295,34 +275,4 @@ public class AinesosienLisays implements ListSelectionListener {
             }
         }
     }
-
-//    private void swap(int a, int b) {
-//        Object aObject = listModel.getElementAt(a);
-//        Object bObject = listModel.getElementAt(b);
-//        listModel.set(a, bObject);
-//        listModel.set(b, aObject);
-//    }
-//
-//    public void createAndShowGUI() {
-//        //Create and set up the window.
-//        JFrame frame = new JFrame("ListDataEventDemo");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//        //Create and set up the content pane.
-//        JComponent newContentPane = new AinesosienLisays();
-//        newContentPane.setOpaque(true); //content panes must be opaque
-//        frame.setContentPane(newContentPane);
-//
-//        //Don't let the content pane get too small.
-//        //(Works if the Java look and feel provides
-//        //the window decorations.)
-//        newContentPane.setMinimumSize(
-//                new Dimension(
-//                        newContentPane.getPreferredSize().width,
-//                        100));
-//
-//        //Display the window.
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
 }
