@@ -1,4 +1,3 @@
-
 package ruokareseptit.gui;
 
 import java.awt.BorderLayout;
@@ -20,19 +19,16 @@ import ruokareseptit.tietokanta.Tietovarasto;
  *
  * @author susisusi
  */
-public class ReseptinHakuKuuntelija implements ActionListener{
-    private JButton etsi;
+public class ReseptinHakuKuuntelija implements ActionListener {
+
     private JTextField haettava;
-    private JPanel valikko;
     private Container container;
     private Tulostus tulostus;
     private Lisaykset lisayksetJaPoistot;
-    
-    public ReseptinHakuKuuntelija(JButton etsi, JTextField haettava, JPanel valikko, Container container,
+
+    public ReseptinHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
-        this.etsi = etsi;
         this.haettava = haettava;
-        this.valikko = valikko; 
         this.container = container;
         this.tulostus = tulostus;
         this.lisayksetJaPoistot = lisayksetJaPoistot;
@@ -41,36 +37,30 @@ public class ReseptinHakuKuuntelija implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (this.haettava.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Kirjoita resepti jonka haluat hakea!");
-            } else {
+            JOptionPane.showMessageDialog(null, "Kirjoita resepti jonka haluat hakea!");
+        } else {
             container.remove(2);
             etsiResepti();
             container.validate();
         }
     }
-    
+
     public void etsiResepti() {
-        this.valikko = new JPanel(new BorderLayout());
-//        System.out.println( this.tulostus.tulostaResepti(haettava.getText()));
-//        System.out.println("ja sana on  " + haettava.getText());
+        JPanel paneeli = new JPanel(new BorderLayout());
+
         String reseptinTiedot = this.tulostus.tulostaResepti(haettava.getText());
-        JLabel text = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
-        JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
-        valikko.add(scrollPerustiedotKentat);
-        
-        
-        
-        JButton poisto = new JButton("Poista resepti");
-        
-        if (reseptinTiedot.equals("Reseptiä ei löytynyt.")) {
-            poisto.setVisible(false);
+        JLabel tuloste = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
+        JScrollPane scrollaaResepti = new JScrollPane(tuloste);
+        paneeli.add(scrollaaResepti);
+
+        JButton poista = new JButton("Poista resepti");
+
+        if (!reseptinTiedot.equals("Reseptiä ei löytynyt.")) {
+            paneeli.add(poista, BorderLayout.PAGE_END);
+            poista.addActionListener(new ReseptinPoistonKuuntelija(haettava,
+                    this.container, this.tulostus, this.lisayksetJaPoistot));
         }
-        valikko.add(poisto, BorderLayout.PAGE_END);
-        
-        poisto.addActionListener(new ReseptinPoistonKuuntelija(poisto, haettava, this.valikko,
-                this.container, this.tulostus, this.lisayksetJaPoistot));
-        
-        container.add(valikko);
+        container.add(paneeli);
     }
-    
+
 }

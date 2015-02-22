@@ -22,18 +22,14 @@ import ruokareseptit.tietokanta.Tietovarasto;
  */
 public class KategorianHakuKuuntelija implements ActionListener {
 
-    private JButton etsi;
     private JTextField haettava;
-    private JPanel valikko;
     private Container container;
     private Tulostus tulostus;
     private Lisaykset lisayksetJaPoistot;
 
-    public KategorianHakuKuuntelija(JButton etsi, JTextField haettava, JPanel valikko, Container container,
+    public KategorianHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
-        this.etsi = etsi;
         this.haettava = haettava;
-        this.valikko = valikko;
         this.container = container;
         this.tulostus = tulostus;
         this.lisayksetJaPoistot = lisayksetJaPoistot;
@@ -51,28 +47,26 @@ public class KategorianHakuKuuntelija implements ActionListener {
     }
 
     public void etsiKategoria() {
-        this.valikko = new JPanel(new GridLayout(8, 1));
+        JPanel paneeli = new JPanel(new GridLayout(8, 1));
         String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
-        System.out.println(this.tulostus.tulostaResepti(haettava.getText()));
-        System.out.println("ja sana on  " + haettava.getText());
-        JLabel text = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
+        JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
 
-        JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
-        valikko.add(scrollPerustiedotKentat);
+        JScrollPane scrollaaKategoriat = new JScrollPane(tuloste);
+        paneeli.add(scrollaaKategoriat);
 
         if (!reseptienNimet.equals("Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä")) {
 
-            this.valikko.add(new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi"));
+            paneeli.add(new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi"));
             JTextField nimi = new JTextField();
-            valikko.add(nimi);
+            paneeli.add(nimi);
 
             JButton hae = new JButton("Hae");
-            this.valikko.add(hae);
-            hae.addActionListener(new ReseptinHakuKuuntelija(hae, nimi, this.valikko,
+            paneeli.add(hae);
+            hae.addActionListener(new ReseptinHakuKuuntelija(nimi,
                     this.container, this.tulostus, this.lisayksetJaPoistot));
 
             
         }
-        container.add(valikko);
+        container.add(paneeli);
     }
 }

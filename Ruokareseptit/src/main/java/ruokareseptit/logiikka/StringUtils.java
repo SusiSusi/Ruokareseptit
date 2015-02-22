@@ -80,5 +80,10 @@ public class StringUtils {
         return muokattuOhje;
     }
     
+//    public void muutaOhjeTiedostoonSopivaksi(String ohje) {
+//        String ohjeIlmanRiviValeja = "";
+//        
+//    }
+    
 
 }

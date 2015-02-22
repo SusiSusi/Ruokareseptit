@@ -138,13 +138,3 @@ TestiResepti3
 1:sipuli
 OHJEET
 mitä mitä mitä testii testii 
-KATEGORIA
-KEITTO
-Kalakeitto
-1 kpl: seiti
-1 kpl: sipuli
-1 kpl: peruna
-0:5 kpl
-1 kpl: selleri
-OHJEET
-Pistä kaikki ainesosat kattilaan ja keitä.

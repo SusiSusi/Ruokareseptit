@@ -27,18 +27,14 @@ import ruokareseptit.tietokanta.Tietovarasto;
  */
 public class ReseptinPoistonKuuntelija implements ActionListener {
 
-    private JButton etsi;
     private JTextField haettava;
-    private JPanel valikko;
     private Container container;
     private Tulostus tulostus;
     private Lisaykset lisayksetJaPoistot;
 
-    public ReseptinPoistonKuuntelija(JButton etsi, JTextField haettava, JPanel valikko, Container container,
+    public ReseptinPoistonKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
-        this.etsi = etsi;
         this.haettava = haettava;
-        this.valikko = valikko;
         this.container = container;
         this.tulostus = tulostus;
         this.lisayksetJaPoistot = lisayksetJaPoistot;
@@ -46,15 +42,14 @@ public class ReseptinPoistonKuuntelija implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        int choice = JOptionPane.showOptionDialog(null,
+        int valinta = JOptionPane.showOptionDialog(null,
                 "Haluatko varmasti poistaa reseptin " + this.haettava.getText() + "?",
                 "Reseptin poisto",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null, null, null);
 
-        // interpret the user's choice
-        if (choice == JOptionPane.YES_OPTION) {
+        if (valinta == JOptionPane.YES_OPTION) {
             container.remove(2);
             poistetaanResepti();
             container.validate();
@@ -68,11 +63,9 @@ public class ReseptinPoistonKuuntelija implements ActionListener {
         } catch (IOException ex) {
             Logger.getLogger(ReseptinPoistonKuuntelija.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        container.remove(2);
-        this.valikko = new JPanel(new BorderLayout());
-        JLabel text = new JLabel("Resepti " + reseptinNimi + " on onnistuneesti poistettu tietokannasta.");
-        this.valikko.add(text);
-        container.add(valikko);
+        JPanel paneeli = new JPanel(new BorderLayout());
+        JLabel teksti = new JLabel("Resepti " + reseptinNimi + " on onnistuneesti poistettu tietokannasta.");
+        paneeli.add(teksti);
+        container.add(paneeli);
     }
-
 }

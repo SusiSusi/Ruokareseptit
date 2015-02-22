@@ -26,7 +26,7 @@ public class Lisaykset {
     public Lisaykset(List<Kategoria> kategoriat, Tietovarasto tiedot) {
         this.kategoriat = kategoriat;
         this.tiedot = tiedot;
-        
+
     }
 
     /**
@@ -66,9 +66,21 @@ public class Lisaykset {
         }
         return false;
     }
-    
-    
-        public boolean poistaResepti(String reseptinNimi) throws IOException {
+
+    public void lisaaReseptiinAinesosat(Resepti resepti, String[] ainesosat) {
+        for (int i = 0; i < ainesosat.length; i++) {
+            if (!ainesosat[i].contains(",")) {
+                resepti.setAinesosa(ainesosat[i], "-");
+            } else {
+                String[] osat = ainesosat[i].split(",");
+                String maara = osat[0];
+                String aine = osat[1];
+                resepti.setAinesosa(aine, maara);
+            }
+        }
+    }
+
+    public boolean poistaResepti(String reseptinNimi) throws IOException {
         for (Kategoria kateg : this.kategoriat) {
             List<Resepti> reseptit = kateg.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
