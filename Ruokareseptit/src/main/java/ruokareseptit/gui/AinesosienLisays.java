@@ -123,6 +123,7 @@ public class AinesosienLisays implements ListSelectionListener {
 
         JLabel valikko = new JLabel("Kategoria: ");
         String[] kategoriat = this.tulostus.tulostaKaikkiKategoriatValikkoonSopiviksi();
+        this.kategoriaValikko = kategoriat[0];
         JComboBox kategoriaValikko = new JComboBox(kategoriat);
         kategoriaValikko.addActionListener(new ValikonKuuntelija());
 //        kategoriaValikko.setSelectedIndex(kategoriat.length);
@@ -216,12 +217,15 @@ public class AinesosienLisays implements ListSelectionListener {
                 Resepti uusiResepti = new Resepti(reseptinNimi.getText());
 
                 for (int i = 0; i < ainesosat.length; i++) {
-                    String[] osat = ainesosat[i].split(",");
-                    String maara = osat[0];
-                    String aine = osat[1];
-                    uusiResepti.setAinesosa(aine, maara);
+                    if (!ainesosat[i].contains(",")) {
+                        uusiResepti.setAinesosa(ainesosat[i], "-");
+                    } else {
+                        String[] osat = ainesosat[i].split(",");
+                        String maara = osat[0];
+                        String aine = osat[1];
+                        uusiResepti.setAinesosa(aine, maara);
+                    }
                 }
-
                 uusiResepti.setOhje(log.getText());
                 try {
                     lisayksetJaPoistot.lisaaUusiResepti(kategoriaValikko, uusiResepti);
