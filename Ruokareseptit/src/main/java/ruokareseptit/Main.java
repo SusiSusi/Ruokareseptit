@@ -8,6 +8,7 @@ import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.gui.GraafinenKayttoliittyma;
 import ruokareseptit.gui.Tekstikayttoliittyma;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.tietokanta.Tietovarasto;
 
 public class Main {
@@ -20,6 +21,13 @@ public class Main {
 //
         GraafinenKayttoliittyma kayttoliittyma = new GraafinenKayttoliittyma();
         SwingUtilities.invokeLater(kayttoliittyma);
+        
+//         Resepti res = new Resepti("Makaronilaatikko");
+//        res.setOhje("Laita uuni päälle ja tee tarvittavat temput. Katsotaan myös "
+//                + "että rivityskin menisi kivasti ja mahdolliset viivat yms..");
+//        System.out.println(res);
+//        System.out.println(new StringUtils().tavutaReseptinOhje(res.getOhje()));
+        
 
 //        Tietovarasto va = new Tietovarasto();
 //        List<Kategoria> ka = va.haeKategoriat();

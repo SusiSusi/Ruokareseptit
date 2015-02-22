@@ -8,7 +8,7 @@ import ruokareseptit.logiikka.StringUtils;
  * @author susisusi
  */
 
-public class Kategoria {
+public class Kategoria implements Comparable<Kategoria> {
 
     private String nimi;
     private List<Resepti> reseptit;
@@ -33,6 +33,7 @@ public class Kategoria {
      */
     public void lisaaReseptiKategoriaan(Resepti resepti) {
         this.reseptit.add(resepti);
+        jarjestaReseptit();
     }
 
     /**
@@ -41,6 +42,10 @@ public class Kategoria {
      */
     public int reseptienMaaraKategoriassa() {
         return this.reseptit.size();
+    }
+    
+    public void jarjestaReseptit() {
+        Collections.sort(this.reseptit);
     }
 
     public List getKaikkiReseptit() {
@@ -84,5 +89,10 @@ public class Kategoria {
      */
     public void poistaKaikkiReseptit() {
         this.reseptit.clear();
+    }
+
+    @Override
+    public int compareTo(Kategoria t) {
+        return this.getKategorianNimi().compareTo(t.getKategorianNimi());
     }
 }

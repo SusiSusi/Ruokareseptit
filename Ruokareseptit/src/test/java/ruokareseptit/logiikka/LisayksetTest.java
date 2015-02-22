@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ruokareseptit.domain.Ainesosa;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
@@ -27,7 +28,7 @@ public class LisayksetTest {
     }
 
     @Test
-    public void lisaaReseptinTiedostoonOikein() throws IOException {
+    public void lisaaJaPoistaaReseptinTiedostostaOikein() throws IOException {
         int montaReseptia = 0;
         List<Kategoria> ko = varasto.haeKategoriat();
         for (Kategoria ka : ko) {
@@ -40,7 +41,12 @@ public class LisayksetTest {
             montaReseptiaLisayksenJalkeen = montaReseptiaLisayksenJalkeen + ka.getKaikkiReseptit().size();
         }
         assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptia);
-        varasto.poistaReseptiTiedostosta("Alkupala", jauhelihakastike);
+        lisaykset.poistaResepti(jauhelihakastike.getNimi());
+        int montaReseptiaPoistonJalkeen = 0;
+        for (Kategoria ka : ko) {
+            montaReseptiaPoistonJalkeen = montaReseptiaPoistonJalkeen + ka.getKaikkiReseptit().size();
+        }
+        assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptiaPoistonJalkeen);
     }
 
     @Test
@@ -60,5 +66,28 @@ public class LisayksetTest {
         assertEquals(false, lisaykset.kirjoitetaankoKategoriaOikein("mika-mika-maa"));
         assertEquals(false, lisaykset.kirjoitetaankoKategoriaOikein(""));
     }
+
+    @Test
+    public void lisaaReseptiinAinesosat() {
+        Resepti lohi = new Resepti("Lohi");
+        String[] aineet = new String[2];
+        aineet[0] = "1 kpl, tomaatti";
+        aineet[1] = "1 kpl, lohi";
+        lisaykset.lisaaReseptiinAinesosat(lohi, aineet);
+        List<Ainesosa> maara = lohi.getAinesosat();
+        assertEquals(2, maara.size());
+    }
+
+    @Test
+    public void lisaaReseptiinAinesosatVaikkaMaaraaEiOleIlmoitettu() {
+        Resepti lohi = new Resepti("Lohi");
+        String[] aineet = new String[2];
+        aineet[0] = "tomaatti";
+        aineet[1] = "lohi";
+        lisaykset.lisaaReseptiinAinesosat(lohi, aineet);
+        List<Ainesosa> maara = lohi.getAinesosat();
+        assertEquals(2, maara.size());
+    }
+
 
 }

@@ -1,6 +1,7 @@
 
 package ruokareseptit.logiikka;
 
+import java.io.File;
 import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,12 +37,12 @@ public class TulostusTest {
     
     @Test
     public void tulostaaKaikkiReseptit() {
-        assertEquals(285, tulostaja.tulostaKaikkiReseptit().length());
+        assertEquals(528, tulostaja.tulostaKaikkiReseptit().length());
     }
     
     @Test
     public void tulostaaHaetunReseptin() {
-        assertEquals(51, tulostaja.tulostaResepti("Kalakeitto").length());
+        assertEquals(67, tulostaja.tulostaResepti("Kalakeitto").length());
         assertEquals("Reseptiä ei löytynyt.", tulostaja.tulostaResepti("kakku"));
     }
     
@@ -54,8 +55,14 @@ public class TulostusTest {
     
     @Test
     public void tulostaaReseptinTietystaKategoriastaOikein() {
-        assertEquals(57, tulostaja.tulostaReseptiTietystaKategoriasta("Liha", "Jauhelihakastike").length());
+        assertEquals(73, tulostaja.tulostaReseptiTietystaKategoriasta("Liha", "Jauhelihakastike").length());
         assertEquals("Reseptiä ei löytynyt", tulostaja.tulostaReseptiTietystaKategoriasta("Liha", "Sosekeitto"));
+    }
+    
+    @Test
+    public void tulostaaKategoriatValikkoonSopiviksiOikein() {
+        String[] kategoriat = tulostaja.tulostaKaikkiKategoriatValikkoonSopiviksi();
+        assertEquals(2, kategoriat.length);
     }
 
 }

@@ -52,8 +52,10 @@ public class StringUtils {
     }
 
     /**
-     * Palauttaa tavutetun version reseptin ohjeesta. Metodi katkaisee rivin 
-     * 55-merkin jälkeen ja laittaa tavuviivan mikäli sana on kesken.
+     * Palauttaa rivitetyn version reseptin ohjeesta. Kun rivin pituus on 
+     * 80-merkkiä, tulostaa metodi riville 80-merkissä olevan viimeisen sanan ja 
+     * aloittaa uuden rivin eli metodi ei katkaise sanoja vaan rivi katkeaa kun seuraava
+     * merkki on tyhjä.
      * @param ohje
      * @return 
      */
@@ -78,12 +80,6 @@ public class StringUtils {
             muokattuOhje = muokattuOhje + rivi;
         }
         return muokattuOhje;
-    }
-    
-//    public void muutaOhjeTiedostoonSopivaksi(String ohje) {
-//        String ohjeIlmanRiviValeja = "";
-//        
-//    }
-    
+    }  
 
 }

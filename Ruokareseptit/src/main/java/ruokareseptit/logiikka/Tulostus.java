@@ -18,7 +18,6 @@ public class Tulostus {
      * tiedot
      *
      * @param kategoriat
-     * @param lukija
      */
     public Tulostus(List<Kategoria> kategoriat) {
         this.kategoriat = kategoriat;

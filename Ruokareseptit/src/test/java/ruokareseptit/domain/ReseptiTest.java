@@ -45,19 +45,19 @@ public class ReseptiTest {
 
     @Test
     public void ohjeTulostuuRiveille() {
-        assertEquals("Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain \n"
-                + "ja niitä kypsytetään sipulin kanssa pannulla. Jos halua-\n"
-                + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruok-\n"
-                + "a on valmis.", new StringUtils().tavutaReseptinOhje(res.getOhje()));
+        assertEquals("Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain "
+                + "ja niitä kypsytetään sipulin \nkanssa pannulla. Jos halua"
+                + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruoka \n"
+                + "on valmis.", new StringUtils().tavutaReseptinOhje(res.getOhje()));
     }
 
     @Test
     public void ohjeenVoiYlikirjoittaa() {
         res.setOhje("Laita uuni päälle ja tee tarvittavat temput. Katsotaan myös "
                 + "että rivityskin menisi kivasti ja mahdolliset viivat yms..");
-        assertEquals("Laita uuni päälle ja tee tarvittavat temput. Katsotaan \n"
-                + "myös että rivityskin menisi kivasti ja mahdolliset viiv-\n"
-                + "at yms..", new StringUtils().tavutaReseptinOhje(res.getOhje()));
+        assertEquals("Laita uuni päälle ja tee tarvittavat temput. Katsotaan "
+                + "myös että rivityskin menisi \nkivasti ja mahdolliset viivat"
+                + " yms..", new StringUtils().tavutaReseptinOhje(res.getOhje()));
     }
 
     @Test
@@ -81,10 +81,11 @@ public class ReseptiTest {
                 + "4 dl, Makaroni\n"
                 + "1 kuppi, kahvi\n"
                 + "\n"
-                + "Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain \n"
-                + "ja niitä kypsytetään sipulin kanssa pannulla. Jos halua-\n"
-                + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruok-\n"
-                + "a on valmis.", res.toString());
+                + "Valmistusohje: \n"
+                + "Vatkaa munat ja lämmitä uuni. Lihat paistetaan jossain "
+                + "ja niitä kypsytetään sipulin \nkanssa pannulla. Jos halua"
+                + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruoka \n"
+                + "on valmis.", res.toString());
     }
 
 //    @Test

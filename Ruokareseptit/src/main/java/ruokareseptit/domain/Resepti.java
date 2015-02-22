@@ -8,7 +8,7 @@ import ruokareseptit.logiikka.StringUtils;
  * @author susisusi
  */
 
-public class Resepti {
+public class Resepti implements Comparable<Resepti> {
 
     private String nimi;
     private List<Ainesosa> ainesosat;
@@ -84,5 +84,10 @@ public class Resepti {
         String tavutettuOhje = new StringUtils().tavutaReseptinOhje(this.ohje);
         return this.nimi + "\n\nAinesosat: \n" + tuoAinesosat() + "\nValmistusohje: \n" 
                 + tavutettuOhje;
+    }
+
+    @Override
+    public int compareTo(Resepti t) {
+        return this.getNimi().compareTo(t.getNimi());
     }
 }

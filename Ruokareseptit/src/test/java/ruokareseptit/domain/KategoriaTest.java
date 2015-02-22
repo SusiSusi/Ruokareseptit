@@ -39,6 +39,7 @@ public class KategoriaTest {
         lista.add("Risotto");
         lista.add("Kastike");
         lista.add("Jauheliha");
+        Collections.sort(lista);
         assertEquals(lista, keitot.getReseptienNimet());
     }
 
@@ -58,6 +59,7 @@ public class KategoriaTest {
         lista.add(maksa);
         lista.add(risotto);
         lista.add(kalakeitto);
+        Collections.sort(lista);
         assertEquals(lista, keitot.getKaikkiReseptit());
     }
 

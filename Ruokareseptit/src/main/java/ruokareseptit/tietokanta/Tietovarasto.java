@@ -58,6 +58,7 @@ public class Tietovarasto {
                 kategoriat.add(new Kategoria(rivi));
             }
         }
+        Collections.sort(kategoriat);
     }
 
     public List haeKategoriat() {
