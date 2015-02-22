@@ -53,11 +53,18 @@ public class ReseptinHakuKuuntelija implements ActionListener{
         this.valikko = new JPanel(new BorderLayout());
 //        System.out.println( this.tulostus.tulostaResepti(haettava.getText()));
 //        System.out.println("ja sana on  " + haettava.getText());
-        JLabel text = new JLabel("<html>" + this.tulostus.tulostaResepti(haettava.getText()).replace("\n", "<br>") + "</html>");
+        String reseptinTiedot = this.tulostus.tulostaResepti(haettava.getText());
+        JLabel text = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
         JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
         valikko.add(scrollPerustiedotKentat);
         
+        
+        
         JButton poisto = new JButton("Poista resepti");
+        
+        if (reseptinTiedot.equals("Reseptiä ei löytynyt.")) {
+            poisto.setVisible(false);
+        }
         valikko.add(poisto, BorderLayout.PAGE_END);
         
         poisto.addActionListener(new ReseptinPoistonKuuntelija(poisto, haettava, this.valikko,

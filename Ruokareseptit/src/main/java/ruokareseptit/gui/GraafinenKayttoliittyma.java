@@ -75,7 +75,7 @@ public class GraafinenKayttoliittyma implements Runnable {
 //        container.add(scrollPerustiedotKentat, BorderLayout.CENTER);
         container.add(luoValikko(container), BorderLayout.SOUTH);
 //        container.add(this.toinen, BorderLayout.CENTER);
-        container.add(new JLabel("dlfkdlfk"), BorderLayout.CENTER);
+        container.add(new JLabel("Jotain kivaa tähän"), BorderLayout.CENTER);
 
 //        JTextButton b = new JText("k");
 //        JTextField kl = new JTextField(teksti.tulostaToiminnot());
@@ -84,7 +84,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JPanel luoValikko(Container container) {
         JPanel panel = new JPanel(new GridLayout(1, 5));
         JButton haeKategoria = new JButton("Hae kategoria");
-        JButton haeResepti = new JButton("Hae repseti");
+        JButton haeResepti = new JButton("Hae resepti");
         JButton lisaa = new JButton("Lisää uusi");
         JButton kaikkiReseptit = new JButton("Kaikki reseptit");
         JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");

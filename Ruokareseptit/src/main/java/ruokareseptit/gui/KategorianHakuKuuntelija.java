@@ -51,24 +51,28 @@ public class KategorianHakuKuuntelija implements ActionListener {
     }
 
     public void etsiKategoria() {
-        this.valikko = new JPanel(new GridLayout(8,1));
+        this.valikko = new JPanel(new GridLayout(8, 1));
+        String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
         System.out.println(this.tulostus.tulostaResepti(haettava.getText()));
         System.out.println("ja sana on  " + haettava.getText());
-        JLabel text = new JLabel("<html>" + this.tulostus.tulostaKategorianReseptienNimet(haettava.getText()).replace("\n", "<br>") + "</html>");
-                
+        JLabel text = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
+
         JScrollPane scrollPerustiedotKentat = new JScrollPane(text);
         valikko.add(scrollPerustiedotKentat);
-        
-        this.valikko.add(new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi"));
-        JTextField nimi = new JTextField();
-        valikko.add(nimi);
-        
-        JButton hae = new JButton("Hae");
-        this.valikko.add(hae);
-        hae.addActionListener(new ReseptinHakuKuuntelija(hae, nimi, this.valikko,
-                this.container, this.tulostus, this.lisayksetJaPoistot));
 
+        if (!reseptienNimet.equals("Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä")) {
+
+            this.valikko.add(new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi"));
+            JTextField nimi = new JTextField();
+            valikko.add(nimi);
+
+            JButton hae = new JButton("Hae");
+            this.valikko.add(hae);
+            hae.addActionListener(new ReseptinHakuKuuntelija(hae, nimi, this.valikko,
+                    this.container, this.tulostus, this.lisayksetJaPoistot));
+
+            
+        }
         container.add(valikko);
     }
-
 }
