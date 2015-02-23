@@ -24,17 +24,10 @@ public class Tulostus {
     }
 
     /**
-     * Konstruktori testejä varten.
+     * Metodi hakee kaikki sovelluksessa olevat reseptit ja erottelee reseptit toisistaan 
+     * "tähtiviivana".
      *
-     * @param kategoriat
-     */
-//    public Tulostus(List<Kategoria> kategoriat) {
-//        this.kategoriat = kategoriat;
-////    }
-    /**
-     * Metodi tulostaa kaikki sovelluksessa olevat reseptit
-     *
-     * @return
+     * @return kaikki tietokannassa olevat reseptit
      */
     public String tulostaKaikkiReseptit() {
         String kaikkiReseptit = "";
@@ -53,9 +46,9 @@ public class Tulostus {
     }
 
     /**
-     * Metodi tulostaa kaikki sovelluksessa olevat kategoriat
+     * Metodi hakee kaikki sovelluksessa olevat kategoriat.
      *
-     * @return
+     * @return kaikki tietokannassa olevat kategorioiden nimet
      */
     public String tulostaKaikkiKategoriat() {
         int i = 1;
@@ -67,6 +60,10 @@ public class Tulostus {
         return kaikkiKategoriat;
     }
     
+    /**
+     * Metodi laittaa kategoriat taulukkoon, mitä käytetään graafisessa käyttöliittymässä.
+     * @return kategorioiden nimet taulukossa
+     */
     public String[] tulostaKaikkiKategoriatValikkoonSopiviksi() {
         String[] kategoriaValikko = new String[this.kategoriat.size()];
         int i = 0;
@@ -78,10 +75,10 @@ public class Tulostus {
     }
 
     /**
-     * Metodi tulostaa parametriksi saadun reseptin tiedot
+     * Metodi hakee parametriksi saadun reseptin tiedot
      *
-     * @param resepti
-     * @return
+     * @param resepti Käyttäjän antama syöte
+     * @return resepti
      */
     public String tulostaResepti(String resepti) {
         Resepti etsittavaResepti = null;
@@ -98,10 +95,10 @@ public class Tulostus {
     }
 
     /**
-     * Metodi tulostaa parametriksi saadun kategorian kaikki reseptien nimet
+     * Metodi hakee parametriksi saadun kategorian kaikki reseptien nimet
      *
-     * @param kategorianNimi
-     * @return
+     * @param kategorianNimi Käyttäjän antama syöte
+     * @return kategoriassa olevien reseptien nimet
      */
     public String tulostaKategorianReseptienNimet(String kategorianNimi) {
         List<String> reseptienNimet = new ArrayList<>();
@@ -122,13 +119,11 @@ public class Tulostus {
     }
 
     /**
-     * Metodi kysyy käyttäjältä haluaako hän tulostaa jonkun reseptin
-     * hakemastaan kategoriasta. Tätä metodia ennen on aina kutsuttu metodia
-     * void tulostaKategorianReseptienNimet(String kategorianNimi)
+     * Metodi hakee parametrina saadusta kategoriasta reseptin, mitä haetaan.
      *
-     * @param haettavaKategoria
-     * @param resepti
-     * @return 
+     * @param haettavaKategoria Käyttäjän antama syöte
+     * @param resepti Käyttäjän antama syöte
+     * @return resepti
      */
     public String tulostaReseptiTietystaKategoriasta(String haettavaKategoria, String resepti) {
         Resepti loydetty = null;

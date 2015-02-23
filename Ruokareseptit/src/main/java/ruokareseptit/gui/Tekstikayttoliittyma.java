@@ -87,7 +87,7 @@ public class Tekstikayttoliittyma {
     /**
      * Metodi tulostaa toiminnot, mitä sovelluksessa voidaan tehdä
      */
-    public void tulostaToiminnot() {
+    private void tulostaToiminnot() {
         System.out.println("\nToiminnot: ");
         System.out.println("********************************");
         System.out.println("  1. Hae resepti");
@@ -100,22 +100,13 @@ public class Tekstikayttoliittyma {
         System.out.println("********************************");
     }
 
-    public boolean poistaResepti() throws IOException {
+    private boolean poistaResepti() throws IOException {
         System.out.print("Minkä reseptin haluat poistaa? ");
         String poistettava = this.lukija.nextLine();
-//        for (Kategoria kateg : this.kategoriat) {
-//            List<Resepti> reseptit = kateg.getKaikkiReseptit();
-//            for (Resepti resepti : reseptit) {
-//                if (new StringUtils().sisaltaa(resepti.getNimi(), poistettava)) {
-//                    return this.tiedot.poistaReseptiTiedostosta(resepti);
-////eturn this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
-//                }
-//            }
-//        }
         return lisataan.poistaResepti(poistettava);
     }
 
-    public void tulostetaankoKategoriastaResepti(String haettavaKategoria) {
+    private void tulostetaankoKategoriastaResepti(String haettavaKategoria) {
         StringUtils muuttaja = new StringUtils();
         System.out.print("Haluatko tulostaa reseptin kategoriasta " + haettavaKategoria + "? Kirjoita K = kyllä tai E = ei ");
         while (true) {
@@ -139,7 +130,7 @@ public class Tekstikayttoliittyma {
      *
      * @throws IOException
      */
-    public void lisaaUusiResepti() throws IOException {
+    private void lisaaUusiResepti() throws IOException {
         System.out.println("Mihin kategoriaan uusi resepti kuuluu? Valitse alla olevista vaihtoehdoista \n"
                 + "ja kirjoita kategorian nimi.");
         System.out.println("*******************");
@@ -175,7 +166,6 @@ public class Tekstikayttoliittyma {
             System.out.println("\nReseptin lisäys onnistui!");
         }
     }
-
 
     /**
      * Metodi kysyy loopissa käyttäjältä, mitä ainesosia reseptiin tarvitaan ja

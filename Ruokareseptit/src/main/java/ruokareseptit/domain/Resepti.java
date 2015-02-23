@@ -29,6 +29,10 @@ public class Resepti implements Comparable<Resepti> {
         return this.nimi;
     }
 
+    /**
+     * Metodi hakee kaikki reseptiin kuuluvat ainesosat
+     * @return ainesosat listana
+     */
     public List getAinesosat() {
         List<Ainesosa> palautettavatAinesosat = new ArrayList<>();
         for (Ainesosa osa : this.ainesosat) {
@@ -38,9 +42,9 @@ public class Resepti implements Comparable<Resepti> {
     }
 
     /** 
-     * Tulostaa kaikki reseptiin kuuluvat ainesosat - metodia tarvitaan 
+     * Tulostaa kaikki reseptiin kuuluvat ainesosat oikein rivitettynä - metodia tarvitaan 
      * vai toString()-metodissa
-     * @return 
+     * @return ainesosat String-muodossa
      */
     public String tuoAinesosat() {
         String osat = "";

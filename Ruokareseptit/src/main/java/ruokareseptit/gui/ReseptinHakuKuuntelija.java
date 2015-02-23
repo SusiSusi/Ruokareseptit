@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,10 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
-import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
- *
+ * Luokka käsittelee reseptin haku -tapahtuman
  * @author susisusi
  */
 public class ReseptinHakuKuuntelija implements ActionListener {
@@ -25,7 +23,15 @@ public class ReseptinHakuKuuntelija implements ActionListener {
     private Container container;
     private Tulostus tulostus;
     private LisayksetJaPoistot lisayksetJaPoistot;
-
+    
+    /**
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija tai KategorianHakuKuuntelija
+     * -luokalta saadut tiedot
+     * @param haettava Käyttäjän antama syöte
+     * @param container
+     * @param tulostus
+     * @param lisayksetJaPoistot 
+     */
     public ReseptinHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.haettava = haettava;
@@ -45,7 +51,7 @@ public class ReseptinHakuKuuntelija implements ActionListener {
         }
     }
 
-    public void etsiResepti() {
+    private void etsiResepti() {
         JPanel paneeli = new JPanel(new BorderLayout());
 
         String reseptinTiedot = this.tulostus.tulostaResepti(haettava.getText());

@@ -1,11 +1,9 @@
 package ruokareseptit.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,10 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
-import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
- *
+ * Luokka käsittelee kategorian haku -tapahtuman
  * @author susisusi
  */
 public class KategorianHakuKuuntelija implements ActionListener {
@@ -27,6 +24,13 @@ public class KategorianHakuKuuntelija implements ActionListener {
     private Tulostus tulostus;
     private LisayksetJaPoistot lisayksetJaPoistot;
 
+    /**
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta saadut tiedot
+     * @param haettava Käyttäjän antama syöte
+     * @param container
+     * @param tulostus
+     * @param lisayksetJaPoistot 
+     */
     public KategorianHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.haettava = haettava;
@@ -46,7 +50,7 @@ public class KategorianHakuKuuntelija implements ActionListener {
         }
     }
 
-    public void etsiKategoria() {
+    private void etsiKategoria() {
         JPanel paneeli = new JPanel(new GridLayout(8, 1));
         String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
         JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");

@@ -9,6 +9,11 @@ import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
+/**
+ * Graafinen käyttöliittymä reseptien lukua ja lisäystä varten.
+ * @author susisusi
+ */
+
 public class GraafinenKayttoliittyma implements Runnable {
 
     private JFrame frame;
@@ -16,6 +21,9 @@ public class GraafinenKayttoliittyma implements Runnable {
     private Tietovarasto tietovarasto;
     private LisayksetJaPoistot lisayksetJaPoistot;
 
+    /**
+     * Konstruktori alustaa Tietovarasto-, Tulostus ja LisayksetJaPoistot -oliot
+     */
     public GraafinenKayttoliittyma() {
         this.tietovarasto = new Tietovarasto();
         this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());

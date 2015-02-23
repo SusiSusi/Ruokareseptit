@@ -48,7 +48,7 @@ public class Tietovarasto {
 
     /**
      * Luetaan tiedosto Kategoriat.txt ja lisätään kaikki tiedostosta löytyvät
-     * kategoriat listaan.
+     * kategoriat listaan. Lopussa kategoriat järjestetään aakkosjärjestykseen.
      */
     public void lisaaKategoriat() {
         boolean onnistuuko = lataaTiedosto(this.tiedosto);
@@ -70,7 +70,7 @@ public class Tietovarasto {
      * tulostetaan virheen syy.
      *
      * @param tiedosto
-     * @return
+     * @return totuusarvo, onnistuuko tiedoston luku vai ei
      */
     public boolean lataaTiedosto(File tiedosto) {
         this.lukija = null;
@@ -86,8 +86,8 @@ public class Tietovarasto {
     /**
      * Metodi palauttaa oikein Kategoria-olion viitteen mihin resepti tullaan 
      * tallentamaan.
-     * @param kategoria
-     * @return 
+     * @param kategoria Tiedostossa lukeva kategorian nimi
+     * @return Kategoria-olio
      */
     public Kategoria mihinKategoriaanReseptiLisataan(String kategoria) {
         Kategoria palautettavaKategoria = null;
@@ -104,8 +104,8 @@ public class Tietovarasto {
      * Metodi pilkkoo reseptiin kuuluvan aineen oikeaan muotoon Resepti-olioon 
      * tallentamista varten. Tiedostossa ainesosan nimi ja määrä on muotoa:
      * "1 kpl:salaatti"
-     * @param resepti
-     * @param aineet 
+     * @param resepti Tiedoston perustellaa luotu resepti
+     * @param aineet Tiedostossa lukeva ainesosa
      */
     public void aineidenLisaysReseptiin(Resepti resepti, String aineet) {
         String[] osat = aineet.split(":");
@@ -115,7 +115,7 @@ public class Tietovarasto {
     }
 
     /**
-     * Luetaan tiedosto Reseptit.txt ja lisätään lisätään reseptit niille
+     * Luetaan tiedosto Reseptit.txt ja lisätään reseptit niille
      * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti
      * kuuluu.
      */
@@ -158,9 +158,9 @@ public class Tietovarasto {
     /**
      * Lisää uuden reseptin tiedoston Reseptit.txt loppuun.
      *
-     * @param kategoria
-     * @param resepti
-     * @return
+     * @param kategoria Käyttäjän antama syöte
+     * @param resepti Käyttäjän syötteen perusteella luotu resepti
+     * @return totuusarvon, onnistuuko reseptin kirjoitus tiedostoon vai ei
      * @throws IOException
      */
     public boolean lisaaReseptiTiedostoon(String kategoria, Resepti resepti) throws IOException {
@@ -185,9 +185,9 @@ public class Tietovarasto {
      * resepti tulee kopio-tiedostossa vastaan, lukee lukija poistettavan reseptin 
      * tiedot mutta ei talleta niitä mihinkään. Lopussa poistetaan kaikista 
      * kategorioista reseptit ja ladataan ne uudelleen.
-     * @param kategoria
+     * @param kategoria 
      * @param resepti
-     * @return
+     * @return totuusarvo, onnistuuko reseptin poisto vai ei
      * @throws IOException 
      */
 //    public boolean poistaReseptiTiedostosta(Resepti resepti) throws IOException {

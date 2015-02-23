@@ -38,16 +38,23 @@ public class Kategoria implements Comparable<Kategoria> {
 
     /**
      * Palauttaa listassa olevien reseptien määrän
-     * @return 
+     * @return reseptien määrä
      */
     public int reseptienMaaraKategoriassa() {
         return this.reseptit.size();
     }
     
+    /**
+     * Metdori järjestää kategorian reseptit aakkosjärjestykseen.
+     */
     public void jarjestaReseptit() {
         Collections.sort(this.reseptit);
     }
-
+    
+    /**
+     * Metodi hakee kaikki kategorian reseptit.
+     * @return reseptit listana
+     */
     public List getKaikkiReseptit() {
         List<Resepti> palautettavaLista = new ArrayList<>();
         for (Resepti resepti : this.reseptit) {
@@ -56,6 +63,10 @@ public class Kategoria implements Comparable<Kategoria> {
         return palautettavaLista;
     }
 
+    /**
+     * Metodi hakee kaikki kategorian reseptien nimet.
+     * @return reseptien nimet listana
+     */
     public List getReseptienNimet() {
         List<String> palautettavaLista = new ArrayList<>();
         for (Resepti resepti : this.reseptit) {
@@ -64,6 +75,11 @@ public class Kategoria implements Comparable<Kategoria> {
         return palautettavaLista;
     }
 
+    /**
+     * Metodi etsii parametrina olevan reseptin
+     * @param nimi
+     * @return resepti-olio
+     */
     public Resepti getResepti(String nimi) {
         Resepti loytynytResepti = null;
         for (Resepti resep : this.reseptit) {
@@ -74,15 +90,15 @@ public class Kategoria implements Comparable<Kategoria> {
         return loytynytResepti;
     }
     
-    // oma muistutus: tarvitaanko tätä metodia
-    public void poistaResepti(String nimi) {
-        Iterator<Resepti> iteraattori = this.reseptit.iterator();
-        while (iteraattori.hasNext()) {
-            if (new StringUtils().sisaltaa(iteraattori.next().getNimi(), nimi)) {
-                iteraattori.remove();
-            }
-        }
-    }
+//    // oma muistutus: tarvitaanko tätä metodia
+//    public void poistaResepti(String nimi) {
+//        Iterator<Resepti> iteraattori = this.reseptit.iterator();
+//        while (iteraattori.hasNext()) {
+//            if (new StringUtils().sisaltaa(iteraattori.next().getNimi(), nimi)) {
+//                iteraattori.remove();
+//            }
+//        }
+//    }
 
     /**
      * Poistaa reseptit-listalta kaikki reseptit eli tyhjentää listan

@@ -2,13 +2,9 @@ package ruokareseptit.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -16,13 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
+
+/**
+ * Luokka käsittelee reseptin lisäys -tapahtuman
+ * @author susisusi
+ */
 
 public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
@@ -43,6 +42,12 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
     private JTextField reseptinNimi;
     private String kategoriaValikko;
 
+    /**
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta saadut tiedot
+     * @param container
+     * @param tulostus
+     * @param lisayksetJaPoistot 
+     */
     public ReseptinLisayksenKuuntelija(Container container, Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.container = container;
         this.tulostus = tulostus;
@@ -73,6 +78,9 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
     }
 
+    /**
+     * Metodi alustaa paneelin ulkonäön
+     */
     public void alusta() {
         JPanel paneeli = new JPanel(new BorderLayout());
 //        this.valikko = new JPanel(new BorderLayout());
@@ -135,8 +143,10 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
         }
     }
 
+
     class PoistaNappulanKuuntelija implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
 
             ListSelectionModel lsm = lista.getSelectionModel();
@@ -194,6 +204,7 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
     public class ValikonKuuntelija implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             JComboBox cb = (JComboBox) e.getSource();
             kategoriaValikko = (String) cb.getSelectedItem();
@@ -202,6 +213,7 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
     class AddButtonListener implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             if (ainesosaKentta.getText().equals("")) {
                 return;

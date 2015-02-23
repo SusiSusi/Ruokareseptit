@@ -132,9 +132,3 @@ TestiResepti2
 1:sipuli
 OHJEET
 mitä mitä mitä testii testii 
-KATEGORIA
-LIHA
-TestiResepti3
-1:sipuli
-OHJEET
-mitä mitä mitä testii testii 

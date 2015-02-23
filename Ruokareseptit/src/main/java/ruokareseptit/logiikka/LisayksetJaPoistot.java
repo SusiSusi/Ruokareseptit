@@ -7,7 +7,7 @@ import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
- * Luokka kuuntelee uuden reseptin tiedot käyttäjältä ja välittää ne eteenpäin
+ * Luokka käsittelee reseptien lisäyksiä ja poistoja
  *
  * @author susisusi
  */
@@ -30,12 +30,13 @@ public class LisayksetJaPoistot {
     }
 
     /**
-     * Metodi kysyy käyttäjältä tiedot uutta reseptiä varten ja välittää
-     * reseptin tiedot eteenpäin, missä se lisätään tiedostoon.
+     * Metodi varmistaa, että parametrit eivät ole tyhjiä ja välittää tiedot eteenpäin.
+     * Jos reseptin lisäys tiedostoon onnistuu, antaa metodi käskyn poistaa kaikki reseptit 
+     * kategorioista ja lisätä ne uudelleen.
      *
-     * @param kategoria
-     * @param uusiResepti
-     * @return
+     * @param kategoria Käyttäjän antama syöte
+     * @param uusiResepti Käyttääjän antama syöte
+     * @return totuusarvon, onnistuuko reseptin lisäys vai ei
      * @throws IOException
      */
     public boolean lisaaUusiResepti(String kategoria, Resepti uusiResepti) throws IOException {
@@ -55,8 +56,8 @@ public class LisayksetJaPoistot {
      * Metodi varmistaa, että käyttäjä on syöttänyt kategorian nimen oikein,
      * mihin resepti tullaan lisäämään.
      *
-     * @param syote
-     * @return
+     * @param syote käyttäjän antama syöte
+     * @return totuusarvo
      */
     public boolean kirjoitetaankoKategoriaOikein(String syote) {
         for (Kategoria kategoria : this.kategoriat) {
@@ -67,6 +68,13 @@ public class LisayksetJaPoistot {
         return false;
     }
 
+    /**
+     * Metodi saa parametrinaan taulukon ainesosista ja kerää ainesosien tiedot. Jos käyttäjä 
+     * ei ole erottanut määrää pilkulla, laittaa metodi ainesosan määräksi "-". Tätä metodia 
+     * käytetään graafisen käyttöliittymän kanssa.
+     * @param resepti Käyttäjän syöte
+     * @param ainesosat Käyttäjän syöte
+     */
     public void lisaaReseptiinAinesosat(Resepti resepti, String[] ainesosat) {
         for (int i = 0; i < ainesosat.length; i++) {
             if (!ainesosat[i].contains(",")) {
@@ -80,6 +88,13 @@ public class LisayksetJaPoistot {
         }
     }
 
+    /**
+     * Metodi etsii kategorian, missä resepti on ja välittää käskyn, että tiedostosta 
+     * poistetaan kyseinen resepti.
+     * @param reseptinNimi Käyttäjän antama syöte
+     * @return totuusarvon, onnistuiko poisto vai ei
+     * @throws IOException 
+     */
     public boolean poistaResepti(String reseptinNimi) throws IOException {
         for (Kategoria kateg : this.kategoriat) {
             List<Resepti> reseptit = kateg.getKaikkiReseptit();

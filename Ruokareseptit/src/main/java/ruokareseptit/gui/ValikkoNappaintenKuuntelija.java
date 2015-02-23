@@ -7,6 +7,11 @@ import javax.swing.*;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 
+/**
+ * Luokka käsittelee valikkonäppäinten kuuntelun
+ * @author susisusi
+ */
+
 public class ValikkoNappaintenKuuntelija implements ActionListener {
 
     private JPanel paneeli;
@@ -18,7 +23,18 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     private Container container;
     private Tulostus tulostus;
     private LisayksetJaPoistot lisayksetJaPoistot;
-
+    
+    /**
+     * Konstruktori saa parametrikseen GraafinenKayttoliittyma-luokalta saadut tiedot
+     * @param container
+     * @param kategoria
+     * @param resepti
+     * @param lisaa
+     * @param kaikkiReseptit
+     * @param kaikkiKategoriat
+     * @param tulostus
+     * @param lisayksetJaPoistot 
+     */
     public ValikkoNappaintenKuuntelija(Container container, JButton kategoria, JButton resepti,
             JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus,
             LisayksetJaPoistot lisayksetJaPoistot) {
@@ -57,14 +73,14 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         }
     }
 
-    public void kaikkiKategoriat() {
+    private void kaikkiKategoriat() {
         this.paneeli = new JPanel(new BorderLayout());
         JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
         paneeli.add(tuloste);
         container.add(paneeli);
     }
 
-    public void kaikkiReseptit() {
+    private void kaikkiReseptit() {
         this.paneeli = new JPanel(new BorderLayout());
         JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
         JScrollPane scrollaaReseptit = new JScrollPane(tuloste);
@@ -72,7 +88,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         container.add(paneeli);
     }
 
-    public void tulostaResepti() {
+    private void tulostaResepti() {
         this.paneeli = new JPanel(new GridLayout(10, 1));
         this.paneeli.add(new JLabel("Reseptin haku"));
 
@@ -88,7 +104,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
                 this.container, this.tulostus, this.lisayksetJaPoistot));
     }
 
-    public void tulostaKategoria() {
+    private void tulostaKategoria() {
         this.paneeli = new JPanel(new GridLayout(10, 1));
         this.paneeli.add(new JLabel("Kategorian haku"));
         
@@ -104,7 +120,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
                 this.container, this.tulostus, this.lisayksetJaPoistot));
     }
 
-    public void lisaaResepti() {
+    private void lisaaResepti() {
         ReseptinLisayksenKuuntelija li = new ReseptinLisayksenKuuntelija(this.container, this.tulostus,
                 this.lisayksetJaPoistot);
         li.alusta();

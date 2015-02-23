@@ -18,8 +18,8 @@ public class StringUtils {
      * kirjaimet isoiksi kirjaimiksi.
      *
      * @param sana
-     * @param haettava
-     * @return
+     * @param haettava Käyttäjän antama syöte
+     * @return totuusarvon, onko sana sama vai ei
      */
     public boolean sisaltaa(String sana, String haettava) {
         if (sana.isEmpty() || haettava.isEmpty()) {
@@ -39,7 +39,7 @@ public class StringUtils {
      * maara:aines, esim. 1 kpl:sipuli
      *
      * @param ainesosat
-     * @return
+     * @return ainesosat String-muodossa
      */
     public String muutaAinesosatTiedostoonSopiviksi(List<Ainesosa> ainesosat) {
         String muutettu = "";
@@ -56,8 +56,8 @@ public class StringUtils {
      * 80-merkkiä, tulostaa metodi riville 80-merkissä olevan viimeisen sanan ja 
      * aloittaa uuden rivin eli metodi ei katkaise sanoja vaan rivi katkeaa kun seuraava
      * merkki on tyhjä.
-     * @param ohje
-     * @return 
+     * @param ohje 
+     * @return muokatun ohjeen
      */
     public String tavutaReseptinOhje(String ohje) {
         String muokattuOhje = "";

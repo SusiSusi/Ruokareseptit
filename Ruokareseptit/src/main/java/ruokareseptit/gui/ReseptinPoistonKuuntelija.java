@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ruokareseptit.gui;
 
 import java.awt.BorderLayout;
@@ -12,17 +8,15 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
-import ruokareseptit.tietokanta.Tietovarasto;
 
 /**
- *
+ * Luokka käsittelee reseptin poisto -tapahtuman
  * @author susisusi
  */
 public class ReseptinPoistonKuuntelija implements ActionListener {
@@ -31,6 +25,14 @@ public class ReseptinPoistonKuuntelija implements ActionListener {
     private Container container;
     private Tulostus tulostus;
     private LisayksetJaPoistot lisayksetJaPoistot;
+    
+    /**
+     * Konstruktori saa parametrikseen ReseptinHakuKuuntelija-luokalta saadut tiedot
+     * @param haettava Käyttäjän antama syöte
+     * @param container
+     * @param tulostus
+     * @param lisayksetJaPoistot 
+     */
 
     public ReseptinPoistonKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
@@ -56,7 +58,7 @@ public class ReseptinPoistonKuuntelija implements ActionListener {
         }
     }
 
-    public void poistetaanResepti() {
+    private void poistetaanResepti() {
         String reseptinNimi = this.haettava.getText();
         try {
             this.lisayksetJaPoistot.poistaResepti(reseptinNimi);
