@@ -47,7 +47,10 @@ public class GraafinenKayttoliittyma implements Runnable {
         JPanel paneeli = new JPanel(new BorderLayout());
         container.add(new JLabel("SuSin ruokareseptit"), BorderLayout.NORTH);
         container.add(luoValikko(container), BorderLayout.SOUTH);
-        container.add(new JLabel("Jotain kivaa tähän"), BorderLayout.CENTER);
+        
+        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/vintagehousewifecooking.jpg");
+        
+        container.add(new JLabel(kuva), BorderLayout.CENTER);
     }
 
     private JPanel luoValikko(Container container) {
