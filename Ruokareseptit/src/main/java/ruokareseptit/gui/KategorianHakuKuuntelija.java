@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
@@ -25,10 +25,10 @@ public class KategorianHakuKuuntelija implements ActionListener {
     private JTextField haettava;
     private Container container;
     private Tulostus tulostus;
-    private Lisaykset lisayksetJaPoistot;
+    private LisayksetJaPoistot lisayksetJaPoistot;
 
     public KategorianHakuKuuntelija(JTextField haettava, Container container,
-            Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
+            Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.haettava = haettava;
         this.container = container;
         this.tulostus = tulostus;

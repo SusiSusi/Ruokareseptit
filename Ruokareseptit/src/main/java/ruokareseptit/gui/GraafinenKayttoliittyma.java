@@ -5,7 +5,7 @@ import java.util.*;
 import javax.swing.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
-import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
 
@@ -14,12 +14,12 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JFrame frame;
     private Tulostus tulostus;
     private Tietovarasto tietovarasto;
-    private Lisaykset lisayksetJaPoistot;
+    private LisayksetJaPoistot lisayksetJaPoistot;
 
     public GraafinenKayttoliittyma() {
         this.tietovarasto = new Tietovarasto();
         this.tulostus = new Tulostus(this.tietovarasto.haeKategoriat());
-        this.lisayksetJaPoistot = new Lisaykset(this.tietovarasto.haeKategoriat(), tietovarasto);
+        this.lisayksetJaPoistot = new LisayksetJaPoistot(this.tietovarasto.haeKategoriat(), tietovarasto);
     }
 
     @Override

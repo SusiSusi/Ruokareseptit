@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 
 public class ValikkoNappaintenKuuntelija implements ActionListener {
@@ -17,11 +17,11 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     private JButton kaikkiKategoriat;
     private Container container;
     private Tulostus tulostus;
-    private Lisaykset lisayksetJaPoistot;
+    private LisayksetJaPoistot lisayksetJaPoistot;
 
     public ValikkoNappaintenKuuntelija(Container container, JButton kategoria, JButton resepti,
             JButton lisaa, JButton kaikkiReseptit, JButton kaikkiKategoriat, Tulostus tulostus,
-            Lisaykset lisayksetJaPoistot) {
+            LisayksetJaPoistot lisayksetJaPoistot) {
         this.container = container;
         this.haeKategoria = kategoria;
         this.haeResepti = resepti;

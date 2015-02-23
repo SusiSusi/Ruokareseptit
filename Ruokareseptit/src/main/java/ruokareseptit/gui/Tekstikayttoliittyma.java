@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
-import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;
@@ -20,7 +20,7 @@ public class Tekstikayttoliittyma {
     private Tietovarasto tiedot;
     private Scanner lukija;
     private Tulostus tulostaja;
-    private Lisaykset lisataan;
+    private LisayksetJaPoistot lisataan;
 
     /**
      * Konstuktori alustaa uuden tietovaraston, kategoriat sekä lukijan
@@ -32,7 +32,7 @@ public class Tekstikayttoliittyma {
         this.kategoriat = tiedot.haeKategoriat();
         this.lukija = lukija;
         this.tulostaja = new Tulostus(this.kategoriat);
-        lisataan = new Lisaykset(this.kategoriat, this.tiedot);
+        lisataan = new LisayksetJaPoistot(this.kategoriat, this.tiedot);
     }
 
     /**

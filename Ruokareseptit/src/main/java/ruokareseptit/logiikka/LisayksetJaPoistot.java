@@ -11,7 +11,7 @@ import ruokareseptit.tietokanta.Tietovarasto;
  *
  * @author susisusi
  */
-public class Lisaykset {
+public class LisayksetJaPoistot {
 
     private List<Kategoria> kategoriat;
     private Tietovarasto tiedot;
@@ -23,7 +23,7 @@ public class Lisaykset {
      * @param kategoriat
      * @param tiedot
      */
-    public Lisaykset(List<Kategoria> kategoriat, Tietovarasto tiedot) {
+    public LisayksetJaPoistot(List<Kategoria> kategoriat, Tietovarasto tiedot) {
         this.kategoriat = kategoriat;
         this.tiedot = tiedot;
 

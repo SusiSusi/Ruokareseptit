@@ -15,7 +15,7 @@ import ruokareseptit.tietokanta.Tietovarasto;
 
 public class LisayksetTest {
 
-    Lisaykset lisaykset;
+    LisayksetJaPoistot lisaykset;
     Tietovarasto varasto;
 
     @Before
@@ -24,7 +24,7 @@ public class LisayksetTest {
                 "src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
         varasto.lisaaKategoriat();
         varasto.lisaaKategorioihinReseptit();
-        this.lisaykset = new Lisaykset(varasto.haeKategoriat(), varasto);
+        this.lisaykset = new LisayksetJaPoistot(varasto.haeKategoriat(), varasto);
     }
 
     @Test

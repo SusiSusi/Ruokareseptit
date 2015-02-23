@@ -21,7 +21,7 @@ import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import ruokareseptit.domain.Resepti;
-import ruokareseptit.logiikka.Lisaykset;
+import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 
 public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
@@ -38,12 +38,12 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
     private Container container;
     private Tulostus tulostus;
-    private Lisaykset lisayksetJaPoistot;
+    private LisayksetJaPoistot lisayksetJaPoistot;
 
     private JTextField reseptinNimi;
     private String kategoriaValikko;
 
-    public ReseptinLisayksenKuuntelija(Container container, Tulostus tulostus, Lisaykset lisayksetJaPoistot) {
+    public ReseptinLisayksenKuuntelija(Container container, Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.container = container;
         this.tulostus = tulostus;
         this.lisayksetJaPoistot = lisayksetJaPoistot;
