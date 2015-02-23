@@ -84,8 +84,9 @@ public class Tietovarasto {
     }
 
     /**
-     * Metodi palauttaa oikein Kategoria-olion viitteen mihin resepti tullaan 
+     * Metodi palauttaa oikein Kategoria-olion viitteen mihin resepti tullaan
      * tallentamaan.
+     *
      * @param kategoria Tiedostossa lukeva kategorian nimi
      * @return Kategoria-olio
      */
@@ -101,9 +102,10 @@ public class Tietovarasto {
     }
 
     /**
-     * Metodi pilkkoo reseptiin kuuluvan aineen oikeaan muotoon Resepti-olioon 
-     * tallentamista varten. Tiedostossa ainesosan nimi ja määrä on muotoa:
-     * "1 kpl:salaatti"
+     * Metodi pilkkoo reseptiin kuuluvan aineen oikeaan muotoon Resepti-olioon
+     * tallentamista varten. Tiedostossa ainesosan nimi ja määrä on muotoa: "1
+     * kpl:salaatti"
+     *
      * @param resepti Tiedoston perustellaa luotu resepti
      * @param aineet Tiedostossa lukeva ainesosa
      */
@@ -115,9 +117,8 @@ public class Tietovarasto {
     }
 
     /**
-     * Luetaan tiedosto Reseptit.txt ja lisätään reseptit niille
-     * määrättyihin kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti
-     * kuuluu.
+     * Luetaan tiedosto Reseptit.txt ja lisätään reseptit niille määrättyihin
+     * kategorioihin. Tiedostossa lukee, mihin kategoriaan resepti kuuluu.
      */
     public void lisaaKategorioihinReseptit() {
         boolean onnistuuko = lataaTiedosto(this.tiedostoReseptit);
@@ -179,19 +180,20 @@ public class Tietovarasto {
     }
 
     /**
-     * Metodi ottaa kopion Reseptit.txt-tiedostosta ja lataa sen lukijaan. 
-     * Reseptit.txt-tiedosto tyhjennetään ja kirjoitetaa uudestaan niin, että 
-     * tiedostoo ei kirjoiteta sitä reseptiä mikä halutaan poistaa. Kun poistettava 
-     * resepti tulee kopio-tiedostossa vastaan, lukee lukija poistettavan reseptin 
-     * tiedot mutta ei talleta niitä mihinkään. Lopussa poistetaan kaikista 
-     * kategorioista reseptit ja ladataan ne uudelleen.
-     * @param kategoria 
+     * Metodi ottaa kopion Reseptit.txt-tiedostosta ja lataa sen lukijaan.
+     * Reseptit.txt-tiedosto tyhjennetään ja kirjoitetaa uudestaan niin, että
+     * tiedostoo ei kirjoiteta sitä reseptiä mikä halutaan poistaa. Kun
+     * poistettava resepti tulee kopio-tiedostossa vastaan, lukee lukija
+     * poistettavan reseptin tiedot mutta ei talleta niitä mihinkään. Lopussa
+     * poistetaan kaikista kategorioista reseptit ja ladataan ne uudelleen.
+     *
+     * @param kategoria
      * @param resepti
      * @return totuusarvo, onnistuuko reseptin poisto vai ei
-     * @throws IOException 
+     * @throws IOException
      */
 //    public boolean poistaReseptiTiedostosta(Resepti resepti) throws IOException {
-        public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
+    public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
         File kopio = this.tiedostoReseptit;
         boolean onnistuuko = lataaTiedosto(kopio);
         if (onnistuuko == false) {
@@ -204,9 +206,9 @@ public class Tietovarasto {
                 String katego = lukija.nextLine();
                 String reseptinNimi = lukija.nextLine();
 //                if (reseptinNimi.equals(resepti.getNimi())) {
-                    if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
+                if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
                     String seuraava = lukija.nextLine();
-                    while(!seuraava.equals("OHJEET")){
+                    while (!seuraava.equals("OHJEET")) {
                         seuraava = lukija.nextLine();
                     }
                     seuraava = lukija.nextLine();

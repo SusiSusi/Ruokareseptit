@@ -1,5 +1,6 @@
 package ruokareseptit.logiikka;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import org.junit.After;
@@ -13,10 +14,12 @@ import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
 import ruokareseptit.tietokanta.Tietovarasto;
 
-public class LisayksetTest {
+public class LisayksetJaPoistotTest {
 
     LisayksetJaPoistot lisaykset;
     Tietovarasto varasto;
+    Resepti jauhelihakastike;
+    File kopio;
 
     @Before
     public void setUp() {
@@ -25,33 +28,53 @@ public class LisayksetTest {
         varasto.lisaaKategoriat();
         varasto.lisaaKategorioihinReseptit();
         this.lisaykset = new LisayksetJaPoistot(varasto.haeKategoriat(), varasto);
+        jauhelihakastike = new Resepti("Jauhelihakastike");
+        File reseptiTiedosto = new File("src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
+        kopio = reseptiTiedosto;
     }
+    
+//        @After
+//    public void tearDown() throws IOException {
+//        Resepti res = new Resepti("Tomaatti-kotijuustobruchetta");
+//        res.setAinesosa("oliiviöljy", "1 rkl");
+//        res.setAinesosa("kirsikkatomaatti", "100 g");
+//        res.setOhje("Voitele leivät öljyllä. Paahda niitä hetki uunissa leivinpaperin päällä uunipellillä 225 asteessa. Päällystä leivät kotijuustolla, halkaistuilla kirsikkatomaateilla, pinjansiemenillä ja yrteillä. Viimeistele leivät pippurilla ja suolalla.");
+//                varasto.lisaaReseptiTiedostoon("alkupala", res);
+//    }
 
     @Test
     public void lisaaJaPoistaaReseptinTiedostostaOikein() throws IOException {
         int montaReseptia = 0;
-        List<Kategoria> ko = varasto.haeKategoriat();
-        for (Kategoria ka : ko) {
+        List<Kategoria> kategoria = varasto.haeKategoriat();
+        for (Kategoria ka : kategoria) {
             montaReseptia = montaReseptia + ka.getKaikkiReseptit().size();
         }
-        Resepti jauhelihakastike = new Resepti("Jauhelihakastike");
         assertEquals(true, lisaykset.lisaaUusiResepti("Alkupala", jauhelihakastike));
         int montaReseptiaLisayksenJalkeen = 0;
-        for (Kategoria ka : ko) {
+        for (Kategoria ka : kategoria) {
             montaReseptiaLisayksenJalkeen = montaReseptiaLisayksenJalkeen + ka.getKaikkiReseptit().size();
         }
         assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptia);
+
+    }
+
+    @Test
+    public void poistaaTiedostostaReseptinOikein() throws IOException {
+        int montaReseptia = 0;
+        List<Kategoria> kategoria = varasto.haeKategoriat();
+        for (Kategoria ka : kategoria) {
+            montaReseptia = montaReseptia + ka.getKaikkiReseptit().size();
+        }
         lisaykset.poistaResepti(jauhelihakastike.getNimi());
         int montaReseptiaPoistonJalkeen = 0;
-        for (Kategoria ka : ko) {
+        for (Kategoria ka : kategoria) {
             montaReseptiaPoistonJalkeen = montaReseptiaPoistonJalkeen + ka.getKaikkiReseptit().size();
         }
-        assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptiaPoistonJalkeen);
+        assertEquals(true, montaReseptia > montaReseptiaPoistonJalkeen);
     }
 
     @Test
     public void reseptinLisaaminenEiOnnistu() throws IOException {
-        Resepti jauhelihakastike = new Resepti("Jauhelihakastike");
         assertEquals(false, lisaykset.lisaaUusiResepti("", jauhelihakastike));
         assertEquals(false, lisaykset.lisaaUusiResepti("Alkupala", new Resepti("")));
     }
@@ -88,6 +111,5 @@ public class LisayksetTest {
         List<Ainesosa> maara = lohi.getAinesosat();
         assertEquals(2, maara.size());
     }
-
 
 }

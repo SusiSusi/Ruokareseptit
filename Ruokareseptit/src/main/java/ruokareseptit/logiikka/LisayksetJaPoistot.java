@@ -30,9 +30,9 @@ public class LisayksetJaPoistot {
     }
 
     /**
-     * Metodi varmistaa, että parametrit eivät ole tyhjiä ja välittää tiedot eteenpäin.
-     * Jos reseptin lisäys tiedostoon onnistuu, antaa metodi käskyn poistaa kaikki reseptit 
-     * kategorioista ja lisätä ne uudelleen.
+     * Metodi varmistaa, että parametrit eivät ole tyhjiä ja välittää tiedot
+     * eteenpäin. Jos reseptin lisäys tiedostoon onnistuu, antaa metodi käskyn
+     * poistaa kaikki reseptit kategorioista ja lisätä ne uudelleen.
      *
      * @param kategoria Käyttäjän antama syöte
      * @param uusiResepti Käyttääjän antama syöte
@@ -42,14 +42,15 @@ public class LisayksetJaPoistot {
     public boolean lisaaUusiResepti(String kategoria, Resepti uusiResepti) throws IOException {
         if (kategoria.isEmpty() || uusiResepti.getNimi().isEmpty()) {
             return false;
+        } else {
+            boolean onnistuuko = tiedot.lisaaReseptiTiedostoon(kategoria, uusiResepti);
+            if (onnistuuko == false) {
+                return false;
+            }
+            this.tiedot.poistaKategorioistaReseptit();
+            this.tiedot.lisaaKategorioihinReseptit();
+            return true;
         }
-        boolean onnistuuko = tiedot.lisaaReseptiTiedostoon(kategoria, uusiResepti);
-        if (onnistuuko == false) {
-            return false;
-        }
-        this.tiedot.poistaKategorioistaReseptit();
-        this.tiedot.lisaaKategorioihinReseptit();
-        return true;
     }
 
     /**
@@ -69,9 +70,10 @@ public class LisayksetJaPoistot {
     }
 
     /**
-     * Metodi saa parametrinaan taulukon ainesosista ja kerää ainesosien tiedot. Jos käyttäjä 
-     * ei ole erottanut määrää pilkulla, laittaa metodi ainesosan määräksi "-". Tätä metodia 
-     * käytetään graafisen käyttöliittymän kanssa.
+     * Metodi saa parametrinaan taulukon ainesosista ja kerää ainesosien tiedot.
+     * Jos käyttäjä ei ole erottanut määrää pilkulla, laittaa metodi ainesosan
+     * määräksi "-". Tätä metodia käytetään graafisen käyttöliittymän kanssa.
+     *
      * @param resepti Käyttäjän syöte
      * @param ainesosat Käyttäjän syöte
      */
@@ -89,11 +91,12 @@ public class LisayksetJaPoistot {
     }
 
     /**
-     * Metodi etsii kategorian, missä resepti on ja välittää käskyn, että tiedostosta 
-     * poistetaan kyseinen resepti.
+     * Metodi etsii kategorian, missä resepti on ja välittää käskyn, että
+     * tiedostosta poistetaan kyseinen resepti.
+     *
      * @param reseptinNimi Käyttäjän antama syöte
      * @return totuusarvon, onnistuiko poisto vai ei
-     * @throws IOException 
+     * @throws IOException
      */
     public boolean poistaResepti(String reseptinNimi) throws IOException {
         for (Kategoria kateg : this.kategoriat) {

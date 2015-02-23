@@ -183,9 +183,7 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
                 Resepti uusiResepti = new Resepti(reseptinNimi.getText());
                 lisayksetJaPoistot.lisaaReseptiinAinesosat(uusiResepti, ainesosat);
                 uusiResepti.setOhje(reseptinOhje.getText().replaceAll("[\\t\\n\\r]+"," "));
-                System.out.println(reseptinOhje.getText());
-                
-                
+
                 try {
                     lisayksetJaPoistot.lisaaUusiResepti(kategoriaValikko, uusiResepti);
                 } catch (IOException ex) {
