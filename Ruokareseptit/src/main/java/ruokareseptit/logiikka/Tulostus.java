@@ -35,7 +35,13 @@ public class Tulostus {
         for (int i = 0; i < 105; i++) {
             tahtia = tahtia + "*";
         }
+        String viivoja = "";
+        for (int i = 0; i < 126; i++) {
+            viivoja = viivoja + "-";
+        }
         for (Kategoria kategoria : this.kategoriat) {
+            kaikkiReseptit = kaikkiReseptit + "Kategoria: " + kategoria.getKategorianNimi().toUpperCase();
+            kaikkiReseptit = kaikkiReseptit + "\n" + viivoja + "\n";
             List<Resepti> reseptit = kategoria.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 kaikkiReseptit = kaikkiReseptit + resepti;

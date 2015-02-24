@@ -63,7 +63,11 @@ public class StringUtils {
         String muokattuOhje = "";
         if (ohje.equals("Ohjetta ei ole talletettu.")) {
             return ohje;
-        } else {
+        } else if (ohje.equals("Kirjoita tähän valmistusohje")) {
+            return "Ohjetta ei ole talletettu.";            
+        }
+        
+        else {
             int pituus = ohje.length();
             int rivinPituus = 80;
             int apu = 0;

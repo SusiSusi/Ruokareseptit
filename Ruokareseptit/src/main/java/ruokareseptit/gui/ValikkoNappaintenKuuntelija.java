@@ -76,7 +76,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     }
 
     private void kaikkiKategoriat() {
-        this.paneeli = new JPanel(new BorderLayout());
+        this.paneeli = new JPanel(new BorderLayout()); // BoxLayout
         JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
         ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/vintagehousewifecooking.jpg");
         paneeli.add(tuloste, BorderLayout.WEST);
@@ -85,7 +85,7 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     }
 
     private void kaikkiReseptit() {
-        this.paneeli = new JPanel(new BorderLayout());
+        this.paneeli = new JPanel(new BorderLayout()); // BoxLy
         JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
         JScrollPane scrollaaReseptit = new JScrollPane(tuloste);
         paneeli.add(scrollaaReseptit);
