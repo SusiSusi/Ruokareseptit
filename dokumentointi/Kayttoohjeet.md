@@ -1,0 +1,25 @@
+##Käyttöohjeet
+
+####Hae resepti 
+Haku-kenttään kirjoitetaan reseptin nimi kokonaan. Kirjainten koosta tai ylimääräisistä välilyönneistä ei tarvise välittää. Reseptin löydyttyä, näytölle tulostuu reseptin ohjeet. Ruudun alalaitaan ilmestyy Poista resepti -näppäin, jota painamalla resepti voidaan poistaa.
+
+####Hae resepti
+Haku-kenttään kirjoitetaan kategorian nimi kokonaan. Kirjainten koosta tai ylimääräisistä välilyönneistä ei tarvise välittää. Kategorian löydyttyä, näytölle tulostuu kategorissa olevien reseptien nimet. Ruudun alalaitaan voidaan kirjoittaa reseptin nimi kokonaan ja tulostaa resepti painamalla Hae-näppäintä.
+
+####Lisää uusi resepti
+Uuden reseptin nimi kirjoitetaan ylhäällä siihen varattuun kenttään. Tämän jälkeen valitaan mihin kategoriaan resepti kuuluu avaamalla kategoria valikko. 
+
+Ainesosat kenttään kirjoitetaan reseptiin tulevat ainesosat muotoon: 1 kpl, tomaatti. Eli ensin määrä + mittayksikkö + , (pilkku) + ainesosa. Mikäli määrää ei erotella pilkulla, tulostuu se reseptin ainesosiin muotoon: -, 1 kpl tomaatti. Kun ainesosa on kirjoitettu, painetaan Lisää-näppäintä ja ainesosa siirtyy alempana olevaan listaan. Listalta voidaan poistaa ainesosia klikkaamalla ainesosan päältä, jolloin ainesosa muuttuu siniseksi, ja painamalla Poista-näppäintä. Huomioitavaa on, että ainesosan voi lisätä reseptiin vain kertaalleen.
+
+Ainesosa-listan alapuolalla olevaan kenttään kirjoitetaan miten resepti valmistetaan.
+
+Lopuksi painetaan Tallenna ja lopeta -näppäintä ja resepti tallettuu tietokantaan.
+
+####Kaikki reseptit
+Näytöllä voi selata kaikki reseptejä, jotka tietokannasta löytyy. Reseptit ovat nimen perusteella aakkosjärjestyksessä.
+
+####Kaikki kategoriat
+Näytöllä voi selata kaikki kategorioita, mitä tietokannasta löytyy. Kategoriat ovat nimen perusteella aakkosjärjestyksessä.
+
+####Ohjelman lopetus
+Ohjelmasta lopetetaan painamalla vasemmasta yläreunasta löytyvää ruksi-näppäintä. Kaikki reseptien lisäykset ja poistot tallentuvat ohjelman muistiin ja nämä tiedot ovat käytettävissä seuraavalla kerralla kun ohjelma avataan.
