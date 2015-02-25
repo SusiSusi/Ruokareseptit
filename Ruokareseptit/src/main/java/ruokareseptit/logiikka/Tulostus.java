@@ -24,29 +24,25 @@ public class Tulostus {
     }
 
     /**
-     * Metodi hakee kaikki sovelluksessa olevat reseptit ja erottelee reseptit toisistaan 
-     * "tähtiviivana".
+     * Metodi hakee kaikki sovelluksessa olevat reseptit ja erottelee reseptit
+     * toisistaan "tähtiviivana". Metodi kertoo alussa minkä kategorian
+     * reseptejä tulostetaan.
      *
      * @return kaikki tietokannassa olevat reseptit
      */
     public String tulostaKaikkiReseptit() {
         String kaikkiReseptit = "";
-        String tahtia = "";
-        for (int i = 0; i < 105; i++) {
-            tahtia = tahtia + "*";
-        }
-        String viivoja = "";
-        for (int i = 0; i < 126; i++) {
-            viivoja = viivoja + "-";
-        }
+        List<Resepti> kaikkiReseptitListalla = new ArrayList<>();
         for (Kategoria kategoria : this.kategoriat) {
-            kaikkiReseptit = kaikkiReseptit + "Kategoria: " + kategoria.getKategorianNimi().toUpperCase();
-            kaikkiReseptit = kaikkiReseptit + "\n" + viivoja + "\n";
             List<Resepti> reseptit = kategoria.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
-                kaikkiReseptit = kaikkiReseptit + resepti;
-                kaikkiReseptit = kaikkiReseptit + "\n" + tahtia + "\n";
+                kaikkiReseptitListalla.add(resepti);
             }
+        }
+        Collections.sort(kaikkiReseptitListalla);
+        for (Resepti resepti : kaikkiReseptitListalla) {
+            kaikkiReseptit = kaikkiReseptit + resepti;
+            kaikkiReseptit = kaikkiReseptit + "\n" + new StringUtils().tulostaTahtia(105) + "\n";
         }
         return kaikkiReseptit;
     }
@@ -65,9 +61,11 @@ public class Tulostus {
         }
         return kaikkiKategoriat;
     }
-    
+
     /**
-     * Metodi laittaa kategoriat taulukkoon, mitä käytetään graafisessa käyttöliittymässä.
+     * Metodi laittaa kategoriat taulukkoon, mitä käytetään graafisessa
+     * käyttöliittymässä.
+     *
      * @return kategorioiden nimet taulukossa
      */
     public String[] tulostaKaikkiKategoriatValikkoonSopiviksi() {

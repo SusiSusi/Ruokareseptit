@@ -20,9 +20,9 @@ import ruokareseptit.logiikka.Tulostus;
 
 /**
  * Luokka käsittelee reseptin lisäys -tapahtuman
+ *
  * @author susisusi
  */
-
 public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
     private JList lista;
@@ -43,10 +43,12 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
     private String kategoriaValikko;
 
     /**
-     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta saadut tiedot
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta
+     * saadut tiedot
+     *
      * @param container
      * @param tulostus
-     * @param lisayksetJaPoistot 
+     * @param lisayksetJaPoistot
      */
     public ReseptinLisayksenKuuntelija(Container container, Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
         this.container = container;
@@ -103,22 +105,20 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
         kategorioidenValikko.addActionListener(new ValikonKuuntelija());
 
         reseptinOhje = new JTextArea("Kirjoita tähän valmistusohje");
-        
+
         JScrollPane scrollaajaListaan = new JScrollPane(lista);
         JScrollPane scrollaajaOhjeeseen = new JScrollPane(reseptinOhje);
-        
+
         JSplitPane nimiKentat = new JSplitPane(JSplitPane.WIDTH, nimiKentta, reseptinNimi);
         JSplitPane kategoriaKentat = new JSplitPane(JSplitPane.WIDTH, kategorianValikko, kategorioidenValikko);
         JSplitPane nimiJaKategoriaKentat = new JSplitPane(JSplitPane.VERTICAL_SPLIT, nimiKentat, kategoriaKentat);
-        
+
         JSplitPane listaJaOhjeKentat = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                 scrollaajaListaan, scrollaajaOhjeeseen);
         JSplitPane ainesosatJaOhje = new JSplitPane(JSplitPane.VERTICAL_SPLIT, nappulaPaneeli, listaJaOhjeKentat);
-        
 
         listaJaOhjeKentat.setResizeWeight(0.3);
-        
-        
+
         JScrollPane scrollataanPaneeli = new JScrollPane(paneeli);
         paneeli.add(nimiJaKategoriaKentat, BorderLayout.PAGE_START);
         paneeli.add(ainesosatJaOhje, BorderLayout.CENTER);
@@ -142,7 +142,6 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
             }
         }
     }
-
 
     class PoistaNappulanKuuntelija implements ActionListener {
 
@@ -172,17 +171,22 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (reseptinNimi.getText().isEmpty()) {
+            String uudenReseptinNimi = reseptinNimi.getText();
+            String onkoReseptinNimiVarattu = tulostus.tulostaResepti(uudenReseptinNimi);
+            if (uudenReseptinNimi.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Reseptin nimi on pakollinen tieto!");
             } else if (listModel.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Lisää reseptiin ainesosat!");
-            } else {
+            } else if (!onkoReseptinNimiVarattu.equals("Reseptiä ei löytynyt.")){
+                JOptionPane.showMessageDialog(null, "Resepti nimellä " + uudenReseptinNimi 
+                + " löytyy jo tietokannasta. Muuta reseptin nimeä.");     
+            }else {
                 String[] ainesosat = new String[listModel.size()];
                 listModel.copyInto(ainesosat);
-                
-                Resepti uusiResepti = new Resepti(reseptinNimi.getText());
+
+                Resepti uusiResepti = new Resepti(uudenReseptinNimi);
                 lisayksetJaPoistot.lisaaReseptiinAinesosat(uusiResepti, ainesosat);
-                uusiResepti.setOhje(reseptinOhje.getText().replaceAll("[\\t\\n\\r]+"," "));
+                uusiResepti.setOhje(reseptinOhje.getText().replaceAll("[\\t\\n\\r]+", " "));
 
                 try {
                     lisayksetJaPoistot.lisaaUusiResepti(kategoriaValikko, uusiResepti);
@@ -216,10 +220,15 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
             if (ainesosaKentta.getText().equals("")) {
                 return;
             }
-            int size = listModel.getSize();
-            listModel.addElement(ainesosaKentta.getText());
-            lista.setSelectedIndex(size);
-            ainesosaKentta.setText("");
+            if (listModel.contains(ainesosaKentta.getText())) {
+                JOptionPane.showMessageDialog(null, "Ainesosa on jo lisätty!");
+
+            } else {
+                int size = listModel.getSize();
+                listModel.addElement(ainesosaKentta.getText());
+                lista.setSelectedIndex(size);
+                ainesosaKentta.setText("");
+            }
         }
     }
 }

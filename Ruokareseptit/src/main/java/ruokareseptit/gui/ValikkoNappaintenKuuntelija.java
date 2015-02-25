@@ -78,9 +78,9 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     private void kaikkiKategoriat() {
         this.paneeli = new JPanel(new BorderLayout()); // BoxLayout
         JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
-        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/vintagehousewifecooking.jpg");
-        paneeli.add(tuloste, BorderLayout.WEST);
-        paneeli.add(new JLabel(kuva), BorderLayout.CENTER);
+//        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/LetsPretend.jpg");
+        paneeli.add(tuloste, BorderLayout.CENTER);
+//        paneeli.add(new JLabel(kuva), BorderLayout.SOUTH);
         container.add(paneeli);
     }
 

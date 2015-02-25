@@ -1,5 +1,6 @@
 package ruokareseptit.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,12 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 
 /**
  * Luokka käsittelee kategorian haku -tapahtuman
+ *
  * @author susisusi
  */
 public class KategorianHakuKuuntelija implements ActionListener {
@@ -25,11 +28,13 @@ public class KategorianHakuKuuntelija implements ActionListener {
     private LisayksetJaPoistot lisayksetJaPoistot;
 
     /**
-     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta saadut tiedot
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija-luokalta
+     * saadut tiedot
+     *
      * @param haettava Käyttäjän antama syöte
      * @param container
      * @param tulostus
-     * @param lisayksetJaPoistot 
+     * @param lisayksetJaPoistot
      */
     public KategorianHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
@@ -51,25 +56,31 @@ public class KategorianHakuKuuntelija implements ActionListener {
     }
 
     private void etsiKategoria() {
-        JPanel paneeli = new JPanel(new GridLayout(8, 1));
+        JPanel paneeli = new JPanel(new BorderLayout());
         String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
+
+        JLabel otsake = new JLabel("Kategorian " + haettava.getText() + " reseptit:");
         JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
 
         JScrollPane scrollaaKategoriat = new JScrollPane(tuloste);
-        paneeli.add(scrollaaKategoriat);
+        JSplitPane reseptienNimetTulostettuna = new JSplitPane(JSplitPane.VERTICAL_SPLIT, otsake, scrollaaKategoriat);
+
+        paneeli.add(reseptienNimetTulostettuna, BorderLayout.CENTER);
 
         if (!reseptienNimet.equals("Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä")) {
-
-            paneeli.add(new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi"));
+            
+            JLabel kysytaanReseptinNimi = new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi");
             JTextField nimi = new JTextField();
-            paneeli.add(nimi);
-
-            JButton hae = new JButton("Hae");
-            paneeli.add(hae);
+             JButton hae = new JButton("Hae");
+            
+            JSplitPane yhdiste = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
+                    kysytaanReseptinNimi, nimi);
+            JSplitPane kaikkiYhdessa = new JSplitPane(JSplitPane.VERTICAL_SPLIT, yhdiste, hae);
+           
+            paneeli.add(kaikkiYhdessa, BorderLayout.SOUTH);
             hae.addActionListener(new ReseptinHakuKuuntelija(nimi,
                     this.container, this.tulostus, this.lisayksetJaPoistot));
 
-            
         }
         container.add(paneeli);
     }

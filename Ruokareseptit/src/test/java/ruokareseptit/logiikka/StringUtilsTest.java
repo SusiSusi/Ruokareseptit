@@ -44,4 +44,10 @@ public class StringUtilsTest {
         assertEquals("2 kpl:tomaatti\n0.5 kpl:kurkku\n5 lehteä:salaatti\n", muutettu);
     }
     
+    @Test
+    public void tulostaaTahtiaOikein() {
+        assertEquals("****", etsija.tulostaTahtia(4));
+        assertEquals("", etsija.tulostaTahtia(0));
+    }
+    
 }

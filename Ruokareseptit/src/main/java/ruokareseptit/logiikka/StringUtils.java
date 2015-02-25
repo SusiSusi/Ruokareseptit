@@ -5,8 +5,7 @@ import ruokareseptit.domain.Ainesosa;
 
 /**
  * Luokka vertailee sanoja toisiinsa ja muokkaa ainesosa-listan tiedoston
- * kirjoittamiseen sopivaksi sekä tavuttaa reseptin ohjeen. 
- * "Kielenhoito"-luokka
+ * kirjoittamiseen sopivaksi sekä tavuttaa reseptin ohjeen. "Kielenhoito"-luokka
  *
  * @author susisusi
  */
@@ -52,11 +51,12 @@ public class StringUtils {
     }
 
     /**
-     * Palauttaa rivitetyn version reseptin ohjeesta. Kun rivin pituus on 
-     * 80-merkkiä, tulostaa metodi riville 80-merkissä olevan viimeisen sanan ja 
-     * aloittaa uuden rivin eli metodi ei katkaise sanoja vaan rivi katkeaa kun seuraava
-     * merkki on tyhjä.
-     * @param ohje 
+     * Palauttaa rivitetyn version reseptin ohjeesta. Kun rivin pituus on
+     * 80-merkkiä, tulostaa metodi riville 80-merkissä olevan viimeisen sanan ja
+     * aloittaa uuden rivin eli metodi ei katkaise sanoja vaan rivi katkeaa kun
+     * seuraava merkki on tyhjä.
+     *
+     * @param ohje
      * @return muokatun ohjeen
      */
     public String tavutaReseptinOhje(String ohje) {
@@ -64,10 +64,8 @@ public class StringUtils {
         if (ohje.equals("Ohjetta ei ole talletettu.")) {
             return ohje;
         } else if (ohje.equals("Kirjoita tähän valmistusohje")) {
-            return "Ohjetta ei ole talletettu.";            
-        }
-        
-        else {
+            return "Ohjetta ei ole talletettu.";
+        } else {
             int pituus = ohje.length();
             int rivinPituus = 80;
             int apu = 0;
@@ -76,7 +74,7 @@ public class StringUtils {
                 rivi = rivi + ohje.charAt(i);
                 apu++;
                 if (apu >= rivinPituus && ohje.charAt(i) == ' ') {
-                        muokattuOhje = muokattuOhje + rivi + "\n";
+                    muokattuOhje = muokattuOhje + rivi + "\n";
                     rivi = "";
                     apu = 0;
                 }
@@ -84,6 +82,14 @@ public class StringUtils {
             muokattuOhje = muokattuOhje + rivi;
         }
         return muokattuOhje;
-    }  
+    }
+
+    public String tulostaTahtia(int maara) {
+        String tahtia = "";
+        for (int i = 0; i < maara; i++) {
+            tahtia = tahtia + "*";
+        }
+        return tahtia;
+    }
 
 }

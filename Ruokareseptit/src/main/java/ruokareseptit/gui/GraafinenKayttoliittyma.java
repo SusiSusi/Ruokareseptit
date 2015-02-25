@@ -57,7 +57,7 @@ public class GraafinenKayttoliittyma implements Runnable {
         JPanel paneeli = new JPanel(new GridLayout(1, 5));
         JButton haeKategoria = new JButton("Hae kategoria");
         JButton haeResepti = new JButton("Hae resepti");
-        JButton lisaa = new JButton("Lisää uusi");
+        JButton lisaa = new JButton("Lisää uusi resepti");
         JButton kaikkiReseptit = new JButton("Kaikki reseptit");
         JButton kaikkiKategoriat = new JButton("Kaikki kategoriat");
 
