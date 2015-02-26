@@ -50,4 +50,9 @@ public class StringUtilsTest {
         assertEquals("", etsija.tulostaTahtia(0));
     }
     
+    @Test
+    public void htmlRiviVaihdotTulevatOikein() {
+        assertEquals("<br><br><br>", etsija.htmlRiviVaihtoja(3));
+        assertEquals("", etsija.htmlRiviVaihtoja(0));
+    }
 }

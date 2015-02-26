@@ -72,7 +72,8 @@ public class LisayksetJaPoistot {
     /**
      * Metodi saa parametrinaan taulukon ainesosista ja kerää ainesosien tiedot.
      * Jos käyttäjä ei ole erottanut määrää pilkulla, laittaa metodi ainesosan
-     * määräksi "-". Tätä metodia käytetään graafisen käyttöliittymän kanssa.
+     * määräksi tyhjän "". Tätä metodia käytetään graafisen käyttöliittymän
+     * kanssa.
      *
      * @param resepti Käyttäjän syöte
      * @param ainesosat Käyttäjän syöte
@@ -80,11 +81,16 @@ public class LisayksetJaPoistot {
     public void lisaaReseptiinAinesosat(Resepti resepti, String[] ainesosat) {
         for (int i = 0; i < ainesosat.length; i++) {
             if (!ainesosat[i].contains(",")) {
-                resepti.setAinesosa(ainesosat[i], "-");
+                resepti.setAinesosa(ainesosat[i], "");
             } else {
                 String[] osat = ainesosat[i].split(",");
                 String maara = osat[0];
-                String aine = osat[1];
+                String aine = osat[1];;
+                if (osat.length > 1) {
+                    for (int k = 2; k < osat.length; k++) {
+                        aine = aine + ", " + osat[k];
+                    }
+                }
                 resepti.setAinesosa(aine, maara);
             }
         }

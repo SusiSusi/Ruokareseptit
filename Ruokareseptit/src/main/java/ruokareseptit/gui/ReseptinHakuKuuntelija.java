@@ -10,11 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.logiikka.Tulostus;
 
 /**
  * Luokka käsittelee reseptin haku -tapahtuman
+ *
  * @author susisusi
  */
 public class ReseptinHakuKuuntelija implements ActionListener {
@@ -23,14 +26,15 @@ public class ReseptinHakuKuuntelija implements ActionListener {
     private Container container;
     private Tulostus tulostus;
     private LisayksetJaPoistot lisayksetJaPoistot;
-    
+
     /**
-     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija tai KategorianHakuKuuntelija
-     * -luokalta saadut tiedot
+     * Konstruktori saa parametrikseen ValikkoNappaintenKuuntelija tai
+     * KategorianHakuKuuntelija -luokalta saadut tiedot
+     *
      * @param haettava Käyttäjän antama syöte
      * @param container
      * @param tulostus
-     * @param lisayksetJaPoistot 
+     * @param lisayksetJaPoistot
      */
     public ReseptinHakuKuuntelija(JTextField haettava, Container container,
             Tulostus tulostus, LisayksetJaPoistot lisayksetJaPoistot) {
@@ -55,7 +59,18 @@ public class ReseptinHakuKuuntelija implements ActionListener {
         JPanel paneeli = new JPanel(new BorderLayout());
 
         String reseptinTiedot = this.tulostus.tulostaResepti(haettava.getText());
-        JLabel tuloste = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
+//        JLabel tuloste = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
+
+        JTextPane tuloste = new JTextPane();
+        tuloste.setContentType("text/html");
+        tuloste.setText("<html><b>" + new StringUtils().htmlRiviVaihtoja(4) + reseptinTiedot.replace("\n", "<br>") + "</b></html>");
+        tuloste.setBorder(null);
+        tuloste.setOpaque(false);
+        tuloste.setEditable(false);
+
+        tuloste.setSelectionStart(0); // jotta scrollaus alkaisi ylhäältä
+        tuloste.setSelectionEnd(0);
+
         JScrollPane scrollaaResepti = new JScrollPane(tuloste);
         paneeli.add(scrollaaResepti);
 

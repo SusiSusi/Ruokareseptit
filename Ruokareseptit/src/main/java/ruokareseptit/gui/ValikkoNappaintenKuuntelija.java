@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.logiikka.Tulostus;
 
 /**
@@ -76,8 +77,14 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     }
 
     private void kaikkiKategoriat() {
-        this.paneeli = new JPanel(new BorderLayout()); // BoxLayout
-        JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</html>");
+        this.paneeli = new JPanel(new BorderLayout());
+        JTextPane tuloste = new JTextPane();
+        tuloste.setContentType("text/html");
+        tuloste.setText("<html><b>" + new StringUtils().htmlRiviVaihtoja(10) + this.tulostus.tulostaKaikkiKategoriat().replace("\n", "<br>") + "</b></html>");
+        tuloste.setBorder(null);
+        tuloste.setOpaque(false);
+        tuloste.setEditable(false);
+
 //        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/LetsPretend.jpg");
         paneeli.add(tuloste, BorderLayout.CENTER);
 //        paneeli.add(new JLabel(kuva), BorderLayout.SOUTH);
@@ -85,10 +92,20 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
     }
 
     private void kaikkiReseptit() {
-        this.paneeli = new JPanel(new BorderLayout()); // BoxLy
-        JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
+        this.paneeli = new JPanel(new BorderLayout());
+//        JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
+        JTextPane tuloste = new JTextPane();
+        tuloste.setContentType("text/html");
+        tuloste.setText("<html><b>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</b></html>");
+        tuloste.setBorder(null);
+        tuloste.setOpaque(false);
+        tuloste.setEditable(false);
+
+        tuloste.setSelectionStart(0); // jotta scrollaus alkaisi ylhäältä
+        tuloste.setSelectionEnd(0);
         JScrollPane scrollaaReseptit = new JScrollPane(tuloste);
         paneeli.add(scrollaaReseptit);
+
         container.add(paneeli);
     }
 

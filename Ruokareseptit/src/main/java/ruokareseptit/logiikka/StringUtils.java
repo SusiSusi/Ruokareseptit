@@ -37,7 +37,7 @@ public class StringUtils {
      * kirjoittaminen edellyttää, että ainesosat ovat kirjoitettu muotoon
      * maara:aines, esim. 1 kpl:sipuli
      *
-     * @param ainesosat
+     * @param ainesosat reseptin ainesosat
      * @return ainesosat String-muodossa
      */
     public String muutaAinesosatTiedostoonSopiviksi(List<Ainesosa> ainesosat) {
@@ -56,7 +56,7 @@ public class StringUtils {
      * aloittaa uuden rivin eli metodi ei katkaise sanoja vaan rivi katkeaa kun
      * seuraava merkki on tyhjä.
      *
-     * @param ohje
+     * @param ohje reseptin ohje
      * @return muokatun ohjeen
      */
     public String tavutaReseptinOhje(String ohje) {
@@ -84,12 +84,31 @@ public class StringUtils {
         return muokattuOhje;
     }
 
+    /**
+     * Metodi tulostaa tähtirivit reseptien erotteluun toisistaan.
+     * @param maara kuinka monta tähteä riviin halutaan
+     * @return palauttaa tähtirivin
+     */
     public String tulostaTahtia(int maara) {
         String tahtia = "";
         for (int i = 0; i < maara; i++) {
             tahtia = tahtia + "*";
         }
         return tahtia;
+    }
+    
+    /**
+     * Metodin avulla voidaan tulostaa HTML-rivivaihtoja. Metodia tarvitaan 
+     * graafisen käyttöliittymän kanssa.
+     * @param maara monta rivivaihtoa halutaan
+     * @return palauttaa rivin rivivaihtoja
+     */
+    public String htmlRiviVaihtoja(int maara) {
+        String riviVaihdot = "";
+        for (int i = 0; i < maara; i++) {
+            riviVaihdot = riviVaihdot + "<br>";
+        }
+        return riviVaihdot;
     }
 
 }

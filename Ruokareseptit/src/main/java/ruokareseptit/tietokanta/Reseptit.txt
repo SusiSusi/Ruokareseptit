@@ -121,18 +121,6 @@ AURA punajuurigratiini
 OHJEET
 Kuori ja leikkaa punajuuret ohuiksi suikaleiksi. Hienonna kuorittu sipuli. Kuori omena ja poista siemenkota. Leikkaa lohkoiksi. Sekoita kaikki ainekset keskenään voidellussa uunivuoassa. Paista uunissa 175 asteessa 1 t 30 min tai kunnes gratiini on kypsää. Peitä vuoka alumiinifoliolla kypsennyksen loppuvaiheessa, mikäli pinta ruskistuu liikaa. Tarjoa liharuokien lisäkkeenä tai kasviruokana sellaisenaan.
 KATEGORIA
-KASVIS
-TestiResepti1
-1:sipuli
-OHJEET
-mitä mitä mitä testii testii 
-KATEGORIA
-KASVIS
-TestiResepti2
-1:sipuli
-OHJEET
-mitä mitä mitä testii testii 
-KATEGORIA
 LIHA
 Helppo lasagne
 700 g:naudan jauhelihaa
@@ -168,3 +156,44 @@ Pasta carbonara
 1-2 dl:Valio Mustaleima™ raastetta
 OHJEET
 Suikaloi pekoni. Paista pekonisuikaleita pannulla keskilämmöllä. Lisää hienonnettu sipuli. Keitä pasta (al dente) pakkauksen ohjeen mukaan. Vatkaa munan rakenne rikki kulhossa. Lisää munan joukkoon kerma ja maito. Valuta ja huuhdo keitetty pasta siivilässä ja siirrä takaisin kattilaan. Yhdistä pastaan pekoni-sipuliseos ja muna-kerma-maitoseos. Lisää mustapippuria. Kuumenna hetken aikaa, samalla sekoitellen, kunnes munaseos hyytyy. Älä kuumenna liikaa, jotta ruoka jää mehevän kosteaksi. Koristele annokset juustoraasteella ja revityllä basilikalla. Tarjoa heti.
+KATEGORIA
+ALKUPALA
+Graavilohi-tartarleivät
+20 viipaletta (500 g): saaristolaisleipää
+100 g: Valio voita sitruuna 
+1 pak (150 g): graavattua kirjolohifileetä 
+1 kpl: punasipuli
+1 pieni: hapahko omena 
+2 rkl: Dijon-sinappia
+1 tl: sitruunapippuria
+1 prk: Valio Eila® kevyt crème fraîchea
+1/2 dl: tuoretta tilliä hienonnettuna 
+OHJEET
+     Leikkaa ohuista leipäviipaleista tummat reunat pois. Voitele leivät sitruunavoilla.     Leikkaa lohiviipaleet pieniksi paloiksi. Hienonna punasipuli. (Jos punasipuli on väkevän makuista, huuhdo se lävikössä kylmällä, juoksevalla vedellä. Valuta hyvin.) Leikkaa kuorittu omena aivan pieniksi kuutioiksi. Yhdistä kaikki lohitartarin ainekset. Tarkista maku.     Lusikoi seosta leiville. Lisää koristeeksi hiukan tilliä.     Tarjoa kahvi- tai teepöydässä tai glögin kera. Alkupalana ne voi jättää isommiksi ja koristella salaatinlehdillä. Suupalan kokoisiksi tehdyt leivät sopivat hyvin cocktailpaloiksi. 
+KATEGORIA
+ALKUPALA
+PilkkuTesti
+pilkku 1: pilkku2,  pilkku3,  pilkku4
+pilkku 1: pilkku2
+pilkku 1: pilkku2,  pilkku3
+OHJEET
+Kirjoita tähän valmistusohje
+KATEGORIA
+ALKUPALA
+tosi pitkä resepti
+:a
+:s
+:d
+:g
+:h
+:j
+:x
+:c
+:v
+:b
+:n
+:m
+:dff
+:hfff
+OHJEET
+Kirjoita tähän valmistusohje toooo ooooooooooooooooooooooooooooooooooo oooooooooooooooooooooooooooo ooooooooooooooooooooooo oooooooooooooooooooooo oooooooooooooooooooooo  s ooooooooooooooooooooooooooosssoooooooooo ooooooooooooooooooss  sssssssssssssssss ssssssssssssssssssss ssssssssssssssssssssssss ssssssssssssssssss sssssssssssssss iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ååfösdlf  adfk lf sdöl ösdlfk aödlfk aöfk aösl kaödlfkaöd fkaö lkaösldkaöls kaödl fkaöldkf aö kaölk aölfj alfj aöl fjaöfj alfjalk jalkfj alf jalfjka lfjkalk fjal fjalk jalfk jaldkfj alfjk alfkj adlk fjaldfk jadfljk adlfj ad pfjo adkl fjalfk jalfk jalfkj alfkj alfkj alk fjalfk jalfk jalfjk alkfj alfkj adklfj aldfk jald jk

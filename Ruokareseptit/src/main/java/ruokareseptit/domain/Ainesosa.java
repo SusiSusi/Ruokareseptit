@@ -40,6 +40,9 @@ public class Ainesosa {
 
     @Override
     public String toString() {
+        if (this.maara.isEmpty()) {
+            return this.nimi;
+        }
         return this.maara + ", " + this.nimi;
     }
 }

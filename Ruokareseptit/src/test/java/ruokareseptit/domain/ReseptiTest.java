@@ -87,15 +87,4 @@ public class ReseptiTest {
                 + "t, lisää joukkoon kanelia. 10min uunissa ja sitten ruoka \n"
                 + "on valmis.", res.toString());
     }
-
-//    @Test
-//    public void toStringTulostusToimiiVaikkaOhjettaJaAineitaEiOlisi() {
-//        List<Ainesosa> osat = new ArrayList<>();
-//        Resepti tee = new Resepti("Tee");
-//        assertEquals("Tee\n"
-//                + "\n"
-//                + "Ainesosat: \n"
-//                + "Ainesosia ei ole vielä talletettu.\n"
-//                + "Ohjetta ei ole talletettu.", tee.toString());
-//    }
 }

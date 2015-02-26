@@ -1,0 +1,17 @@
+##Testausdokumentti
+
+####Automaattitestaukset
+Ohjelma pakkaukset ruokareseptit.domain, ruokareseptit.logiikka ja ruokareseptit.tietokanta on saatu hyvin ja kattavasti testauttua JunitTesteillä. Ainoaksi ongelmaksi on muodostunut se, kun ajaa Pit-raportit niin tällöin ReseptitTest.txt-tiedosto ylikirjoitetaan väärillä tiedoilla, jonka jälkeen testien ajaminen ei kaikilta testimetodeilta onnistu. Tähän kummallisuuteen olen koittanut etsiä ratkaisua sitä löytämättä. JunitTestit kuitenkin toimivat nätisti ja eivät ylikirjoita ReseptitTest.txt-tiedostoa väärillä tiedoilla. Tämän takia dokumentaatio-kansioon on tallennettu oikea ReseptitTest.txt-tiedosto, mikäli Pit-raporttien jälkeen tiedostoon tallentuu vääriä tietoja.
+
+####Käsintestaukset
+Ohjelmaa on alusta alkaen testattu myös käsin automaattisten testausten lisäksi. Varsinkin reseptien tietojen visuaalisuutta on testattu paljon ja koitettu löytää mahdollisimman kaunis/esteettinen lopputulos. 
+Reseptien haussa törmäsin virheeseen, missä ohjelma ei tunnistanut käyttäjän syöttämiä ääkkösiä. Tämä virhe korjaantui kuitenkin graafisen käyttöliittymän tullessa kuvioihin. 
+
+Graafisen käyttöliittymän testaaminen perustuu ainoastaan käsintestaamiseen. Visuaalista ilmettä on testattu paljon, ja koitin saada siitä mahdollisimman tyydyttävän näköisen. Ilme kuitenkin on vähän 90-lukua, mutta se käyköön tähän hätään kun tyylipisteitä ei (kai?) jaella.
+
+Graafisen käyttöliittymän Lisää resepti -toimintoa on testattu, että lisäys ei hyväksy saman nimistä reseptiä uudelleen, eikä anna tallentaa reseptiä jos reseptin nimi ja/tai ainesosat puuttuvat. Ainesosia on myös testattu, että se hyväksyy erikoismerkkejä eikä kaada ohjelmaa. Viimeisimpänä virheenä huomasin, että jos käyttäjä lisää ainesosan muodossa *1 pala, saaristolaisleipää, esim Maalahden limppua*, niin reseptiin tallentuu ainesosaksi ainostaan ensimmäisen pilkun erottamat sanat eli *1 pala, saaristolaisleipää*. Tämä johtui siitä, että LisäyksetJaPoitot-luokan metodi lisaaReseptiinAinesosat erottaa merkkijonon pilkusta ja koodissa olen ottanut huomioon vain ensimmäisen ja toisen osan pilkun jälkeen. Tämä on korjattu niin, että ohjelma ottaa huomioon monetkin pilkut ja tallentaa ensimmäistä pilkkua ennen olevan merkkijonon määräksi ja loput ainesosan nimeksi.
+Lisäyksessä olevaa kategoria valikkoa piti testailla käsin, koska ensin siinä tapahtui niin, että jos käyttäjä ei ollut avannut valikkoa ollenkaan, tuli kategoriaksi tyhjä ja tämä kaatoi ohjelman, koska reseptiin kuuluu aina kategoria. Ongelman sain ratkaistua niin, että vaikka käyttäjä ei koskisikaan valikkoon niin ohjelma antaa oletuksena reseptille kategoriaksi kategoria-valikon ensimmäisen arvon.
+
+Yksi virhe löytyi myös Hae kategoria -osiosta. Kun käyttäjä hakee tietyn kategorian ja ohjelma tulostaa siihen kuuluvien reseptien nimet voi käyttäjä tulostaa reseptin tiedot kirjoittamalla reseptin nimen ruudun alalaitaan. Käyttäjä voi kuitenkin kirjoittaa minkä tahansa tietokannasta löytyvän reseptin nimen ja ohjelma tulostaa reseptin tiedot vaikka käyttötarkoitus siihen oli, että voidaan tulostaa ainoastaan haetusta kategorista olevan reseptin tiedot. Tähän virheeseen en ehtinyt korjausta tekemään, mutta virheen laatu ei onneksi ole mitenkään käyttöä estävä.
+
+Ohjelmasta on pyritty tekemään kaatumaton paljolla käsintestailulla. Suurin syy kaatumiseen olisi se, että tiedostoon kirjoitettaisiin väärällä formaatilla. Väärän formaatin käyttö on kuitenkin estetty monessa eri metodissa.

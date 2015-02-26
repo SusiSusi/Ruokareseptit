@@ -12,7 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
+import ruokareseptit.logiikka.StringUtils;
 import ruokareseptit.logiikka.Tulostus;
 
 /**
@@ -60,7 +62,17 @@ public class KategorianHakuKuuntelija implements ActionListener {
         String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
 
         JLabel otsake = new JLabel("Kategorian " + haettava.getText() + " reseptit:");
-        JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
+//        JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
+
+        JTextPane tuloste = new JTextPane();
+        tuloste.setContentType("text/html");
+        tuloste.setText("<html><b>" + new StringUtils().htmlRiviVaihtoja(6) + reseptienNimet.replace("\n", "<br>") + "</b></html>");
+        tuloste.setBorder(null);
+        tuloste.setOpaque(false);
+        tuloste.setEditable(false);
+
+        tuloste.setSelectionStart(0); // jotta scrollaus alkaisi ylhäältä
+        tuloste.setSelectionEnd(0);
 
         JScrollPane scrollaaKategoriat = new JScrollPane(tuloste);
         JSplitPane reseptienNimetTulostettuna = new JSplitPane(JSplitPane.VERTICAL_SPLIT, otsake, scrollaaKategoriat);
@@ -68,15 +80,15 @@ public class KategorianHakuKuuntelija implements ActionListener {
         paneeli.add(reseptienNimetTulostettuna, BorderLayout.CENTER);
 
         if (!reseptienNimet.equals("Kategoriaa ei löytynyt tai kategoriassa ei ole reseptejä")) {
-            
+
             JLabel kysytaanReseptinNimi = new JLabel("Haluatko tulostaa reseptin? Kirjoita reseptin nimi");
             JTextField nimi = new JTextField();
-             JButton hae = new JButton("Hae");
-            
-            JSplitPane yhdiste = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, 
+            JButton hae = new JButton("Hae");
+
+            JSplitPane yhdiste = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                     kysytaanReseptinNimi, nimi);
             JSplitPane kaikkiYhdessa = new JSplitPane(JSplitPane.VERTICAL_SPLIT, yhdiste, hae);
-           
+
             paneeli.add(kaikkiYhdessa, BorderLayout.SOUTH);
             hae.addActionListener(new ReseptinHakuKuuntelija(nimi,
                     this.container, this.tulostus, this.lisayksetJaPoistot));

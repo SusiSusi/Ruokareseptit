@@ -82,18 +82,6 @@ public class KategoriaTest {
         assertEquals(null, keitot.getResepti("Makaronilaatikko"));
         assertEquals(null, keitot.getResepti(""));
     }
-
-//    @Test
-//    public void reseptinPoistoOnnistuuOikein() {
-//        Resepti maksa = new Resepti("Maksalaatikko");
-//        keitot.lisaaReseptiKategoriaan(maksa);
-//        keitot.lisaaReseptiKategoriaan(kalakeitto);
-//        keitot.poistaResepti("MaKSAlaaTIKKO  ");
-//        keitot.poistaResepti("kakku");
-//        assertEquals(1, keitot.reseptienMaaraKategoriassa());
-//        keitot.poistaResepti("Kalakeitto");
-//        assertEquals(0, keitot.reseptienMaaraKategoriassa());
-//    }
     
     @Test
     public void reseptienPoistonJalkeenKategoriaListaOnTyhja() {
