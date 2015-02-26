@@ -23,14 +23,14 @@ public class LisayksetJaPoistotTest {
 
     @Before
     public void setUp() {
-        varasto = new Tietovarasto("src/test/java/ruokareseptit/tietokanta/KategoriatTest.txt",
-                "src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
+        varasto = new Tietovarasto("/KategoriatTest.txt",
+                "/ReseptitTest.txt");
         varasto.lisaaKategoriat();
         varasto.lisaaKategorioihinReseptit();
         this.lisaykset = new LisayksetJaPoistot(varasto.haeKategoriat(), varasto);
         jauhelihakastike = new Resepti("Jauhelihakastike");
-        File reseptiTiedosto = new File("src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
-        kopio = reseptiTiedosto;
+//        File reseptiTiedosto = new File("src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
+//        kopio = reseptiTiedosto;
     }
     
 //        @After

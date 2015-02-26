@@ -48,7 +48,7 @@ public class GraafinenKayttoliittyma implements Runnable {
         container.add(new JLabel("SuSin ruokareseptit"), BorderLayout.NORTH);
         container.add(luoValikko(container), BorderLayout.SOUTH);
         
-        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/vintagehousewifecooking.jpg");
+        ImageIcon kuva = new ImageIcon(this.getClass().getResource("/vintagehousewifecooking.jpg"));
         
         container.add(new JLabel(kuva), BorderLayout.CENTER);
     }

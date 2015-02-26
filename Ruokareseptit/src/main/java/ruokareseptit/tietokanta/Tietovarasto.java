@@ -27,8 +27,8 @@ public class Tietovarasto {
      */
     public Tietovarasto() {
         this.kategoriat = new ArrayList<>();
-        this.tiedosto = new File("src/main/java/ruokareseptit/tietokanta/Kategoriat.txt");
-        this.tiedostoReseptit = new File("src/main/java/ruokareseptit/tietokanta/Reseptit.txt");
+        this.tiedosto = new File(this.getClass().getResource("/Kategoriat.txt").getFile());
+        this.tiedostoReseptit = new File(this.getClass().getResource("/Reseptit.txt").getFile());
         lisaaKategoriat();
         lisaaKategorioihinReseptit();
     }
@@ -42,8 +42,11 @@ public class Tietovarasto {
      */
     public Tietovarasto(String tiedosto, String tiedosto2) {
         this.kategoriat = new ArrayList<>();
-        this.tiedosto = new File(tiedosto);
-        this.tiedostoReseptit = new File(tiedosto2);
+
+        this.tiedosto = new File(this.getClass().getResource(tiedosto).getFile());
+        this.tiedostoReseptit = new File(this.getClass().getResource(tiedosto2).getFile());
+//        this.tiedosto = new File(tiedosto);
+//        this.tiedostoReseptit = new File(tiedosto2);
     }
 
     /**

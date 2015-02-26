@@ -1,4 +1,4 @@
-package ruokareseptit;
+package ruokareseptit.main;
 
 import java.io.IOException;
 import java.util.*;
@@ -6,6 +6,7 @@ import javax.swing.SwingUtilities;
 import ruokareseptit.domain.Ainesosa;
 import ruokareseptit.domain.Kategoria;
 import ruokareseptit.domain.Resepti;
+import ruokareseptit.gui.GraafinenKayttoliittyma;
 import ruokareseptit.gui.GraafinenKayttoliittyma;
 import ruokareseptit.gui.Tekstikayttoliittyma;
 import ruokareseptit.logiikka.StringUtils;
