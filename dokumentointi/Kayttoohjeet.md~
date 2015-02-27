@@ -3,7 +3,7 @@
 ####Hae resepti 
 Haku-kenttään kirjoitetaan reseptin nimi kokonaan. Kirjainten koosta tai ylimääräisistä välilyönneistä ei tarvise välittää. Reseptin löydyttyä, näytölle tulostuu reseptin ohjeet. Ruudun alalaitaan ilmestyy Poista resepti -näppäin, jota painamalla resepti voidaan poistaa.
 
-####Hae resepti
+####Hae kategoria
 Haku-kenttään kirjoitetaan kategorian nimi kokonaan. Kirjainten koosta tai ylimääräisistä välilyönneistä ei tarvise välittää. Kategorian löydyttyä, näytölle tulostuu kategorissa olevien reseptien nimet. Ruudun alalaitaan voidaan kirjoittaa reseptin nimi kokonaan ja tulostaa resepti painamalla Hae-näppäintä.
 
 ####Lisää uusi resepti

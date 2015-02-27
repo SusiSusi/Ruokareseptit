@@ -14,7 +14,7 @@ public class Tulostus {
     private List<Kategoria> kategoriat;
 
     /**
-     * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut
+     * Konstuktori saa parametreikseen käyttöliittymältä saadut
      * tiedot
      *
      * @param kategoriat
@@ -24,7 +24,8 @@ public class Tulostus {
     }
 
     /**
-     * Metodi hakee kaikki sovelluksessa olevat reseptit ja erottelee reseptit
+     * Metodi hakee kaikki sovelluksessa olevat reseptit, järjestää ne 
+     * aakkosjärjestykseen ja erottelee reseptit
      * toisistaan "tähtiviivana". Metodi kertoo alussa minkä kategorian
      * reseptejä tulostetaan.
      *
@@ -48,7 +49,8 @@ public class Tulostus {
     }
 
     /**
-     * Metodi hakee kaikki sovelluksessa olevat kategoriat.
+     * Metodi hakee kaikki sovelluksessa olevat kategoriat ja tulostaa numeron kategorian 
+     * nimen eteen. Numerointi 1 - kategorioiden määrä.
      *
      * @return kaikki tietokannassa olevat kategorioiden nimet
      */

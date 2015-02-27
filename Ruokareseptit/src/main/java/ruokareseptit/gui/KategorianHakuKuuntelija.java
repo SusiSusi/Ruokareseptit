@@ -2,7 +2,6 @@ package ruokareseptit.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -62,7 +61,6 @@ public class KategorianHakuKuuntelija implements ActionListener {
         String reseptienNimet = this.tulostus.tulostaKategorianReseptienNimet(haettava.getText());
 
         JLabel otsake = new JLabel("Kategorian " + haettava.getText() + " reseptit:");
-//        JLabel tuloste = new JLabel("<html>" + reseptienNimet.replace("\n", "<br>") + "</html>");
 
         JTextPane tuloste = new JTextPane();
         tuloste.setContentType("text/html");

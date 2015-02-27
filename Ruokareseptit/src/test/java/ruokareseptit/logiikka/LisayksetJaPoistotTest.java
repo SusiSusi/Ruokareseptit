@@ -29,18 +29,7 @@ public class LisayksetJaPoistotTest {
         varasto.lisaaKategorioihinReseptit();
         this.lisaykset = new LisayksetJaPoistot(varasto.haeKategoriat(), varasto);
         jauhelihakastike = new Resepti("Jauhelihakastike");
-//        File reseptiTiedosto = new File("src/test/java/ruokareseptit/tietokanta/ReseptitTest.txt");
-//        kopio = reseptiTiedosto;
     }
-    
-//        @After
-//    public void tearDown() throws IOException {
-//        Resepti res = new Resepti("Tomaatti-kotijuustobruchetta");
-//        res.setAinesosa("oliiviöljy", "1 rkl");
-//        res.setAinesosa("kirsikkatomaatti", "100 g");
-//        res.setOhje("Voitele leivät öljyllä. Paahda niitä hetki uunissa leivinpaperin päällä uunipellillä 225 asteessa. Päällystä leivät kotijuustolla, halkaistuilla kirsikkatomaateilla, pinjansiemenillä ja yrteillä. Viimeistele leivät pippurilla ja suolalla.");
-//                varasto.lisaaReseptiTiedostoon("alkupala", res);
-//    }
 
     @Test
     public void lisaaJaPoistaaReseptinTiedostostaOikein() throws IOException {
@@ -56,6 +45,11 @@ public class LisayksetJaPoistotTest {
         }
         assertEquals(true, montaReseptiaLisayksenJalkeen > montaReseptia);
 
+    }
+    
+    @Test
+    public void palauttaaFalseKunYritetaanPoistaaReseptiaMitaEiOleOlemassa() throws IOException {
+        assertEquals(false, lisaykset.poistaResepti("kukkahattu"));
     }
 
     @Test
@@ -99,6 +93,18 @@ public class LisayksetJaPoistotTest {
         lisaykset.lisaaReseptiinAinesosat(lohi, aineet);
         List<Ainesosa> maara = lohi.getAinesosat();
         assertEquals(2, maara.size());
+    }
+
+    @Test
+    public void listaaReseptiinAinesosanMillaOnMontaPilkkua() {
+        Resepti lohi = new Resepti("Lohi");
+        String[] aineet = new String[2];
+        aineet[0] = "1 kpl, tomaatti, esim suomalainen, ruotsalainen, espanjalainen";
+        aineet[1] = "1 kpl, lohi, esim norjalainen, ruotsalainen tai fileerattu, paistettu";
+        lisaykset.lisaaReseptiinAinesosat(lohi, aineet);
+        List<Ainesosa> maara = lohi.getAinesosat();
+        assertEquals(2, maara.size());
+
     }
 
     @Test

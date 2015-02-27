@@ -17,7 +17,7 @@ public class Resepti implements Comparable<Resepti> {
     /**
      * Konstruktori asettaa reseptille nimen ja alustaa reseptiin kuuluvien 
      * ainesosien listan sekä alustaa ohjeen ensin tyhjänä
-     * @param nimi 
+     * @param nimi käyttäjän antama syöte
      */
     public Resepti(String nimi) {
         this.nimi = nimi;
@@ -69,8 +69,8 @@ public class Resepti implements Comparable<Resepti> {
     /**
      * Asettaa reseptille ainesosan. Metodi pitää huolen, että samaa ainesosaa 
      * ainesosaa ei voi lisätä reseptille kahteen kertaan.
-     * @param ainesosa
-     * @param maara 
+     * @param ainesosa käyttäjän antama syöte
+     * @param maara käyttäjän antama syöte
      */
     public void setAinesosa(String ainesosa, String maara) {
         if (!this.ainesosat.isEmpty()) {

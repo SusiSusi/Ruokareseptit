@@ -48,25 +48,6 @@ public class TietovarastoTest {
         assertEquals(true, kokoEnnen > kokoJalkeen);
     }
 
-//    @Test
-//    public void tiedostonLukuEpaonnistuuJaKategoriaListaOnTyhja() {
-//        Tietovarasto toinen = new Tietovarasto("testi.txt", "tps.txt");
-//        toinen.lisaaKategoriat();
-////        File tiedosto = new File(this.getClass().getResource("/testi.txt").getFile());
-//        assertEquals(0, toinen.haeKategoriat().size());
-////        assertEquals(false, toinen.lataaTiedosto(tiedosto));
-//    }
-
-//    @Test
-//    public void reseptienLisaysKategorioihinOnnistuu() {
-//        Tietovarasto oikeaVarasto = new Tietovarasto();
-//        List<Kategoria> kategoriat = oikeaVarasto.haeKategoriat();
-//        int montaReseptia = 0;
-//        for (Kategoria kat : kategoriat) {
-//            montaReseptia = montaReseptia + kat.reseptienMaaraKategoriassa();
-//        }
-//        assertEquals(5, montaReseptia);
-//    }
     @Test
     public void reseptienPoistoKategorioistaOnnistuu() {
         List<Kategoria> kategoriat = varasto.haeKategoriat();

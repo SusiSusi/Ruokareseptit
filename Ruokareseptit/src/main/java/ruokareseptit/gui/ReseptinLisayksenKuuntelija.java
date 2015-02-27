@@ -33,7 +33,6 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
     private JButton tallennaJaLopeta;
     private JTextField ainesosaKentta;
     private JTextArea reseptinOhje;
-//    static private String newline = "\n";
 
     private Container container;
     private Tulostus tulostus;
@@ -63,16 +62,13 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
         lista.addListSelectionListener(this);
 
         lisaa = new JButton("Lisää");
-//        addButton.setActionCommand(addString);
         lisaa.addActionListener(new AddButtonListener());
 
         poista = new JButton("Poista");
-//        deleteButton.setActionCommand(deleteString);
         poista.addActionListener(new PoistaNappulanKuuntelija());
         poista.setEnabled(false);
 
         tallennaJaLopeta = new JButton("Tallenna ja lopeta");
-//        tallennaJaLopeta.setActionCommand(tallennaJaLopetaString);
         tallennaJaLopeta.addActionListener(new TallennaJaLopetaKuuntelija());
 
         ainesosaKentta = new JTextField(30);
@@ -85,9 +81,8 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
      */
     public void alusta() {
         JPanel paneeli = new JPanel(new BorderLayout());
-//        this.valikko = new JPanel(new BorderLayout());
         JPanel nappulaPaneeli = new JPanel();
-        nappulaPaneeli.add(new JLabel("Ainesosat (esim. 1 kpl, tomaatti) "));
+        nappulaPaneeli.add(new JLabel("Ainesosat, erota määrä ja ainesosa pilkulla (esim. 1 kpl, tomaatti) "));
         nappulaPaneeli.add(ainesosaKentta);
         nappulaPaneeli.add(lisaa);
         nappulaPaneeli.add(poista);
@@ -177,10 +172,10 @@ public class ReseptinLisayksenKuuntelija implements ListSelectionListener {
                 JOptionPane.showMessageDialog(null, "Reseptin nimi on pakollinen tieto!");
             } else if (listModel.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Lisää reseptiin ainesosat!");
-            } else if (!onkoReseptinNimiVarattu.equals("Reseptiä ei löytynyt.")){
-                JOptionPane.showMessageDialog(null, "Resepti nimellä " + uudenReseptinNimi 
-                + " löytyy jo tietokannasta. Muuta reseptin nimeä.");     
-            }else {
+            } else if (!onkoReseptinNimiVarattu.equals("Reseptiä ei löytynyt.")) {
+                JOptionPane.showMessageDialog(null, "Resepti nimellä " + uudenReseptinNimi
+                        + " löytyy jo tietokannasta. Muuta reseptin nimeä.");
+            } else {
                 String[] ainesosat = new String[listModel.size()];
                 listModel.copyInto(ainesosat);
 

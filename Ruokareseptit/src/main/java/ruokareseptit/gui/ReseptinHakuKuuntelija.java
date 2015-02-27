@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -59,7 +58,6 @@ public class ReseptinHakuKuuntelija implements ActionListener {
         JPanel paneeli = new JPanel(new BorderLayout());
 
         String reseptinTiedot = this.tulostus.tulostaResepti(haettava.getText());
-//        JLabel tuloste = new JLabel("<html>" + reseptinTiedot.replace("\n", "<br>") + "</html>");
 
         JTextPane tuloste = new JTextPane();
         tuloste.setContentType("text/html");

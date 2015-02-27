@@ -1,10 +1,7 @@
 package ruokareseptit.gui;
 
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
-import ruokareseptit.domain.Kategoria;
-import ruokareseptit.domain.Resepti;
 import ruokareseptit.logiikka.LisayksetJaPoistot;
 import ruokareseptit.logiikka.Tulostus;
 import ruokareseptit.tietokanta.Tietovarasto;

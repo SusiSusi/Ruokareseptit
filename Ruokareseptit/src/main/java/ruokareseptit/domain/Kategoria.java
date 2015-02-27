@@ -16,7 +16,7 @@ public class Kategoria implements Comparable<Kategoria> {
     /**
      * Konstruktori asettaa kategorialle nimen ja alustaa kategoriaan kuuluvien
      * reseptien listan
-     * @param nimi 
+     * @param nimi txt-tiedostosta tuleva nimi
      */
     public Kategoria(String nimi) {
         this.nimi = nimi;
@@ -77,7 +77,7 @@ public class Kategoria implements Comparable<Kategoria> {
 
     /**
      * Metodi etsii parametrina olevan reseptin
-     * @param nimi
+     * @param nimi käyttäjän antama syöte
      * @return resepti-olio
      */
     public Resepti getResepti(String nimi) {
@@ -89,16 +89,6 @@ public class Kategoria implements Comparable<Kategoria> {
         }
         return loytynytResepti;
     }
-    
-//    // oma muistutus: tarvitaanko tätä metodia
-//    public void poistaResepti(String nimi) {
-//        Iterator<Resepti> iteraattori = this.reseptit.iterator();
-//        while (iteraattori.hasNext()) {
-//            if (new StringUtils().sisaltaa(iteraattori.next().getNimi(), nimi)) {
-//                iteraattori.remove();
-//            }
-//        }
-//    }
 
     /**
      * Poistaa reseptit-listalta kaikki reseptit eli tyhjentää listan

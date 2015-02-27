@@ -45,8 +45,6 @@ public class Tietovarasto {
 
         this.tiedosto = new File(this.getClass().getResource(tiedosto).getFile());
         this.tiedostoReseptit = new File(this.getClass().getResource(tiedosto2).getFile());
-//        this.tiedosto = new File(tiedosto);
-//        this.tiedostoReseptit = new File(tiedosto2);
     }
 
     /**
@@ -80,7 +78,7 @@ public class Tietovarasto {
         try {
             lukija = new Scanner(tiedosto, "UTF-8");
         } catch (Exception e) {
-//            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
+            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
             return false; // poistutaan metodista
         }
         return true;
@@ -176,7 +174,7 @@ public class Tietovarasto {
                     + "\n" + new StringUtils().muutaAinesosatTiedostoonSopiviksi(resepti.getAinesosat())
                     + "OHJEET\n" + resepti.getOhje());
         } catch (Exception e) {
-//            System.out.println("Reseptin lisääminen epäonnistui: " + e.getMessage());
+            System.out.println("Reseptin lisääminen epäonnistui: " + e.getMessage());
             return false; // poistutaan metodista
         }
         return true;
@@ -195,7 +193,7 @@ public class Tietovarasto {
      * @return totuusarvo, onnistuuko reseptin poisto vai ei
      * @throws IOException
      */
-//    public boolean poistaReseptiTiedostosta(Resepti resepti) throws IOException {
+    
     public boolean poistaReseptiTiedostosta(String kategoria, Resepti resepti) throws IOException {
         File kopio = this.tiedostoReseptit;
         boolean onnistuuko = lataaTiedosto(kopio);
@@ -208,7 +206,6 @@ public class Tietovarasto {
             if (rivi.equals("KATEGORIA")) {
                 String katego = lukija.nextLine();
                 String reseptinNimi = lukija.nextLine();
-//                if (reseptinNimi.equals(resepti.getNimi())) {
                 if (kategoria.toUpperCase().equals(katego) && reseptinNimi.equals(resepti.getNimi())) {
                     String seuraava = lukija.nextLine();
                     while (!seuraava.equals("OHJEET")) {

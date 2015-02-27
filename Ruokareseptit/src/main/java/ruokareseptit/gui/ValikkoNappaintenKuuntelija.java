@@ -85,15 +85,12 @@ public class ValikkoNappaintenKuuntelija implements ActionListener {
         tuloste.setOpaque(false);
         tuloste.setEditable(false);
 
-//        ImageIcon kuva = new ImageIcon("src/main/java/ruokareseptit/gui/LetsPretend.jpg");
         paneeli.add(tuloste, BorderLayout.CENTER);
-//        paneeli.add(new JLabel(kuva), BorderLayout.SOUTH);
         container.add(paneeli);
     }
 
     private void kaikkiReseptit() {
         this.paneeli = new JPanel(new BorderLayout());
-//        JLabel tuloste = new JLabel("<html>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</html>");
         JTextPane tuloste = new JTextPane();
         tuloste.setContentType("text/html");
         tuloste.setText("<html><b>" + this.tulostus.tulostaKaikkiReseptit().replace("\n", "<br>") + "</b></html>");

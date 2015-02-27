@@ -13,8 +13,8 @@ public class Ainesosa {
 
     /**
      * Konstruktori asettaa ainesosalle nimen ja määrän
-     * @param nimi
-     * @param maara 
+     * @param nimi käyttäjän antama syöte
+     * @param maara käyttäjän antama syöte
      */
     
     public Ainesosa(String nimi, String maara) {

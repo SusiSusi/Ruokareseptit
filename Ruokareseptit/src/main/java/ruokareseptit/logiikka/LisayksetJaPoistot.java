@@ -17,7 +17,7 @@ public class LisayksetJaPoistot {
     private Tietovarasto tiedot;
 
     /**
-     * Konstuktori saa parametreikseen Tekstikayttoliittyma-luokalta saadut
+     * Konstuktori saa parametreikseen käyttöliittymältä saadut
      * tiedot
      *
      * @param kategoriat
@@ -85,7 +85,7 @@ public class LisayksetJaPoistot {
             } else {
                 String[] osat = ainesosat[i].split(",");
                 String maara = osat[0];
-                String aine = osat[1];;
+                String aine = osat[1];
                 if (osat.length > 1) {
                     for (int k = 2; k < osat.length; k++) {
                         aine = aine + ", " + osat[k];
@@ -109,7 +109,6 @@ public class LisayksetJaPoistot {
             List<Resepti> reseptit = kateg.getKaikkiReseptit();
             for (Resepti resepti : reseptit) {
                 if (new StringUtils().sisaltaa(resepti.getNimi(), reseptinNimi)) {
-//                    return this.tiedot.poistaReseptiTiedostosta(resepti);
                     return this.tiedot.poistaReseptiTiedostosta(kateg.getKategorianNimi(), resepti);
                 }
             }

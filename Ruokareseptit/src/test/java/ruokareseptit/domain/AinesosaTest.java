@@ -34,4 +34,10 @@ public class AinesosaTest {
         jauheliha.setNimi("Naudan jauheliha");
         assertEquals("Naudan jauheliha", jauheliha.getNimi());
     }
+    
+    @Test
+    public void tulostaaAinesosanNimenOikeinKunAinesosallaEiOleMaaraa() {
+        Ainesosa pippuri = new Ainesosa("pippuri", "");
+        assertEquals("pippuri", pippuri.toString());
+    }
 }

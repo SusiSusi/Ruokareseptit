@@ -5,7 +5,8 @@ import ruokareseptit.domain.Ainesosa;
 
 /**
  * Luokka vertailee sanoja toisiinsa ja muokkaa ainesosa-listan tiedoston
- * kirjoittamiseen sopivaksi sekä tavuttaa reseptin ohjeen. "Kielenhoito"-luokka
+ * kirjoittamiseen sopivaksi, tavuttaa reseptin ohjeen, tulostaa tähtiä 
+ * sekä tulostaa HTML-rivien vaihtoja. "Kielenhoito"-luokka
  *
  * @author susisusi
  */
@@ -16,7 +17,7 @@ public class StringUtils {
      * Metodissa poistetaan sanojen turhat välilyönnit sekä muutetaan sanojen
      * kirjaimet isoiksi kirjaimiksi.
      *
-     * @param sana
+     * @param sana tietokannassa olevan sanan virallinen esitysmuoto
      * @param haettava Käyttäjän antama syöte
      * @return totuusarvon, onko sana sama vai ei
      */
@@ -110,5 +111,4 @@ public class StringUtils {
         }
         return riviVaihdot;
     }
-
 }
